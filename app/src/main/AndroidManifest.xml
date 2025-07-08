@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <queries>
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.whatsapp" />
+        <package android:name="net.one97.paytm" />
+        <package android:name="com.google.android.apps.nbu.paisa.user" />
+        <package android:name="com.phonepe.app" />
+        <package android:name="in.amazon.mShop.android.shopping" />
+        <package android:name="in.org.npci.upiapp" />
+
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" /> <!-- Permissions (removed duplicates) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera2.full"
+        android:required="false" />
+
+    <application
+        android:name=".WalletApplication"
+        android:allowBackup="true"
+        android:appCategory="game"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="sensorLandscape"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme,android:usesCleartextTraffic,android:name"
+        tools:targetApi="o">
+        <activity
+            android:name=".wallet.WalletConnectActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="gaming27" android:host="request" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._rouleteGame.RouleteDoubleGame_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name="._Tournament.TourListDetail"
+            android:exported="false" />
+        <activity
+            android:name="._Aviator.Aviator_Game_Activity"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="._Aviator.CurveTestActivity"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="._Aviator.Aviator_Game_Socket"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="._Aviator.Aviator_Game_Socket_Vertical"
+            android:exported="true"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="._Tournament.TourList"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name="._Tournament.RummPoint_Tour"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Statement"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._DragonTiger.DragonTigerSocket_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._DragonTiger.DragonTigerSocket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".RedeemCoins.WithdrawalList"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._rouleteGame.RouleteGame_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._rouleteGame.RouleteGame_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._jhandhiMunda.JhandhiMunda_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._jhandhiMunda.JhandhiMunda_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._baccarat.Baccarat_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._baccarat.Baccarat_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.Spinner_Wheels"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.Spinner_Wheels_Reward"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._RedBlack.RedBlackPot_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._RedBlack.RedBlackPot_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._CoinFlip.cointoss.MainActivity"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name="._CoinFlip.HeadTail_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._CoinFlip.HeadTail_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction1"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction1_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction3_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction30"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction30_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._ColorPrediction.ColorPrediction3"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._Roulette.RouletteActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AnimalRoulate.AnimalRoulette_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AnimalRoulate.AnimalRoulette_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._CarRoullete.CarRoullete_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._CarRoullete.CarRoullete_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._SevenUpGames.SevenUp_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._SevenUpGames.SevenUp_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AdharBahar.Andhar_Bahar_NewUI"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AdharBahar.Andhar_Bahar_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._Rummy.RummPoint"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="RummyGame">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/rummygame" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._Rummy.RummyPointSocket"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter android:label="RummyGame">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/rummygame"
+                    android:scheme="https" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._Rummy.RummPrivate"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="RummyGame">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/rummygame" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._RummyDeal.RummyDealGameSocket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="RummyGameDeal">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/rummygamedeal" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._RummyPull.RummyPullGameSocket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="RummyGamePool">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/rummygamepool" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Details.GameDetails_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._LuckJackpot.LuckJackPot_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._LuckJackpot.LuckJackPot_A_Socket"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".PaymentScreen.Payment_Upload_A"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentScreen.Payment_A"
+            android:exported="false" /> <!-- Only add it if you need Auto OTP reading feature -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="._DragonTiger.DragonTiger_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".RedeemCoins.RedeemActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AdharBahar.GameActivity"
+            android:exported="false" />
+        <activity
+            android:name="._AdharBahar.HorizontalAndhar_Bahar_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="._AdharBahar.AndharBahar_Home_A"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.GameChatActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.Splashscreen"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.Homepage"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="com.gamegards.letsplaycard.Activity.Homepage" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".account.Register_Activity"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".account.LoginScreen"
+            android:exported="true"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".account.LoginWithPasswordScreen_A"
+            android:exported="true"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.BuyChipsList"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.BuyChipsPaymentDetails"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+
+            <!-- Deep link for payment callbacks -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="payment"
+                    android:pathPrefix="/success"
+                    android:scheme="gaming27" />
+                <data
+                    android:host="payment"
+                    android:pathPrefix="/failure"
+                    android:scheme="gaming27" />
+            </intent-filter>
+
+            <!-- Legacy deep link format for backward compatibility -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="payment_success"
+                    android:scheme="gaming27" />
+                <data
+                    android:host="payment_failure"
+                    android:scheme="gaming27" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.AddCashDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.BuyChipsListCrypto"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activity.BuyCryptoPaymentDetails"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name="._Poker.PokerGame_A"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter android:label="PokerGame">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/pokergame"
+                    android:scheme="https" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._TeenPatti.PublicTable_New"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter android:label="Teenpatti">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/teenpattipublic"
+                    android:scheme="https" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._TeenPatti.TeenPattiSocket"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter android:label="Teenpatti">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="@string/deep_link_url"
+                    android:pathPrefix="/teenpattipublic"
+                    android:scheme="https" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.BuyChipsDetails"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="@string/razor_pay_test" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/app_logo_second" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <service
+            android:name=".Firebase.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

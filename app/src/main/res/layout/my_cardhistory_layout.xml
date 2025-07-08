@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivcard"
+        android:layout_width="@dimen/table_card_width"
+        android:layout_height="@dimen/table_card_height"
+        android:layout_margin="@dimen/dp5"
+        android:src="@drawable/teenpatti_backcard" />
+
+</LinearLayout>

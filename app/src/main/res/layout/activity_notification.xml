@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8D6CC8"
+    tools:context=".Activity.">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/rtl_toolbar"
+        android:id="@+id/rv_notiList"
+        android:padding="5dp"
+        tools:listitem="@layout/notification_item"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include layout="@layout/dialog_toolbar" />
+
+</RelativeLayout>

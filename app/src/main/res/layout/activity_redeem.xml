@@ -1,0 +1,394 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg2"
+    tools:context=".RedeemCoins.RedeemActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlt_profile"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/toppannel"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imgback"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/back"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/rltimageptofile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imaprofile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/circle" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_levels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/rltimageptofile"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtproname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_toRightOf="@+id/imaprofile"
+                android:gravity="top"
+                android:text="Total"
+                android:textAllCaps="true"
+                android:textColor="#E29700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/lnr_levels"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lnrhistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_marginRight="-20dp"
+                        android:layout_toLeftOf="@+id/iv_add"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:background="@drawable/coupon" />
+
+                    <ImageView
+                        android:id="@+id/imgicon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/gif_ruppe_" />
+
+                    <TextView
+                        android:id="@+id/txtwallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:text="2.37L"
+                        android:textColor="@color/colordullwhite"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_add"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toRightOf="@+id/txtwallet"
+                        android:src="@drawable/ic_add_circle" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lnr_levels2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/lnr_levels"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtprowallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_toRightOf="@+id/imaprofile"
+                android:gravity="top"
+                android:text="Bonus"
+                android:textAllCaps="true"
+                android:textColor="#E29700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/lnr_levels"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lnrhistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp100"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:background="@drawable/coupon" />
+
+                    <ImageView
+                        android:id="@+id/imgicon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/gif_ruppe_" />
+
+                    <TextView
+                        android:id="@+id/txtbonus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:text="2.37L"
+                        android:textColor="@color/colordullwhite"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_levels3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/lnr_levels2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtwinwallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_toRightOf="@+id/imaprofile"
+                android:gravity="center"
+                android:text="Winning Wallet"
+                android:textAllCaps="true"
+                android:textColor="#E29700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/lnr_levels"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lnrhistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:background="@drawable/coupon" />
+
+                    <ImageView
+                        android:id="@+id/imgicon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/gif_ruppe_" />
+
+                    <TextView
+                        android:id="@+id/txtwin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:text="2.37L"
+                        android:textColor="@color/colordullwhite"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_levels4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/lnr_levels3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtunutiwallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_toRightOf="@+id/imaprofile"
+                android:gravity="center"
+                android:text="Unutilized Wallet"
+                android:textAllCaps="true"
+                android:textColor="#E29700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/lnr_levels"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lnrhistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:background="@drawable/coupon" />
+
+                    <ImageView
+                        android:id="@+id/imgicon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/gif_ruppe_" />
+
+                    <TextView
+                        android:id="@+id/txtunuti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/imgicon"
+                        android:text="2.37L"
+                        android:textColor="@color/colordullwhite"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- New Withdrawal UI -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlt_profile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/cb_otp_rounded_corner_image_white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Enter Amount Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Amount"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_withdraw_amount"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_gredient_white_border"
+            android:hint="Enter withdrawal amount"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/colordullwhite"
+            android:textSize="16sp" />
+
+        <!-- Select Method Section -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Select Method"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner_withdraw_method"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_gredient_white_border"
+            android:paddingHorizontal="15dp" />
+
+        <!-- Withdraw Button -->
+        <Button
+            android:id="@+id/btn_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_gredient_white_border"
+            android:text="WITHDRAW"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>

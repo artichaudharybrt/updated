@@ -1,0 +1,76 @@
+<?xml version="1.1" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="5.5"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp5"
+            android:text="Period" />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1.15"
+            android:textStyle="bold"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp5"
+            android:text="Price" />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1.05"
+            android:textStyle="bold"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp5"
+            android:text="Number" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1.15"
+            android:textStyle="bold"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp5"
+            android:text="Size" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1.1"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:gravity="start|center"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/dp10"
+            android:paddingVertical="@dimen/dp5"
+            android:text="Color" />
+
+</LinearLayout>

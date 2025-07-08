@@ -1,0 +1,171 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aviator_graph_bg">
+
+    <!-- Custom Animation View -->
+    <com.gamegards.gaming27._Aviator.AviatorAnimationView
+        android:id="@+id/aviator_animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_350dp"
+        android:layout_marginLeft="-25dp"
+        android:layout_marginBottom="-50dp" />
+
+    <!-- Multiplier Text Overlay -->
+    <TextView
+        android:id="@+id/txt_rocket_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="8"
+        android:text="1.00x"
+        android:visibility="gone" />
+
+    <!-- Previous Results Display -->
+    <LinearLayout
+        android:id="@+id/lnr_previous_counts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/gray_rounded_corner"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txt_prev_count1"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/bet_selected"
+            android:layout_marginRight="5dp"
+            android:text="1.25x" />
+
+        <TextView
+            android:id="@+id/txt_prev_count2"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/bet_selected"
+            android:layout_marginRight="5dp"
+            android:text="2.10x" />
+
+        <TextView
+            android:id="@+id/txt_prev_count3"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/bet_selected"
+            android:layout_marginRight="5dp"
+            android:text="1.85x" />
+
+        <TextView
+            android:id="@+id/txt_prev_count4"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/bet_selected"
+            android:layout_marginRight="5dp"
+            android:text="3.45x" />
+
+        <TextView
+            android:id="@+id/txt_prev_count5"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/bet_selected"
+            android:text="1.67x" />
+
+    </LinearLayout>
+
+    <!-- Game Timer Display -->
+    <TextView
+        android:id="@+id/txt_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/aviator_animation_view"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/coloryellow"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="10"
+        android:visibility="gone" />
+
+    <!-- Next Game Text -->
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_timer"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Next game starts in"
+        android:visibility="gone" />
+
+    <!-- Exit Status -->
+    <TextView
+        android:id="@+id/txt_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/aviator_animation_view"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/red"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:text="FLEW AWAY!"
+        android:visibility="gone" />
+
+    <!-- Exit Value -->
+    <TextView
+        android:id="@+id/txt_exit_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_exit"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/coloryellow"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:text="2.45x"
+        android:visibility="gone" />
+
+    <!-- Waiting for Next Round GIF -->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/img_start_game"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/waiting_for_next_round"
+        android:visibility="gone" />
+
+</RelativeLayout>

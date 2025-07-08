@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Animation View - Full Screen -->
+    <com.gamegards.gaming27._Aviator.AviatorAnimationView
+        android:id="@+id/aviator_animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

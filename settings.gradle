@@ -1,0 +1,3 @@
+rootProject.name='play24'
+include ':app'
+include ':ludogame'

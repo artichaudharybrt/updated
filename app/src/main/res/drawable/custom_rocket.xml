@@ -1,0 +1,80 @@
+<?xml version="1.1" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Rocket Body Shadow -->
+    <path
+        android:fillColor="#CCCCCC"
+        android:pathData="M25,5L21,41L29,41Z" />
+
+    <!-- Rocket Body -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M24,4L20,40L28,40Z" />
+
+    <!-- Rocket Body Stripes -->
+    <path
+        android:fillColor="#E0E0E0"
+        android:pathData="M20,15L28,15L28,17L20,17Z" />
+    <path
+        android:fillColor="#E0E0E0"
+        android:pathData="M20,25L28,25L28,27L20,27Z" />
+    <path
+        android:fillColor="#E0E0E0"
+        android:pathData="M20,35L28,35L28,37L20,37Z" />
+
+    <!-- Rocket Nose -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M24,4L20,12L28,12Z" />
+
+    <!-- Rocket Nose Highlight -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M24,4L22,10L26,10Z" />
+
+    <!-- Rocket Wings -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M16,32L20,40L20,32Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M32,32L28,40L28,32Z" />
+
+    <!-- Wing Details -->
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M17,33L19,39L19,33Z" />
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M31,33L29,39L29,33Z" />
+
+    <!-- Rocket Window -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M24,16A4,4 0 1,1 24,24A4,4 0 1,1 24,16Z" />
+
+    <!-- Window Reflection -->
+    <path
+        android:fillColor="#64B5F6"
+        android:pathData="M23,17A2,2 0 1,1 23,21A2,2 0 1,1 23,17Z" />
+
+    <!-- Exhaust Flame Large -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M20,40L24,46L28,40Z" />
+
+    <!-- Exhaust Flame Medium -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M21,40L24,44L27,40Z" />
+
+    <!-- Exhaust Flame Small -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M22,40L24,42L26,40Z" />
+
+</vector>

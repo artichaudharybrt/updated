@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363564623007",
+    "project_id": "gaming27",
+    "storage_bucket": "gaming27.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363564623007:android:57bb3054b81ca650b42eaa",
+        "android_client_info": {
+          "package_name": "com.gamegards.gaming27"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgIvYG8yXUJLXYalsSigEcW66hlYjVfdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

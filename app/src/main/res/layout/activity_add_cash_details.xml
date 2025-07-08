@@ -1,0 +1,384 @@
+<?xml version="1.1" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg2"
+    tools:context=".Activity.AddCashDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header Section -->
+        <RelativeLayout
+            android:id="@+id/header_section"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true">
+
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/imgback"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/back"
+                android:visibility="visible" />
+
+            <!-- Header Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="INR DEPOSIT"
+                android:textColor="@color/coloryellow"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+        </RelativeLayout>
+
+        <!-- Main Content Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/imgback"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:padding="@dimen/dp3"
+            tools:ignore="NotSibling">
+
+
+
+                <!-- Top Section: Account Details and QR Code -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:baselineAligned="false"
+                    android:layout_margin="@dimen/dp3"
+                    android:padding="@dimen/dp5"
+                    android:elevation="4dp">
+
+                    <!-- Left Side: Account Details -->
+                    <LinearLayout
+                        android:id="@+id/account_details_section"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:layout_marginEnd="@dimen/dp5"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+
+                        <!-- Account Number Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/d_white_gray_borader_round"
+                            android:padding="@dimen/dp7"
+                            android:minHeight="35dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Account No: "
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_account_number"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="1234567890123456"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginStart="@dimen/dp3" />
+
+                            <ImageView
+                                android:id="@+id/img_copy_account"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="@dimen/dp5"
+                                android:src="@drawable/txtcopy"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/dp2" />
+
+                        </LinearLayout>
+
+                        <!-- IFSC Code Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/d_white_gray_borader_round"
+                            android:padding="@dimen/dp7"
+                            android:minHeight="35dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IFSC Code: "
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_ifsc_code"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="SBIN0001234"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginStart="@dimen/dp3" />
+
+                            <ImageView
+                                android:id="@+id/img_copy_ifsc"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="@dimen/dp5"
+                                android:src="@drawable/txtcopy"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/dp2" />
+
+                        </LinearLayout>
+
+                        <!-- Account Name Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/d_white_gray_borader_round"
+                            android:padding="@dimen/dp7"
+                            android:minHeight="35dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Name: "
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_account_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Gaming27 RBM GAMING"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginStart="@dimen/dp3" />
+
+                            <ImageView
+                                android:id="@+id/img_copy_name"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="@dimen/dp5"
+                                android:src="@drawable/txtcopy"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/dp2" />
+
+                        </LinearLayout>
+
+                        <!-- UPI ID Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp5"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/d_white_gray_borader_round"
+                            android:padding="@dimen/dp7"
+                            android:minHeight="35dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="UPI ID: "
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_upi_id"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Gaming27@paytm"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginStart="@dimen/dp3" />
+
+                            <ImageView
+                                android:id="@+id/img_copy_upi"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginStart="@dimen/dp5"
+                                android:src="@drawable/txtcopy"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/dp2" />
+
+                        </LinearLayout>
+
+                        <!-- Elegant Divider -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginVertical="@dimen/dp5">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"
+                                android:background="@color/coloryellow"
+                                android:alpha="0.6" />
+                        </LinearLayout>
+
+                        <!-- Transaction Input Section -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/edt_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginBottom="@dimen/dp5"
+                                android:background="@drawable/d_white_gray_borader_round"
+                                android:hint="Enter Amount"
+                                android:inputType="numberDecimal"
+                                android:padding="@dimen/dp7"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="12sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="@dimen/dp5">
+
+                                <EditText
+                                    android:id="@+id/edt_utr_number"
+                                    android:layout_width="0dp"
+                                    android:layout_height="35dp"
+                                    android:layout_weight="1"
+                                    android:layout_marginEnd="@dimen/dp5"
+                                    android:background="@drawable/d_white_gray_borader_round"
+                                    android:hint="Enter UTR Number"
+                                    android:inputType="textCapCharacters"
+                                    android:padding="@dimen/dp7"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/black"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <!-- Submit Button -->
+                            <Button
+                                android:id="@+id/btn_submit"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:background="@drawable/bg_gredient_white_border"
+                                android:text="Submit Transaction"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:elevation="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Vertical Divider -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/coloryellow"
+                        android:alpha="0.3"
+                        android:layout_marginHorizontal="@dimen/dp5"
+                        android:layout_marginVertical="@dimen/dp40"
+                        />
+
+                    <!-- Right Side: QR Code -->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+                        <!-- QR Code Content Container -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <!-- QR Code Header -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Scan To Pay"
+                                android:textColor="@color/coloryellow"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="@dimen/dp10"
+                                 android:paddingHorizontal="@dimen/dp10"
+                                android:paddingVertical="@dimen/dp3"
+                                android:gravity="center" />
+
+                            <!-- QR Code Container -->
+                            <RelativeLayout
+                                android:id="@+id/qr_container"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:layout_gravity="center"
+                                android:background="@color/white"
+                                android:elevation="6dp"
+                                android:padding="@dimen/dp8">
+
+                                <!-- QR Code ImageView -->
+                                <ImageView
+                                    android:id="@+id/qrcode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerInParent="true"
+                                    android:scaleType="fitXY" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

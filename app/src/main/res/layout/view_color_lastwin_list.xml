@@ -1,0 +1,117 @@
+<?xml version="1.1" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp10"
+        >
+    <!-- Serial Number Column -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight="0.5"
+        app:cardBackgroundColor="@color/white"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <TextView
+            android:id="@+id/tvSerial"
+            android:textColor="@color/red"
+            style="@style/colorLastWinHeadingText"
+            android:text="-"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Amount Column -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight=".8"
+        app:cardBackgroundColor="@color/white"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <TextView
+            android:id="@+id/tvFiled1"
+            android:textColor="@color/red"
+            style="@style/colorLastWinHeadingText"
+            android:text="-"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Withdrawal Mode Column -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight=".5"
+        app:cardBackgroundColor="@color/white"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <TextView
+            android:id="@+id/tvFiled2"
+            android:textColor="@color/red"
+            style="@style/colorLastWinHeadingText"
+            android:text="-"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Status Column -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight="1.0"
+        app:cardBackgroundColor="#F7F7F7"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <TextView
+            android:id="@+id/tvFiled3"
+            style="@style/colorLastWinHeadingText"
+            android:textColor="@color/red"
+            android:text="-"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Tx Hash Column with View Button -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight="1.0"
+        app:cardBackgroundColor="#F7F7F7"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <Button
+            android:id="@+id/btnViewTxHash"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:text="view"
+            android:textSize="10sp"
+            android:background="@color/white"
+            android:textColor="@color/red"
+            android:padding="2dp"
+            android:layout_margin="1dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Date Column -->
+    <androidx.cardview.widget.CardView
+        android:layout_weight="1.5"
+        app:cardBackgroundColor="#F7F7F7"
+        style="@style/colorLastWinHeadingbg"
+        >
+
+        <TextView
+            android:id="@+id/tvFiled4"
+            style="@style/colorLastWinHeadingText"
+            android:text="-"
+            android:textColor="@color/red"
+            />
+
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,160 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.gamegards.gaming27"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "1.5"
+        multiDexEnabled true
+        archivesBaseName = "gaming27games_" + versionCode
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("release.keystore")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+            // debug config
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
+    }
+
+    namespace 'com.gamegards.gaming27'
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.cashfree.com/release" }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.activity:activity:1.9.3'
+    implementation 'com.google.android.gms:play-services-nearby:19.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation project(path: ':ludogame')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+
+    def glide_version = "4.13.2"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.facebook.android:facebook-login:[8,9)'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+
+    implementation 'com.github.TecOrb-Developers:SmartAlertDialog:v1.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.razorpay:checkout:1.6.41'
+
+    implementation 'com.cashfree.pg:android-sdk:1.7.27'  // Cashfree SDK
+
+//    implementation 'com.paytm.appinvokesdk:appinvokesdk:1.6.8'
+
+//    implementation 'in.payu:payu-checkout-pro:3.1.2'
+
+    implementation 'com.nhaarman.supertooltips:library:3.0.+'
+    implementation 'com.eftimoff:android-pathview:1.0.8@aar'
+
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'com.google.android.gms:play-services-places:17.1.0'
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Retrofit, OkHttp, Gson
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    implementation 'androidx.work:work-runtime:2.9.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
+
+    implementation 'dev.shreyaspatil.EasyUpiPayment:EasyUpiPayment:3.0.3'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.29'
+
+    implementation ('io.socket:socket.io-client:2.1.1') {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    implementation('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+    implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Reown AppKit for real wallet connectivity (replacing WalletConnect)
+    implementation(platform("com.reown:android-bom:1.3.3"))
+    implementation("com.reown:android-core")
+    implementation("com.reown:appkit")
+
+    // Navigation and UI components for AppKit
+    implementation("androidx.compose.material:material:1.5.4")
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation("com.google.accompanist:accompanist-navigation-material:0.32.0")
+
+    // For wallet icons and images
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+}

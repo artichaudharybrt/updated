@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+   android:background="@color/white"
+    android:padding="12dp"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center">
+
+    <!-- Close Button -->
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="3dp"
+        android:src="@drawable/close"
+        android:contentDescription="Close" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_close"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="30dp"
+        android:text="💳 Choose Payment"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- INR Payment Button -->
+    <Button
+        android:id="@+id/btn_inr_payment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/txt_title"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_gredient_white_border"
+        android:text="🏦 INR Payment"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- USDT Payment Button -->
+    <Button
+        android:id="@+id/btn_usdt_payment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/btn_inr_payment"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_gredient_white_border"
+        android:text="₿ USDT Payment"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- Info Text -->
+    <TextView
+        android:id="@+id/txt_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_usdt_payment"
+        android:layout_marginTop="6dp"
+        android:text="Select your preferred method"
+        android:textColor="@color/colordullwhite"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:alpha="0.8" />
+
+</RelativeLayout>

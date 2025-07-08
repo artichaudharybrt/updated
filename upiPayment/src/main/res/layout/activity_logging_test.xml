@@ -1,0 +1,134 @@
+<?xml version="1.1" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="USDT Payment Logging Test"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use these buttons to test different payment flows and monitor logs using:\nadb logcat | grep 'USDT_'"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textColor="#666666"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Standard Methods"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/btn_test_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Test Standard Deposit"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#2E7D32"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/btn_test_withdrawal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Test Standard Withdrawal"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#D32F2F"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quick Methods"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/btn_test_quick_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Test Quick Deposit"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/btn_test_quick_withdrawal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Test Quick Withdrawal"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#7B1FA2"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Direct Access"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/btn_test_direct_open"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Test Direct Open Payment System"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FF5722"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Monitoring Commands"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• All USDT logs: adb logcat | grep 'USDT_'\n• Deposit only: adb logcat | grep 'USDT_DEPOSIT'\n• Withdrawal only: adb logcat | grep 'USDT_WITHDRAWAL'\n• Errors only: adb logcat | grep 'USDT_ERROR'\n• API calls: adb logcat | grep 'USDT_API'\n• Validation: adb logcat | grep 'USDT_VALIDATION'"
+        android:textSize="12sp"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#444444"
+        android:background="#F5F5F5"
+        android:padding="12dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="💡 Tip: Use 'adb logcat -v time | grep USDT_' for timestamps"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:gravity="center"/>
+
+</LinearLayout>

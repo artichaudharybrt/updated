@@ -1,0 +1,81 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    style="@style/dialogParentStyle">
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        style="@style/popUpBoxbg"-->
+<!--        android:layout_alignLeft="@id/lnr_box"-->
+<!--        android:layout_alignRight="@id/lnr_box"-->
+<!--        android:layout_alignTop="@id/lnr_box"-->
+<!--        android:layout_alignBottom="@id/lnr_box"-->
+<!--        />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/lnr_box"
+        android:background="@drawable/d_pop_setting"
+        android:layout_marginHorizontal="25dp"
+        android:padding="20dp"
+        >
+
+
+            <LinearLayout
+                android:id="@+id/lnrRuleslist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:paddingBottom="@dimen/dp20"
+                >
+
+                <TextView
+                    android:id="@+id/how_to"
+                    android:textColor="@color/white"
+                    android:text="@string/how_to_play"
+                    android:textAlignment="center"
+                    android:textSize="0dp"
+                    android:layout_width="match_parent"
+                    android:paddingTop="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_below="@+id/how_to"
+                    android:textColor="@color/white"
+                    android:text="  Choose a table: Select a baccarat table that suits your bankroll and betting preferences.\n
+    Place your bet: Choose to bet on the Player, Banker, Player pair, Banker pair or Tie. Each option has different odds and payouts.\n
+    Cards are dealt: The dealer deals two cards face-up to each hand (Player and Banker).\n
+    Calculate the score: Add the value of each card in a hand. Aces count as 1, face cards and 10s count as 0, and other cards retain their face value. If the total is greater than 9, drop the leftmost digit (e.g., 10 becomes 0).\n
+    Drawing additional cards: Based on predetermined rules, the Player and/or Banker may receive a third card depending on their initial score.\n
+    Winning hand: The hand closest to nine wins."
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/payu_dimen_14sp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/ic_dt_rule1"
+                    />
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <include
+        layout="@layout/dialog_toolbar"/>
+
+
+
+</RelativeLayout>

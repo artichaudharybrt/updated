@@ -1,0 +1,249 @@
+<?xml version="1.1" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:id="@+id/dialogParent"
+        style="@style/dialogParentStyle">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rtl_toolbar"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="@dimen/pop_up_top_margin"
+            android:background="#90000000"
+            style="@style/popUpBoxbg"
+            android:padding="20dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="24dp">
+
+                    <!-- Two frame boxes -->
+                    <LinearLayout
+                        android:layout_marginTop="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="250dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
+
+                        <!-- Frame 1 -->
+                        <RelativeLayout
+                            android:layout_width="220dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/dp15"
+                            android:background="@drawable/frame"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center">
+
+                                <RelativeLayout
+                                    android:id="@+id/rltrefer"
+                                    android:layout_width="150dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="@dimen/dimen_30dp"
+                                    android:background="@drawable/ic_button">
+
+                                    <TextView
+                                        android:id="@+id/txtReferalcode"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:text="23423432"
+                                        android:textColor="@color/black"
+                                        android:textFontWeight="700"
+                                        android:textSize="15dp" />
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:id="@+id/txtAnd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/rltrefer"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="5dp"
+                                    android:text="AND GET"
+                                    android:textColor="@color/colordullwhite"
+                                    android:textSize="@dimen/dp15"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/txtAnd"
+                                    android:layout_marginStart="@dimen/dp15"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="75dp"
+                                        android:layout_height="75dp"
+                                        android:src="@drawable/day5" />
+
+                                    <TextView
+                                        android:id="@+id/tvInviteCoins"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rs.60"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/dimen_30dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <!-- Frame 2 -->
+                        <RelativeLayout
+                            android:id="@+id/rel_layout"
+                            android:layout_width="250dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/frame"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/txtyourfrind"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="@dimen/dp20"
+                                    android:text="YOUR FRIEND WILL GET"
+                                    android:textColor="@color/colordullwhite"
+                                    android:textSize="15dp"
+                                    android:textFontWeight="700" />
+
+                                <TextView
+                                    android:id="@+id/txtFooter"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtyourfrind"
+                                    android:layout_centerHorizontal="true"
+                                    android:text="INVITE LIMIT 10 FRIENDS"
+                                    android:textFontWeight="700"
+                                    android:textColor="@color/colordullwhite"
+                                    android:textSize="10dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/lnrsocial"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/txtFooter"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="5dp"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/imgfb"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:layout_marginRight="15dp"
+                                        android:src="@drawable/facebook" />
+
+                                    <ImageView
+                                        android:id="@+id/imgwhats"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:layout_marginRight="15dp"
+                                        android:src="@drawable/whaatup" />
+
+                                    <ImageView
+                                        android:id="@+id/imgmail"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:src="@drawable/mailsocial" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/lnrsocial"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:layout_marginStart="@dimen/dp15"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="75dp"
+                                        android:layout_height="75dp"
+                                        android:src="@drawable/day5" />
+
+                                    <TextView
+                                        android:id="@+id/txtchipsbelow"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rs.60"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/dimen_30dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!-- ✅ Terms and Conditions Frame Below -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginEnd="70dp"
+                        android:background="@drawable/frame"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <!-- Heading -->
+                        <TextView
+                            android:id="@+id/txtTermsHeading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="TERMS AND CONDITIONS"
+                            android:textColor="@color/gold_color"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <!-- Paragraph Text -->
+                        <TextView
+                            android:id="@+id/txtTerms"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtTermsHeading"
+                            android:layout_marginTop="8dp"
+                            android:text="By inviting friends,\nyou agree to the Terms and Conditions of the platform.\nMisuse of the invite system may result in disqualification."
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:lineSpacingExtra="4dp" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <include layout="@layout/dialog_toolbar" />
+
+    </RelativeLayout>
+</RelativeLayout>
