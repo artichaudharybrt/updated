@@ -250,30 +250,6 @@
                                 android:layout_toRightOf="@+id/txtwallet"
                                 android:src="@drawable/ic_add" />
 
-                            <!-- Wallet Connect Button -->
-                            <LinearLayout
-                                android:id="@+id/lnrWalletConnect"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
-                                android:gravity="right|bottom"
-                                android:orientation="vertical"
-                                android:visibility="visible"
-                                android:clickable="true"
-                                android:focusable="true">
-
-                                <Button
-                                    android:id="@+id/btnWalletConnect"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:background="@drawable/button_bg_gradient"
-                                    android:text="🔗 Web3 Wallet"
-                                    android:textColor="@android:color/white"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
                         </RelativeLayout>
 
 

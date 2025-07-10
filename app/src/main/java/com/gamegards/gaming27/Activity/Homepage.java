@@ -98,7 +98,6 @@ import com.gamegards.gaming27.Helper.PaymentGatewayHelper;
 import com.gamegards.gaming27.ApiClasses.Const;
 import com.gamegards.gaming27.Interface.Callback;
 import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.wallet.WalletConnectActivity;
 import com.gamegards.gaming27.Utils.Animations;
 import com.gamegards.gaming27.Utils.Functions;
 import com.gamegards.gaming27._LuckJackpot.LuckJackPot_A_Socket;
@@ -302,86 +301,6 @@ public class Homepage extends BaseActivity {
 
         findViewById(R.id.rltRummy).setVisibility(SharePref.getIsRummyVisible()
                 ? View.VISIBLE : View.GONE);
-
-
-        // Check if wallet connect button exists and add debugging
-        View walletConnectLayout = findViewById(R.id.lnrWalletConnect);
-        Log.e("WalletConnect", "=== DEBUGGING WALLET CONNECT BUTTON ===");
-
-        if (walletConnectLayout != null) {
-            Log.e("WalletConnect", "✅ Button FOUND!");
-            Log.e("WalletConnect", "Visibility: " + walletConnectLayout.getVisibility());
-            Log.e("WalletConnect", "Enabled: " + walletConnectLayout.isEnabled());
-            Log.e("WalletConnect", "Clickable: " + walletConnectLayout.isClickable());
-
-            // Set clickable properties
-            walletConnectLayout.setClickable(true);
-            walletConnectLayout.setFocusable(true);
-
-            walletConnectLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.e("WalletConnect","🔥🔥🔥 BUTTON CLICKED! - navigating to WalletConnect activity");
-                    try {
-                        startActivity(new Intent(context, WalletConnectActivity.class));
-                        Log.e("WalletConnect","✅ Navigation completed successfully");
-                    } catch (Exception e) {
-                        Log.e("WalletConnect","❌ Navigation failed: " + e.getMessage());
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            // Add touch event debugging
-            walletConnectLayout.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    Log.e("WalletConnect", "🔥 TOUCH EVENT DETECTED! Action: " + event.getAction());
-                    return false; // Let the click event continue
-                }
-            });
-
-            // Bring to front to avoid overlapping issues
-            walletConnectLayout.bringToFront();
-
-            // Also try setting click listener on the inner button
-            View innerButton = findViewById(R.id.btnWalletConnect);
-            if (innerButton != null) {
-                Log.e("WalletConnect", "✅ Inner button found, setting click listener");
-                innerButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.e("WalletConnect","🔥🔥🔥 INNER BUTTON CLICKED!");
-                        try {
-                            startActivity(new Intent(context, WalletConnectActivity.class));
-                            Log.e("WalletConnect","✅ Navigation from inner button completed");
-                        } catch (Exception e) {
-                            Log.e("WalletConnect","❌ Navigation from inner button failed: " + e.getMessage());
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-
-            // Also check after layout is complete
-            walletConnectLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    Log.e("WalletConnect", "=== POST-LAYOUT CHECK ===");
-                    Log.e("WalletConnect", "Width: " + walletConnectLayout.getWidth());
-                    Log.e("WalletConnect", "Height: " + walletConnectLayout.getHeight());
-                    Log.e("WalletConnect", "X: " + walletConnectLayout.getX());
-                    Log.e("WalletConnect", "Y: " + walletConnectLayout.getY());
-                    Log.e("WalletConnect", "Final Visibility: " + walletConnectLayout.getVisibility());
-
-                    // Bring to front again after layout
-                    walletConnectLayout.bringToFront();
-                }
-            });
-
-        } else {
-            Log.e("WalletConnect", "❌ Button NOT FOUND!");
-        }
 
         findViewById(R.id.rltJackpot).setVisibility(Variables.JACKPOTGAME_SHOW ? View.VISIBLE : View.GONE);
         findViewById(R.id.rltRummyDeal).setVisibility(Variables.RUMMYDEAL_SHOW ? View.VISIBLE : View.GONE);
@@ -3325,21 +3244,6 @@ public class Homepage extends BaseActivity {
 
     public void openLuckJackpotActivity(View view) {
         startActivity(new Intent(context, LuckJackPot_A_Socket.class));
-    }
-
-    public void lnrWalletConnect(View view) {
-        try {
-            // Open the new WalletConnectActivity with real Reown AppKit
-            Intent intent = new Intent(Homepage.this, WalletConnectActivity.class);
-            startActivity(intent);
-
-            // Show message
-            Functions.showToast(context, "🔗 Opening Wallet Connect with real Reown AppKit...");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Functions.showToast(context, "❌ Failed to open wallet connection: " + e.getMessage());
-        }
     }
 
     public void openSevenup(View view) {
