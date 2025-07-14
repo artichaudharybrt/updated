@@ -7,8 +7,8 @@ public class EndPoints {
 //    public static final String SOCKET_IP = "https://demo-socket.androappstech.in/ludo";  //URL FOR DEMO
 
 
-    public static String BASE_URL = "https://Gaming27.com/";
-    public static final String SOCKET_IP = "https://socket.gaming27.com/ludo_old";  //URL FOR DEVELOPMENT
+    public static String BASE_URL = "https://bigjackpot.club/";
+    public static final String SOCKET_IP = "https://socket.bigjackpot.club/ludo_old";  //URL FOR DEVELOPMENT
 
 
   //  public static final String BASE_URL = "https://mg.multiapisoft.com/";  //URL FOR DEVELOPMENT

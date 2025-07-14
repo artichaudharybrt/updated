@@ -1,7 +1,0 @@
-<?xml version="1.1" encoding="utf-8"?>
-<resources>
-    <!--genaral spacing-->
-    <dimen name="spacing_medium">5dp</dimen>
-    <dimen name="spacing_middle">10dp</dimen>
-    <dimen name="spacing_smlarge">18dp</dimen>
-</resources>
