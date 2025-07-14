@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Activity;
+package com.gamegards.bigjackpot.Activity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,11 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.InrDepositHelper;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Helper.BankDetailsHelper;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.InrDepositHelper;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Helper.BankDetailsHelper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
