@@ -1,7 +1,7 @@
-package com.gamegards.gaming27.Comman;
+package com.gamegards.bigjackpot.Comman;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,12 +11,12 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 

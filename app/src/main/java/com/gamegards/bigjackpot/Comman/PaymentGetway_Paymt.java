@@ -1,27 +1,9 @@
-package com.gamegards.gaming27.Comman;
+package com.gamegards.bigjackpot.Comman;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
 //import com.paytm.pgsdk.PaytmOrder;
 //import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 //import com.paytm.pgsdk.TransactionManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Locale;
 
 public class PaymentGetway_Paymt {
 //

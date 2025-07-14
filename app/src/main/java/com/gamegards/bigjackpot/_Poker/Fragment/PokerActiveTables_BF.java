@@ -1,7 +1,7 @@
-package com.gamegards.gaming27._Poker.Fragment;
+package com.gamegards.bigjackpot._Poker.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,13 +30,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27._Poker.PokerGame_A;
-import com.gamegards.gaming27.model.TableModel;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot._Poker.PokerGame_A;
+import com.gamegards.bigjackpot.model.TableModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;

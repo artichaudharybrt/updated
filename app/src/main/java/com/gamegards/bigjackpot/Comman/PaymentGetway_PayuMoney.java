@@ -1,21 +1,5 @@
-package com.gamegards.gaming27.Comman;
+package com.gamegards.bigjackpot.Comman;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.webkit.WebView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
 //import com.payu.base.models.ErrorResponse;
 //import com.payu.base.models.PayUPaymentParams;
 //import com.payu.checkoutpro.PayUCheckoutPro;
@@ -23,11 +7,6 @@ import com.gamegards.gaming27.Utils.Variables;
 //import com.payu.ui.model.listeners.PayUCheckoutProListener;
 //import com.payu.ui.model.listeners.PayUHashGenerationListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.security.MessageDigest;
-import java.util.HashMap;
 
 public class PaymentGetway_PayuMoney {
 //

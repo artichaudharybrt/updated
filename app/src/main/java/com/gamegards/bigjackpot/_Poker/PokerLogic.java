@@ -1,9 +1,9 @@
-package com.gamegards.gaming27._Poker;
+package com.gamegards.bigjackpot._Poker;
 
 import android.content.Context;
 
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.CardModel;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.CardModel;
 
 import java.util.ArrayList;
 import java.util.Collections;

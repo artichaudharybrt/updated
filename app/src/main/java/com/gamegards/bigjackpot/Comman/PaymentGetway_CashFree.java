@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Comman;
+package com.gamegards.bigjackpot.Comman;
 
 import static com.cashfree.pg.CFPaymentService.PARAM_APP_ID;
 import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_EMAIL;
@@ -15,12 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.cashfree.pg.CFPaymentService;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
 
 
 import org.json.JSONException;
