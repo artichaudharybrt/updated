@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._AnimalRoulate;
+package com.gamegards.bigjackpot._AnimalRoulate;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -18,10 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 
 import java.util.List;
 

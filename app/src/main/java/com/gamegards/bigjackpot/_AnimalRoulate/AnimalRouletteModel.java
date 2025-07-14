@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._AnimalRoulate;
+package com.gamegards.bigjackpot._AnimalRoulate;
 
 public class AnimalRouletteModel {
     boolean isWine;

@@ -1,9 +1,9 @@
-package com.gamegards.gaming27;
+package com.gamegards.bigjackpot;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.gamegards.gaming27._TeenPatti.PublicTable_New;
+import com.gamegards.bigjackpot._TeenPatti.PublicTable_New;
 
 class IntentHelper {
 

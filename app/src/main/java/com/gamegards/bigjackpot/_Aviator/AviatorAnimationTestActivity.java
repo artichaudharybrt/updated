@@ -1,9 +1,9 @@
-package com.gamegards.gaming27._Aviator;
+package com.gamegards.bigjackpot._Aviator;
 
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 public class AviatorAnimationTestActivity extends AppCompatActivity {
 

@@ -65,7 +65,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="gaming27" android:host="request" />
+                <data android:scheme="bigjackpot" android:host="request" />
             </intent-filter>
         </activity>
         <activity
@@ -456,11 +456,11 @@
                 <data
                     android:host="payment"
                     android:pathPrefix="/success"
-                    android:scheme="gaming27" />
+                    android:scheme="bigjackpot" />
                 <data
                     android:host="payment"
                     android:pathPrefix="/failure"
-                    android:scheme="gaming27" />
+                    android:scheme="bigjackpot" />
             </intent-filter>
 
             <!-- Legacy deep link format for backward compatibility -->
@@ -472,10 +472,10 @@
 
                 <data
                     android:host="payment_success"
-                    android:scheme="gaming27" />
+                    android:scheme="bigjackpot" />
                 <data
                     android:host="payment_failure"
-                    android:scheme="gaming27" />
+                    android:scheme="bigjackpot" />
             </intent-filter>
         </activity>
         <activity

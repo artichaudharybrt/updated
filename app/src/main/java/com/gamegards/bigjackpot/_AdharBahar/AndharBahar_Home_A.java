@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._AdharBahar;
+package com.gamegards.bigjackpot._AdharBahar;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27._AdharBahar.Fragments.GameFragment;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot._AdharBahar.Fragments.GameFragment;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
 import com.squareup.picasso.Picasso;
 
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;;
 
 public class AndharBahar_Home_A extends BaseActivity {
 

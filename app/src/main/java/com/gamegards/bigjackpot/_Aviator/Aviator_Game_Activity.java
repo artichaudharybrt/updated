@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Aviator;
+package com.gamegards.bigjackpot._Aviator;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,9 +30,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

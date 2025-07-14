@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Aviator;
+package com.gamegards.bigjackpot._Aviator;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 import java.util.ArrayList;
 import java.util.List;

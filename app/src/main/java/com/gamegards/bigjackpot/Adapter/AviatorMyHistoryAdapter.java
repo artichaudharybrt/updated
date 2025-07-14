@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.MyAccountDetails.MyWinnigmodel;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.MyAccountDetails.MyWinnigmodel;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
 import java.util.ArrayList;
 

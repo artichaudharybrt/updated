@@ -1,11 +1,11 @@
-package com.gamegards.gaming27.Utils;
+package com.gamegards.bigjackpot.Utils;
 
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 
-import com.gamegards.gaming27.Interface.Callback;
+import com.gamegards.bigjackpot.Interface.Callback;
 
 public class Animations {
     private View animationView;
