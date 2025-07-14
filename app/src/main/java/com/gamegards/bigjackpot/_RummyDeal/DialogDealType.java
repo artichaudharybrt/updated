@@ -1,6 +1,6 @@
-package com.gamegards.gaming27._RummyDeal;
+package com.gamegards.bigjackpot._RummyDeal;
 
-import static com.gamegards.gaming27._RummyDeal.Fragments.RummyDealActiveTables_BF.SEL_TABLE;
+import static com.gamegards.bigjackpot._RummyDeal.Fragments.RummyDealActiveTables_BF.SEL_TABLE;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,13 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.model.TableModel;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.model.TableModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

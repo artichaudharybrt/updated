@@ -1,7 +1,7 @@
-package com.gamegards.gaming27.Details.Menu;
+package com.gamegards.bigjackpot.Details.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -21,14 +21,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Details.Adapter.ReferalLevelAdapter;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Details.Adapter.ReferalLevelAdapter;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +50,7 @@ public class DialogReferralLevel {
 
     private Spinner spinner;
 
-    final ArrayList<com.gamegards.gaming27.Details.Menu.ReferralLevelModel> referralLevelModels;
+    final ArrayList<com.gamegards.bigjackpot.Details.Menu.ReferralLevelModel> referralLevelModels;
     public DialogReferralLevel(Context context) {
         this.context = context;
         alert = Functions.DialogInstance(context);
@@ -182,7 +182,7 @@ public class DialogReferralLevel {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-                            com.gamegards.gaming27.Details.Menu.ReferralLevelModel model = new com.gamegards.gaming27.Details.Menu.ReferralLevelModel();
+                            com.gamegards.bigjackpot.Details.Menu.ReferralLevelModel model = new com.gamegards.bigjackpot.Details.Menu.ReferralLevelModel();
                             model.setId(jsonObject1.optString("id"));
                             model.setCoin(jsonObject1.optString("coin"));
                             model.setCount(jsonObject1.optString("refer_count"));

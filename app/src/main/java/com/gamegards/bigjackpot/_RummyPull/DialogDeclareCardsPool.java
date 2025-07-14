@@ -1,10 +1,11 @@
-package com.gamegards.gaming27._RummyDeal;
+package com.gamegards.bigjackpot._RummyPull;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,27 +13,27 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Adapter.DeclareAdapter;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.CardModel;
+import com.gamegards.bigjackpot.Adapter.DeclareAdapter;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.CardModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class DialogDeclareCards {
+public class DialogDeclareCardsPool {
     Context context;
     ArrayList<CardModel> game_users_cards_list = new ArrayList<>();
     int game_start_time;
     int _mint_mis = 5000;
 
 
-    public DialogDeclareCards(Context context) {
+    public DialogDeclareCardsPool(Context context) {
         this.context = context;
         initDialog();
     }
 
-    public DialogDeclareCards setGame_users_cards_list(ArrayList<CardModel> game_users_cards_list, String str_game_id) {
+    public DialogDeclareCardsPool setGame_users_cards_list(ArrayList<CardModel> game_users_cards_list, String str_game_id) {
 
         boolean isUserLeaveTable = true;
         outer1:
@@ -48,7 +49,8 @@ public class DialogDeclareCards {
             }
         }
 
-        game_users_cards_list.get(0).setUserLeaveTable(isUserLeaveTable);
+       // game_users_cards_list.get(0).setUserLeaveTable(isUserLeaveTable);
+        Log.e("RES_PoolDeclare",game_users_cards_list.toString());
 
 
         this.game_users_cards_list = game_users_cards_list;
@@ -62,7 +64,7 @@ public class DialogDeclareCards {
 
         RecyclerView recyclerView = dialog.findViewById(R.id.rec_declareresult);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        DeclareAdapter declareAdapter = new DeclareAdapter(context,game_users_cards_list,"rummy_deal");
+        DeclareAdapter declareAdapter = new DeclareAdapter(context,game_users_cards_list,"pool_rummy");
         recyclerView.setAdapter(declareAdapter);
         for (CardModel model: game_users_cards_list) {
             if(model.total < 0)
@@ -81,7 +83,7 @@ public class DialogDeclareCards {
         return this;
     }
 
-    public DialogDeclareCards setGame_start_time(int game_start_time) {
+    public DialogDeclareCardsPool setGame_start_time(int game_start_time) {
         this.game_start_time = game_start_time;
         int intervel = 1000;
         _mint_mis = game_start_time * intervel;
@@ -107,9 +109,9 @@ public class DialogDeclareCards {
     }
 
     Dialog dialog;
-    private DialogDeclareCards initDialog() {
+    private DialogDeclareCardsPool initDialog() {
         dialog = Functions.DialogInstance(context);
-        dialog.setContentView(R.layout.dialog_declare_result);
+        dialog.setContentView(R.layout.dialog_declare_result_pool);
         dialog.setTitle("Title...");
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 

@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Rummy;
+package com.gamegards.bigjackpot._Rummy;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Adapter.DeclareAdapter;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.CardModel;
+import com.gamegards.bigjackpot.Adapter.DeclareAdapter;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.CardModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

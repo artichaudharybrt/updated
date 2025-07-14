@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Poker.dialog;
+package com.gamegards.bigjackpot._Poker.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.view.Window;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27._Poker.OnItemSelect;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot._Poker.OnItemSelect;
 
 public class DialogRaisePrice {
     Context context;

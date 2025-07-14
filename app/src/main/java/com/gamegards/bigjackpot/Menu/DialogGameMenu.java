@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Menu;
+package com.gamegards.bigjackpot.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -20,14 +20,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.account.LoginScreen;
-import com.gamegards.gaming27.Comman.DialogWebviewContents;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.RedeemCoins.RedeemActivity;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.account.LoginScreen;
+import com.gamegards.bigjackpot.Comman.DialogWebviewContents;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.RedeemCoins.RedeemActivity;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.Variables;
 
 import java.util.ArrayList;
 import java.util.List;

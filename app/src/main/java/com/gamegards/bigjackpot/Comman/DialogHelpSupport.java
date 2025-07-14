@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Comman;
+package com.gamegards.bigjackpot.Comman;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
 public class DialogHelpSupport {
 

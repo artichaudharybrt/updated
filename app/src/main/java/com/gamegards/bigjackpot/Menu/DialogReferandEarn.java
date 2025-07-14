@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Menu;
+package com.gamegards.bigjackpot.Menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
 
 public class DialogReferandEarn {
 

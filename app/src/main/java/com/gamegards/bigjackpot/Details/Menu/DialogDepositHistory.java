@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Details.Menu;
+package com.gamegards.bigjackpot.Details.Menu;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -25,11 +25,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.gamegards.gaming27.Comman.CommonAPI;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Comman.CommonAPI;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
 
 import org.json.JSONArray;
 import org.json.JSONException;

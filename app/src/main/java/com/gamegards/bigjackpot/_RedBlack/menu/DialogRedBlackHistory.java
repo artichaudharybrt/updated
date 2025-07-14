@@ -1,30 +1,34 @@
-package com.gamegards.gaming27._LuckJackpot.menu;
+package com.gamegards.bigjackpot._RedBlack.menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27._LuckJackpot.Model.JackpotLastWinHistory;
+import com.bumptech.glide.Glide;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot._RedBlack.Model.RedBlackWinHistory;
 import com.google.gson.Gson;
 
 import java.io.Reader;
@@ -32,24 +36,18 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DialogJackpotlastWinHistory {
+public class DialogRedBlackHistory {
 
     Context context;
     Callback callback;
-    private static DialogJackpotlastWinHistory mInstance;
+    private static DialogRedBlackHistory mInstance;
 
-    private final String SET = "SET";
-    private final String PURE_SEQ = "PURE SEQ";
-    private final String SEQ = "SEQ";
-    private final String COLOR = "COLOR";
-    private final String PAIR = "PAIR";
-    private final String HIGH_CARD = "HIGH CARD";
 
-    public static DialogJackpotlastWinHistory getInstance(Context context) {
+    public static DialogRedBlackHistory getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogJackpotlastWinHistory.class) {
+            synchronized (DialogRedBlackHistory.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogJackpotlastWinHistory(context);
+                    mInstance = new DialogRedBlackHistory(context);
                 }
             }
         }
@@ -65,7 +63,7 @@ public class DialogJackpotlastWinHistory {
      *
      * @param context app context: first time
      */
-    public DialogJackpotlastWinHistory init(Context context) {
+    public DialogRedBlackHistory init(Context context) {
         try {
 
             if (context != null) {
@@ -83,31 +81,31 @@ public class DialogJackpotlastWinHistory {
 
     RecyclerView recJackpotHistory ;
     TextView tvHeader;
-    ArrayList<JackpotLastWinHistory.Winner> rulesModelArrayList = new ArrayList<>();
-    private DialogJackpotlastWinHistory initDialog() {
+    ArrayList<RedBlackWinHistory.Winner> rulesModelArrayList = new ArrayList<RedBlackWinHistory.Winner>();
+    private DialogRedBlackHistory initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_jackpot_lastwin_record);
+        dialog.setContentView(R.layout.dialog_redblack_history);
 
         tvHeader = dialog.findViewById(R.id.txtheader);
-        tvHeader.setText("Jackpot Last Win");
+        tvHeader.setText("Jackpot : ");
         recJackpotHistory = dialog.findViewById(R.id.recJackpotHistory);
-        recJackpotHistory.setLayoutManager(new GridLayoutManager(context,3));
+        recJackpotHistory.setLayoutManager(new LinearLayoutManager(context));
         getJackpotHistoryList();
 
         return mInstance;
     }
 
-    public DialogJackpotlastWinHistory(Context context) {
+    public DialogRedBlackHistory(Context context) {
         this.context = context;
     }
 
-    public DialogJackpotlastWinHistory() {
+    public DialogRedBlackHistory() {
     }
     Dialog dialog;
 
-    public DialogJackpotlastWinHistory show() {
+    public DialogRedBlackHistory show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,11 +117,10 @@ public class DialogJackpotlastWinHistory {
         dialog.setCancelable(true);
         dialog.show();
         Functions.setDialogParams(dialog);
-        Functions.setDialogParams(dialog);
         Window window = dialog.getWindow();
         window.setWindowAnimations(R.style.DialogAnimation);
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
-
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return mInstance;
     }
 
@@ -141,66 +138,36 @@ public class DialogJackpotlastWinHistory {
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         params.put("user_id",prefs.getString("user_id", ""));
         params.put("token",""+ SharePref.getAuthorization());
-        params.put("room_id","1");
 
 
-        ApiRequest.Call_Api(context, Const.JackpotlastWinnerHistory, params, new Callback() {
+        ApiRequest.Call_Api(context, Const.JackpotWinnerHistory, params, new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
                 if(resp != null)
                 {
                     Gson gson = new Gson();
                     Reader reader = new StringReader(resp);
-                    final JackpotLastWinHistory jackpotWinHistory = gson.fromJson(reader, JackpotLastWinHistory.class);
-                    ArrayList<JackpotLastWinHistory.Winner> ruleList = new ArrayList<>();
-                    ruleList.addAll(getRuleValue());
+                    final RedBlackWinHistory jackpotWinHistory = gson.fromJson(reader, RedBlackWinHistory.class);
+
                     if(jackpotWinHistory.getCode() == 200)
                     {
                         rulesModelArrayList.clear();
                         rulesModelArrayList.addAll(jackpotWinHistory.getWinners());
-                        for (JackpotLastWinHistory.Winner model: ruleList) {
-                            for (JackpotLastWinHistory.Winner winningModel: rulesModelArrayList) {
-                                int winning_value = Integer.parseInt(winningModel.getWinning());
-                                if(model.rule_value == winning_value)
-                                {
-                                    model.wining_count++;
-                                }
-
-                            }
-                        }
-
                     }
 
-                    recJackpotHistory.setAdapter(new jackpotHistoryAdapter(ruleList));
+                    recJackpotHistory.setAdapter(new jackpotHistoryAdapter(rulesModelArrayList));
                 }
             }
         });
     }
 
-    private ArrayList<JackpotLastWinHistory.Winner> getRuleValue() {
-        ArrayList<JackpotLastWinHistory.Winner> rulesModelList = new ArrayList<>();
-        rulesModelList.add(new JackpotLastWinHistory.Winner(HIGH_CARD,1));
-        rulesModelList.add(new JackpotLastWinHistory.Winner(PAIR,2));
-        rulesModelList.add(new JackpotLastWinHistory.Winner(COLOR,3));
-        rulesModelList.add(new JackpotLastWinHistory.Winner(SEQ,4));
-        rulesModelList.add(new JackpotLastWinHistory.Winner(PURE_SEQ,5));
-        rulesModelList.add(new JackpotLastWinHistory.Winner(SET,6));
-        return rulesModelList;
-    }
-
-    String game_id;
-    public DialogJackpotlastWinHistory setRoomid(String game_id) {
-        this.game_id = game_id;
-        return mInstance;
-    }
-
     class jackpotHistoryAdapter extends RecyclerView.Adapter<jackpotHistoryAdapter.myHolder>{
-        ArrayList<JackpotLastWinHistory.Winner> rulesModelArrayList;
-        public jackpotHistoryAdapter(ArrayList<JackpotLastWinHistory.Winner> rulesModelArrayList) {
+        ArrayList<RedBlackWinHistory.Winner> rulesModelArrayList;
+        public jackpotHistoryAdapter(ArrayList<RedBlackWinHistory.Winner> rulesModelArrayList) {
             this.rulesModelArrayList = rulesModelArrayList;
         }
 
-        public void setDataList(ArrayList<JackpotLastWinHistory.Winner> rulesModelArrayList){
+        public void setDataList(ArrayList<RedBlackWinHistory.Winner> rulesModelArrayList){
             this.rulesModelArrayList.addAll(rulesModelArrayList);
             notifyDataSetChanged();
         }
@@ -208,12 +175,12 @@ public class DialogJackpotlastWinHistory {
         @NonNull
         @Override
         public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new myHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_jackpot_last_winhistory,parent,false));
+            return new myHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_redblackhistory,parent,false));
         }
 
         @Override
         public void onBindViewHolder(@NonNull myHolder holder, int position) {
-            JackpotLastWinHistory.Winner winnermodel = rulesModelArrayList.get(position);
+            RedBlackWinHistory.Winner winnermodel = rulesModelArrayList.get(position);
             if(winnermodel != null)
                 holder.bind(winnermodel);
         }
@@ -228,11 +195,32 @@ public class DialogJackpotlastWinHistory {
                 super(itemView);
             }
 
-            public void bind(JackpotLastWinHistory.Winner winnermodel) {
+            float total_amount = 0;
+            public void bind(RedBlackWinHistory.Winner winnermodel) {
 
+                RedBlackWinHistory.UserDatum userDataModel = winnermodel.getUserData().get(0);
 
-                getTextView(R.id.tvTypes).setText(""+winnermodel.rule_type+": ");
-                getTextView(R.id.tvValue).setText(""+winnermodel.wining_count);
+                float winnig_amount = Float.parseFloat(userDataModel.getWinningAmount());
+
+                total_amount += winnig_amount;
+
+                tvHeader.setText("Jackpot : "+Variables.CURRENCY_SYMBOL+total_amount);
+
+                getTextView(R.id.tvTime).setText(""+winnermodel.getTime());
+                getTextView(R.id.tvWinnerId).setText(""+winnermodel.getWinners());
+                getTextView(R.id.tvrewards).setText(""+winnermodel.getRewards());
+                getTextView(R.id.txtName).setText(""+userDataModel.getName());
+                getTextView(R.id.tvbetvalue).setText(
+                        "BET "+ Variables.CURRENCY_SYMBOL +userDataModel.getAmount()+" "+
+                                "GET "+ Variables.CURRENCY_SYMBOL +userDataModel.getWinningAmount());
+                Glide.with(context).load(Const.IMGAE_PATH + userDataModel.getProfilePic()).into(((ImageView)itemView.findViewById(R.id.ivUserImage)));
+                String[] typeCards = winnermodel.getType().split(",");
+                int card1 = Functions.GetResourcePath(typeCards[0],context);
+                int card2 = Functions.GetResourcePath(typeCards[1],context);
+                int card3 = Functions.GetResourcePath(typeCards[2],context);
+                Glide.with(context).load(Functions.getDrawable(context,card1)).into(((ImageView)itemView.findViewById(R.id.ivJackpotCard1)));
+                Glide.with(context).load(Functions.getDrawable(context,card2)).into(((ImageView)itemView.findViewById(R.id.ivJackpotCard2)));
+                Glide.with(context).load(Functions.getDrawable(context,card3)).into(((ImageView)itemView.findViewById(R.id.ivJackpotCard3)));
             }
 
             TextView getTextView(int id){
@@ -243,4 +231,3 @@ public class DialogJackpotlastWinHistory {
 
     }
 }
-

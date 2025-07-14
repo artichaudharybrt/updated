@@ -1,7 +1,7 @@
-package com.gamegards.gaming27.Details.Menu;
+package com.gamegards.bigjackpot.Details.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,42 +17,47 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.MyAccountDetails.MyDepositAdapte;
-import com.gamegards.gaming27.MyAccountDetails.MyWinnigmodel;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.RedeemCoins.RedeemModel;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.MyAccountDetails.MyWinningAdapte;
+import com.gamegards.bigjackpot.MyAccountDetails.UserRedeemHistoryAdapter;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.RedeemCoins.RedeemModel;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
-public class DialogDepositBonusHistory {
+public class DialogRedeemHistory {
 
     Dialog alert;
     Context context;
     TextView nofound;
     ProgressBar progressBar;
     RecyclerView rec_winning;
-    MyDepositAdapte myDepositAdapte;
+    MyWinningAdapte myWinningAdapte;
 
-    public DialogDepositBonusHistory(Context context) {
+    public DialogRedeemHistory(Context context) {
         this.context = context;
         alert = Functions.DialogInstance(context);
-        alert.setContentView(R.layout.dialog_depositbonus);
+        alert.setContentView(R.layout.dialog_deposit_redeem);
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        TextView tvTitle = alert.findViewById(R.id.txtheader);
-        tvTitle.setText("Deposit Bonus");
         nofound = alert.findViewById(R.id.txtnotfound);
         progressBar = alert.findViewById(R.id.progressBar);
         rec_winning = alert.findViewById(R.id.rec_winning);
         rec_winning.setLayoutManager(new LinearLayoutManager(context));
+
+        TextView txtHeader = alert.findViewById(R.id.txtheader);
+        txtHeader.setText("Redeem History");
+
+        View lnrStatus = alert.findViewById(R.id.lnrStatus);
+        lnrStatus.setVisibility(View.VISIBLE);
 
         alert.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,6 @@ public class DialogDepositBonusHistory {
                 dismiss();
             }
         });
-
         SwipeRefreshLayout swiperefresh = alert.findViewById(R.id.swiperefresh);
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -83,16 +87,17 @@ public class DialogDepositBonusHistory {
     private void CALL_API_GET_LIST(){
 
         NoDataVisible(false);
-        final ArrayList<MyWinnigmodel> redeemModelArrayList = new ArrayList();
+        final ArrayList<RedeemModel> redeemModelArrayList = new ArrayList();
 
         HashMap<String, String> params = new HashMap<String, String>();
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         params.put("user_id",prefs.getString("user_id", ""));
 
-        ApiRequest.Call_Api(context, Const.USER_DepositeBonus, params, new Callback() {
+        ApiRequest.Call_Api(context, Const.USER_Redeem_History_LIST, params, new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
 
+                // progressDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(resp);
                     String code = jsonObject.getString("code");
@@ -100,35 +105,43 @@ public class DialogDepositBonusHistory {
 
                     if (code.equalsIgnoreCase("200")) {
 
-                        JSONArray jsonArray = jsonObject.getJSONArray("activation_list");
+                        JSONArray jsonArray = jsonObject.getJSONArray("List");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-                            MyWinnigmodel model = new MyWinnigmodel();
-                            model.setId(jsonObject1.optString("id"));
-                            model.setCoin(jsonObject1.optString("coin"));
-                            model.setLevel(jsonObject1.optString("level"));
-                            model.setPurchase_user_id(jsonObject1.optString("purchase_user_id"));
-                            model.added_date = jsonObject1.optString("added_date");
-                            model.ViewType = RedeemModel.TRANSACTION_LIST;
+                            RedeemModel model = new RedeemModel();
+                            model.setId(jsonObject1.getString("id"));
+                            model.setCoin(jsonObject1.getString("coin"));
+                            model.setMobile(jsonObject1.getString("mobile"));
+                            model.setUser_name(jsonObject1.getString("user_name"));
+                            model.setUser_mobile(jsonObject1.getString("user_mobile"));
+                            model.setStatus(jsonObject1.getString("status"));
+                            model.setUpdated_date(jsonObject1.getString("updated_date"));
+                            model.ViewType = RedeemModel.REDEEM_LIST;
 
 
                             redeemModelArrayList.add(model);
                         }
+
+                        Collections.reverse(redeemModelArrayList);
+
 
                     } else {
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+
+
                 }
 
                 if(redeemModelArrayList.size() <= 0)
                     NoDataVisible(true);
 
-                myDepositAdapte = new MyDepositAdapte(context,redeemModelArrayList);
-                rec_winning.setAdapter(myDepositAdapte);
+                UserRedeemHistoryAdapter userWinnerAdapter = new UserRedeemHistoryAdapter(context, redeemModelArrayList);
+                rec_winning.setAdapter(userWinnerAdapter);
+
 
                 HideProgressBar(true);
             }

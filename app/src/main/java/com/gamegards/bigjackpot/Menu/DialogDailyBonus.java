@@ -1,8 +1,8 @@
-package com.gamegards.gaming27.Menu;
+package com.gamegards.bigjackpot.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
-import static com.gamegards.gaming27.Utils.Functions.SetBackgroundImageAsDisplaySize;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Utils.Functions.SetBackgroundImageAsDisplaySize;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -22,13 +22,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.Adapter.WelcomeRewardAdapter;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.WelcomeModel;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.Adapter.WelcomeRewardAdapter;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.WelcomeModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

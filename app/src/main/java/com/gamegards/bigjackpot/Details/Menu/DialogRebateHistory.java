@@ -1,7 +1,7 @@
-package com.gamegards.gaming27.Details.Menu;
+package com.gamegards.bigjackpot.Details.Menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,13 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Details.Adapter.ReferalUserAdapter;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.MyAccountDetails.MyRebateAdapte;
+import com.gamegards.bigjackpot.MyAccountDetails.MyWinnigmodel;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.RedeemCoins.RedeemModel;
+import com.gamegards.bigjackpot.Utils.Functions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,55 +33,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DialogReferralUser {
+public class DialogRebateHistory {
 
     Dialog alert;
     Context context;
     TextView nofound;
     ProgressBar progressBar;
     RecyclerView rec_winning;
-    ReferalUserAdapter myWinningAdapte;
-    SharedPreferences prefs;
-    final ArrayList<com.gamegards.gaming27.Details.Menu.ReferralModel> referralModels;
-    public DialogReferralUser(Context context) {
+    MyRebateAdapte myRebateAdapte;
+
+    public DialogRebateHistory(Context context) {
         this.context = context;
         alert = Functions.DialogInstance(context);
-        alert.setContentView(R.layout.dialog_referral);
+        alert.setContentView(R.layout.dialog_rebate);
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         TextView tvTitle = alert.findViewById(R.id.txtheader);
-        tvTitle.setText("Referral History");
+        tvTitle.setText("Rebate History");
         nofound = alert.findViewById(R.id.txtnotfound);
         progressBar = alert.findViewById(R.id.progressBar);
         rec_winning = alert.findViewById(R.id.rec_winning);
         rec_winning.setLayoutManager(new LinearLayoutManager(context));
-
-
-        prefs  = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-
-        referralModels = new ArrayList();
-        myWinningAdapte = new ReferalUserAdapter(context,referralModels);
-
-        myWinningAdapte.onItemSelectListener(new OnItemClickListener() {
-            @Override
-            public void Response(View v, int position, Object object) {
-                Log.e("TestDialog","working");
-                String useid =  referralModels.get(position).referred_user_id;
-                CALL_API_GET_LIST(useid);
-
-
-            }
-        });
-
-       rec_winning.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               alert.setContentView(R.layout.dialog_referral);
-
-           }
-       });
-
-//        myWinningAdapte.onI
-
 
         alert.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,14 +65,13 @@ public class DialogReferralUser {
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                String userid= prefs.getString("user_id", "");
-                CALL_API_GET_LIST(userid);
+                CALL_API_GET_LIST();
                 swiperefresh.setRefreshing(false);
             }
         });
 
-        String userid= prefs.getString("user_id", "");
-        CALL_API_GET_LIST(userid);
+
+        CALL_API_GET_LIST();
     }
 
     public void show(){
@@ -110,42 +80,42 @@ public class DialogReferralUser {
     }
     public void dismiss(){alert.dismiss();}
 
-    private void CALL_API_GET_LIST(String user_id){
+    private void CALL_API_GET_LIST(){
 
         NoDataVisible(false);
+        final ArrayList<MyWinnigmodel> redeemModelArrayList = new ArrayList();
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("user_id",user_id);
+        SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        params.put("user_id",prefs.getString("user_id", ""));
+        params.put("token",prefs.getString("token", ""));
 
-        ApiRequest.Call_Api(context, Const.USER_REFER, params, new Callback() {
+        ApiRequest.Call_Api(context, Const.USER_REBATE, params, new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
 
                 try {
-                    referralModels.clear();
                     JSONObject jsonObject = new JSONObject(resp);
                     String code = jsonObject.getString("code");
-                    String message = jsonObject.getString("message");
-                    Log.e("ref","ref");
+//                    String message = jsonObject.getString("message");
+
                     if (code.equalsIgnoreCase("200")) {
 
-                        JSONArray jsonArray = jsonObject.getJSONArray("refferearnlog");
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-                            com.gamegards.gaming27.Details.Menu.ReferralModel model = new com.gamegards.gaming27.Details.Menu.ReferralModel();
+                            MyWinnigmodel model = new MyWinnigmodel();
                             model.setId(jsonObject1.optString("id"));
                             model.setCoin(jsonObject1.optString("coin"));
-                            model.setCount(jsonObject1.optString("refer_count"));
-
-                            model.setName(jsonObject1.optString("name"));
-                            model.setReferred_user_id(jsonObject1.optString("referral_code"));
-                            model.setUpdated_date(jsonObject1.optString("added_date"));
-                            model.setEmail(jsonObject1.optString("email"));
+                            model.setLevel(jsonObject1.optString("bet_amount"));
+//                            model.setPurchase_user_id(jsonObject1.optString("purchase_user_id"));
+                            model.added_date = jsonObject1.optString("added_date");
+                            model.ViewType = RedeemModel.TRANSACTION_LIST;
 
 
-                            referralModels.add(model);
+                            redeemModelArrayList.add(model);
                         }
 
                     } else {
@@ -155,10 +125,11 @@ public class DialogReferralUser {
                     e.printStackTrace();
                 }
 
-                if(referralModels.size() <= 0)
+                if(redeemModelArrayList.size() <= 0)
                     NoDataVisible(true);
 
-                rec_winning.setAdapter(myWinningAdapte);
+                myRebateAdapte = new MyRebateAdapte(context,redeemModelArrayList);
+                rec_winning.setAdapter(myRebateAdapte);
 
                 HideProgressBar(true);
             }
