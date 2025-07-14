@@ -77,7 +77,7 @@ public class GameActivity extends BaseActivity {
     int widthbahar = -430;
     int countwidhtanadar = 41;
     int firstcount = 0;
-    TextView txtGameFinish,txtName,txtBallence,txtGameRunning,txtGameBets,txt_catander,txt_catbahar,txt_room,txt_gameId,txt_online,txt_min_max,txt_many_cards;
+    TextView txtGameFinish,txtName,txtBallence,txtGameRunning,txtGameBets,txt_catander,txt_catbahar,txt_room,txt_gameId_bottom,txt_online,txt_min_max,txt_many_cards;
     ImageView imgmaincard;
     Typeface helvatikaboldround;
 
@@ -164,7 +164,7 @@ public class GameActivity extends BaseActivity {
         lnrbaharpatte = findViewById(R.id.lnrbaharpatte);
         // setBackground(context,findViewById(R.id.activity_main),R.mipmap.src_gameboard);
         txt_room = findViewById(R.id.txt_room);
-        txt_gameId = findViewById(R.id.txt_gameId);
+        txt_gameId_bottom = findViewById(R.id.txt_gameId_bottom);
         txt_online = findViewById(R.id.txt_online);
         txt_min_max = findViewById(R.id.txt_min_max);
         txt_many_cards = findViewById(R.id.txt_many_cards);
@@ -665,7 +665,7 @@ public class GameActivity extends BaseActivity {
 
                                     //  GameStatus model = new GameStatus();
                                     game_id  = welcome_bonusObject.getString("id");
-                                    txt_gameId.setText("GAME ID "+game_id);
+                                    txt_gameId_bottom.setText("GAME ID "+game_id);
 
 
 
