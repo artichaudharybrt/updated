@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Utils;
+package com.gamegards.bigjackpot.Utils;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -26,7 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.exifinterface.media.ExifInterface;
 
-import com.gamegards.gaming27.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
 
 import java.io.File;
 import java.io.FileOutputStream;

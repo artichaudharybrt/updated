@@ -1,6 +1,6 @@
-package com.gamegards.gaming27._RedBlack;
+package com.gamegards.bigjackpot._jhandhiMunda;
 
-public class JackpotRulesModel {
+public class JhandhiMundaRulesModel {
     public static final int TYPE_LOW = 0;
     public static final int TYPE_HIGH = 1;
     boolean isWine;
@@ -17,10 +17,10 @@ public class JackpotRulesModel {
     String into;
 
 
-    public JackpotRulesModel() {
+    public JhandhiMundaRulesModel() {
     }
 
-    public JackpotRulesModel(String rule_type,int rule_value, int added_amount, int select_amount, String into) {
+    public JhandhiMundaRulesModel(String rule_type, int rule_value, int added_amount, int select_amount, String into) {
         this.rule_type = rule_type;
         this.rule_value = rule_value;
         this.added_amount = added_amount;
@@ -28,8 +28,8 @@ public class JackpotRulesModel {
         this.into = into;
     }
 
-    public JackpotRulesModel(String rule_type,int rule_value, int added_amount, int select_amount, String into
-            ,int view_type
+    public JhandhiMundaRulesModel(String rule_type, int rule_value, int added_amount, int select_amount, String into
+            , int view_type
     ) {
         this.rule_type = rule_type;
         this.rule_value = rule_value;
@@ -39,8 +39,8 @@ public class JackpotRulesModel {
         this.type = view_type;
     }
 
-    public JackpotRulesModel(String rule_type,int wining_rule_value,int rule_value, int added_amount, int select_amount, String into
-            ,int view_type
+    public JhandhiMundaRulesModel(String rule_type, int wining_rule_value, int rule_value, int added_amount, int select_amount, String into
+            , int view_type
     ) {
         this.rule_type = rule_type;
         this.rule_value = rule_value;

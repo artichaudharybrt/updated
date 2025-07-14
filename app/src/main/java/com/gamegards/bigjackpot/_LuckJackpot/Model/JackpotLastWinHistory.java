@@ -1,11 +1,11 @@
-package com.gamegards.gaming27._jhandhiMunda.Model;
+package com.gamegards.bigjackpot._LuckJackpot.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class JhandhiMundaLastWinHistory {
+public class JackpotLastWinHistory {
     @SerializedName("winners")
     @Expose
     private List<Winner> winners = null;

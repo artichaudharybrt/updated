@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Utils;
+package com.gamegards.bigjackpot.Utils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,9 +12,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Comman.CommonAPI;
-import com.gamegards.gaming27.Interface.Callback;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Comman.CommonAPI;
+import com.gamegards.bigjackpot.Interface.Callback;
 
 import org.json.JSONException;
 import org.json.JSONObject;

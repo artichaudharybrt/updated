@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._LuckJackpot;
+package com.gamegards.bigjackpot._LuckJackpot;
 
 public class JackpotRulesModel {
     boolean isWine;

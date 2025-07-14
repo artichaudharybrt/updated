@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.HomescreenModel;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.HomescreenModel;
 
 import java.util.ArrayList;
 import java.util.List;

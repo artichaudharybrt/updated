@@ -24,7 +24,7 @@
             android:padding="10dp"
             android:visibility="gone">
 
-            <com.gamegards.gaming27.CustomView.ShiningView
+            <com.gamegards.bigjackpot.CustomView.ShiningView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="-70dp"

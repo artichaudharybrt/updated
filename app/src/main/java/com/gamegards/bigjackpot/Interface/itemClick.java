@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Interface;
+package com.gamegards.bigjackpot.Interface;
 
 public interface itemClick {
     void OnDailyClick(String id, String coins, String s);

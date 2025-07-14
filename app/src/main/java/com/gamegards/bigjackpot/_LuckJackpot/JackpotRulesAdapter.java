@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._LuckJackpot;
+package com.gamegards.bigjackpot._LuckJackpot;
 
 import android.content.Context;
 import android.os.Handler;
@@ -16,10 +16,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 
 import java.util.List;
 
