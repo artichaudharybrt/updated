@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._AdharBahar.Model;
+package com.gamegards.bigjackpot._AdharBahar.Model;
 
 public class GameModel {
 

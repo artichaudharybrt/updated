@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._RummyGodMode;
+package com.gamegards.bigjackpot._RummyGodMode;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

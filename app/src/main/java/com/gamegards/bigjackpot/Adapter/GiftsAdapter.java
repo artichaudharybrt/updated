@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.gamegards.gaming27.Interface.itemClick;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.model.GiftModel;
+import com.gamegards.bigjackpot.Interface.itemClick;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.model.GiftModel;
 //import com.paytm.pgsdk.Log;
 
 import java.util.ArrayList;

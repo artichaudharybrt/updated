@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._AdharBahar.Adapter;
+package com.gamegards.bigjackpot._AdharBahar.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27._AdharBahar.Andhar_Bahar_NewUI;
-import com.gamegards.gaming27._AdharBahar.GameActivity;
-import com.gamegards.gaming27._AdharBahar.Model.GameModel;
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot._AdharBahar.Andhar_Bahar_NewUI;
+import com.gamegards.bigjackpot._AdharBahar.GameActivity;
+import com.gamegards.bigjackpot._AdharBahar.Model.GameModel;
+import com.gamegards.bigjackpot.R;
 
 import java.util.ArrayList;
 

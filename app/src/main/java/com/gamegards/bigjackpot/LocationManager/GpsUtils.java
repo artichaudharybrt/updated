@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.LocationManager;
+package com.gamegards.bigjackpot.LocationManager;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.Functions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationRequest;

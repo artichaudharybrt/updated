@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._CoinFlip;
+package com.gamegards.bigjackpot._CoinFlip;
 
 import android.content.Context;
 

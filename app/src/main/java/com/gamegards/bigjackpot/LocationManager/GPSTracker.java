@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.LocationManager;
+package com.gamegards.bigjackpot.LocationManager;
 
 import android.Manifest;
 import android.app.Activity;

@@ -1,12 +1,12 @@
-package com.gamegards.gaming27._RummyPull;
+package com.gamegards.bigjackpot._RummyPull;
 
-import static com.gamegards.gaming27._Rummy.RummPoint.removeLastChars;
+import static com.gamegards.bigjackpot._Rummy.RummPoint.removeLastChars;
 
 import android.content.Context;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.model.CardModel;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.model.CardModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

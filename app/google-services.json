@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "363564623007",
-    "project_id": "gaming27",
-    "storage_bucket": "gaming27.firebasestorage.app"
+    "project_id": "BigJackpot",
+    "storage_bucket": "BigJackpot.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:363564623007:android:57bb3054b81ca650b42eaa",
         "android_client_info": {
-          "package_name": "com.gamegards.gaming27"
+          "package_name": "com.gamegards.BigJackpot"
         }
       },
       "oauth_client": [],

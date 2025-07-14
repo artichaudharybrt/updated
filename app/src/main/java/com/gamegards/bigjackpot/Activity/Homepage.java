@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Activity;
+package com.gamegards.bigjackpot.Activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -26,7 +26,6 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -60,65 +59,65 @@ import com.first_player_games.OnlineGame.Lobby.RoomCreationActivity;
 import com.first_player_games.OnlineGame.Lobby.RoomJoinActivity;
 import com.first_player_games.ludoApi.TableMaster;
 import com.first_player_games.ludoApi.bottomFragment.LudoActiveTables_BF;
-import com.gamegards.gaming27.Adapter.DummyPayoutAdapter;
-import com.gamegards.gaming27.Adapter.HomegameListAdapter;
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27.Comman.CommonAPI;
-import com.gamegards.gaming27.Comman.DialogRestrictUser;
-import com.gamegards.gaming27.Comman.DialogSettingOption;
-import com.gamegards.gaming27.Details.GameDetails_A;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.LocationManager.GetLocationlatlong;
-import com.gamegards.gaming27.LocationManager.GpsUtils;
-import com.gamegards.gaming27.Menu.DialogDailyBonus;
-import com.gamegards.gaming27.Menu.DialogNotification;
-import com.gamegards.gaming27.Menu.DialogReferandEarn;
-import com.gamegards.gaming27.Menu.DialogUserRanking;
-import com.gamegards.gaming27.MyFlowLayout;
-import com.gamegards.gaming27.RedeemCoins.WithdrawalList;
-import com.gamegards.gaming27.Statement;
-import com.gamegards.gaming27.Utils.Sound;
-import com.gamegards.gaming27._AdharBahar.Andhar_Bahar_Socket;
-import com.gamegards.gaming27._AnimalRoulate.AnimalRoulette_Socket;
-import com.gamegards.gaming27._Aviator.Aviator_Game_Socket;
-import com.gamegards.gaming27._Aviator.Aviator_Game_Socket_Vertical;
-import com.gamegards.gaming27._CarRoullete.CarRoullete_Socket;
-import com.gamegards.gaming27._CoinFlip.HeadTail_Socket;
-import com.gamegards.gaming27._ColorPrediction.Bots_list;
-import com.gamegards.gaming27._ColorPrediction.ColorPrediction1_Socket;
-import com.gamegards.gaming27._ColorPrediction.ColorPrediction3_Socket;
-import com.gamegards.gaming27._ColorPrediction.ColorPrediction_Socket;
-import com.gamegards.gaming27._ColorPrediction.ColorPrediction30_Socket;
-import com.gamegards.gaming27._DragonTiger.DragonTigerSocket;
-import com.gamegards.gaming27.Fragments.ActiveTables_BF;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27.Helper.PaymentGatewayHelper;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Animations;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27._LuckJackpot.LuckJackPot_A_Socket;
-import com.gamegards.gaming27._Poker.Fragment.PokerActiveTables_BF;
-import com.gamegards.gaming27._RedBlack.RedBlackPot_Socket;
-import com.gamegards.gaming27._Rummy.RummyPointSocket;
-import com.gamegards.gaming27._RummyDeal.DialogDealType;
-import com.gamegards.gaming27._RummyDeal.Fragments.RummyDealActiveTables_BF;
-import com.gamegards.gaming27._RummyDeal.RummyDealGameSocket;
-import com.gamegards.gaming27._RummyPull.Fragments.RummyActiveTables_BF;
-import com.gamegards.gaming27._RummyPull.RummyPullGameSocket;
-import com.gamegards.gaming27._SevenUpGames.SevenUp_Socket;
-import com.gamegards.gaming27._TeenPatti.TeenPattiSocket;
-import com.gamegards.gaming27._Tournament.TourList;
-import com.gamegards.gaming27._baccarat.Baccarat_Socket;
-import com.gamegards.gaming27._jhandhiMunda.JhandhiMunda_Socket;
-import com.gamegards.gaming27._rouleteGame.RouleteDoubleGame_Socket;
-import com.gamegards.gaming27._rouleteGame.RouleteGame_Socket;
-import com.gamegards.gaming27.account.LoginScreen;
-import com.gamegards.gaming27.model.BannerModel;
-import com.gamegards.gaming27.model.HomescreenModel;
+import com.gamegards.bigjackpot.Adapter.DummyPayoutAdapter;
+import com.gamegards.bigjackpot.Adapter.HomegameListAdapter;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot.Comman.CommonAPI;
+import com.gamegards.bigjackpot.Comman.DialogRestrictUser;
+import com.gamegards.bigjackpot.Comman.DialogSettingOption;
+import com.gamegards.bigjackpot.Details.GameDetails_A;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.LocationManager.GetLocationlatlong;
+import com.gamegards.bigjackpot.LocationManager.GpsUtils;
+import com.gamegards.bigjackpot.Menu.DialogDailyBonus;
+import com.gamegards.bigjackpot.Menu.DialogNotification;
+import com.gamegards.bigjackpot.Menu.DialogReferandEarn;
+import com.gamegards.bigjackpot.Menu.DialogUserRanking;
+import com.gamegards.bigjackpot.MyFlowLayout;
+import com.gamegards.bigjackpot.RedeemCoins.WithdrawalList;
+import com.gamegards.bigjackpot.Statement;
+import com.gamegards.bigjackpot.Utils.Sound;
+import com.gamegards.bigjackpot._AdharBahar.Andhar_Bahar_Socket;
+import com.gamegards.bigjackpot._AnimalRoulate.AnimalRoulette_Socket;
+import com.gamegards.bigjackpot._Aviator.Aviator_Game_Socket;
+import com.gamegards.bigjackpot._Aviator.Aviator_Game_Socket_Vertical;
+import com.gamegards.bigjackpot._CarRoullete.CarRoullete_Socket;
+import com.gamegards.bigjackpot._CoinFlip.HeadTail_Socket;
+import com.gamegards.bigjackpot._ColorPrediction.Bots_list;
+import com.gamegards.bigjackpot._ColorPrediction.ColorPrediction1_Socket;
+import com.gamegards.bigjackpot._ColorPrediction.ColorPrediction3_Socket;
+import com.gamegards.bigjackpot._ColorPrediction.ColorPrediction_Socket;
+import com.gamegards.bigjackpot._ColorPrediction.ColorPrediction30_Socket;
+import com.gamegards.bigjackpot._DragonTiger.DragonTigerSocket;
+import com.gamegards.bigjackpot.Fragments.ActiveTables_BF;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot.Helper.PaymentGatewayHelper;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Animations;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot._LuckJackpot.LuckJackPot_A_Socket;
+import com.gamegards.bigjackpot._Poker.Fragment.PokerActiveTables_BF;
+import com.gamegards.bigjackpot._RedBlack.RedBlackPot_Socket;
+import com.gamegards.bigjackpot._Rummy.RummyPointSocket;
+import com.gamegards.bigjackpot._RummyDeal.DialogDealType;
+import com.gamegards.bigjackpot._RummyDeal.Fragments.RummyDealActiveTables_BF;
+import com.gamegards.bigjackpot._RummyDeal.RummyDealGameSocket;
+import com.gamegards.bigjackpot._RummyPull.Fragments.RummyActiveTables_BF;
+import com.gamegards.bigjackpot._RummyPull.RummyPullGameSocket;
+import com.gamegards.bigjackpot._SevenUpGames.SevenUp_Socket;
+import com.gamegards.bigjackpot._TeenPatti.TeenPattiSocket;
+import com.gamegards.bigjackpot._Tournament.TourList;
+import com.gamegards.bigjackpot._baccarat.Baccarat_Socket;
+import com.gamegards.bigjackpot._jhandhiMunda.JhandhiMunda_Socket;
+import com.gamegards.bigjackpot._rouleteGame.RouleteDoubleGame_Socket;
+import com.gamegards.bigjackpot._rouleteGame.RouleteGame_Socket;
+import com.gamegards.bigjackpot.account.LoginScreen;
+import com.gamegards.bigjackpot.model.BannerModel;
+import com.gamegards.bigjackpot.model.HomescreenModel;
 //import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.android.gms.maps.model.LatLng;
 //import com.google.firebase.messaging.FirebaseMessaging;
@@ -155,36 +154,36 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import static com.gamegards.gaming27.GAMES.ANDHAR_BAHAR;
-import static com.gamegards.gaming27.GAMES.ANIMAL_ROULETTE;
-import static com.gamegards.gaming27.GAMES.AVIATOR_VERTICAL;
-import static com.gamegards.gaming27.GAMES.BACCARAT;
-import static com.gamegards.gaming27.GAMES.CAR_ROULETTE;
-import static com.gamegards.gaming27.GAMES.COLOUR_PREDICTION;
-import static com.gamegards.gaming27.GAMES.COLOUR_PREDICTION1;
-import static com.gamegards.gaming27.GAMES.COLOUR_PREDICTION30;
-import static com.gamegards.gaming27.GAMES.CUSTOM_TABLE;
-import static com.gamegards.gaming27.GAMES.DEAL_RUMMY;
-import static com.gamegards.gaming27.GAMES.DRAGON_TIGER;
-import static com.gamegards.gaming27.GAMES.HEAD_TAIL;
-import static com.gamegards.gaming27.GAMES.JACKPOT_3PATTI;
-import static com.gamegards.gaming27.GAMES.JHANDHI_MUNDA;
-import static com.gamegards.gaming27.GAMES.LUDO_GAME_COMPUTER;
-import static com.gamegards.gaming27.GAMES.LUDO_GAME_ONLINE;
-import static com.gamegards.gaming27.GAMES.LUDO_GAME_PLAY_LOCAL;
-import static com.gamegards.gaming27.GAMES.POINT_RUMMY;
-import static com.gamegards.gaming27.GAMES.POKER_GAME;
-import static com.gamegards.gaming27.GAMES.POOL_RUMMY;
-import static com.gamegards.gaming27.GAMES.PRIVATE_RUMMY;
-import static com.gamegards.gaming27.GAMES.PRIVATE_TABLE;
-import static com.gamegards.gaming27.GAMES.RED_BLACK;
-import static com.gamegards.gaming27.GAMES.SEVEN_UP_DOWN;
-import static com.gamegards.gaming27.GAMES.TEENPATTI;
-import static com.gamegards.gaming27.GAMES.ROULETTE;
-import static com.gamegards.gaming27.GAMES.TOURNAMENT;
-import static com.gamegards.gaming27.GAMES.COLOUR_PREDICTION3;
-import static com.gamegards.gaming27.LocationManager.GpsUtils.ENABLE_LOCATION_CODE;
-import static com.gamegards.gaming27.Utils.Functions.convertDpToPixel;
+import static com.gamegards.bigjackpot.GAMES.ANDHAR_BAHAR;
+import static com.gamegards.bigjackpot.GAMES.ANIMAL_ROULETTE;
+import static com.gamegards.bigjackpot.GAMES.AVIATOR_VERTICAL;
+import static com.gamegards.bigjackpot.GAMES.BACCARAT;
+import static com.gamegards.bigjackpot.GAMES.CAR_ROULETTE;
+import static com.gamegards.bigjackpot.GAMES.COLOUR_PREDICTION;
+import static com.gamegards.bigjackpot.GAMES.COLOUR_PREDICTION1;
+import static com.gamegards.bigjackpot.GAMES.COLOUR_PREDICTION30;
+import static com.gamegards.bigjackpot.GAMES.CUSTOM_TABLE;
+import static com.gamegards.bigjackpot.GAMES.DEAL_RUMMY;
+import static com.gamegards.bigjackpot.GAMES.DRAGON_TIGER;
+import static com.gamegards.bigjackpot.GAMES.HEAD_TAIL;
+import static com.gamegards.bigjackpot.GAMES.JACKPOT_3PATTI;
+import static com.gamegards.bigjackpot.GAMES.JHANDHI_MUNDA;
+import static com.gamegards.bigjackpot.GAMES.LUDO_GAME_COMPUTER;
+import static com.gamegards.bigjackpot.GAMES.LUDO_GAME_ONLINE;
+import static com.gamegards.bigjackpot.GAMES.LUDO_GAME_PLAY_LOCAL;
+import static com.gamegards.bigjackpot.GAMES.POINT_RUMMY;
+import static com.gamegards.bigjackpot.GAMES.POKER_GAME;
+import static com.gamegards.bigjackpot.GAMES.POOL_RUMMY;
+import static com.gamegards.bigjackpot.GAMES.PRIVATE_RUMMY;
+import static com.gamegards.bigjackpot.GAMES.PRIVATE_TABLE;
+import static com.gamegards.bigjackpot.GAMES.RED_BLACK;
+import static com.gamegards.bigjackpot.GAMES.SEVEN_UP_DOWN;
+import static com.gamegards.bigjackpot.GAMES.TEENPATTI;
+import static com.gamegards.bigjackpot.GAMES.ROULETTE;
+import static com.gamegards.bigjackpot.GAMES.TOURNAMENT;
+import static com.gamegards.bigjackpot.GAMES.COLOUR_PREDICTION3;
+import static com.gamegards.bigjackpot.LocationManager.GpsUtils.ENABLE_LOCATION_CODE;
+import static com.gamegards.bigjackpot.Utils.Functions.convertDpToPixel;
 
 import butterknife.ButterKnife;
 
@@ -1262,61 +1261,109 @@ public class Homepage extends BaseActivity {
 
 
 
-        findViewById(R.id.iv_add).setOnClickListener(v -> {
-            Log.d("AddCash", "Add cash button clicked - fetching user data first");
+        View addCashButton = findViewById(R.id.iv_add);
+        if (addCashButton != null) {
+            addCashButton.setOnClickListener(v -> {
+            Log.d("AddCash", "Add cash button clicked - checking payment gateway");
 
-            // Show loading dialog
-            ProgressDialog progressDialog = new ProgressDialog(context);
-            progressDialog.setMessage("Loading user data...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            // Safety check for context
+            if (context == null || isFinishing()) {
+                Log.e("AddCash", "Context is null or activity is finishing");
+                return;
+            }
 
-            // Call user data API first before navigating to payment screen
-            CommonAPI.CALL_API_UserDetails(context, new Callback() {
-                @Override
-                public void Responce(String resp, String type, Bundle bundle) {
-                    progressDialog.dismiss();
+            try {
+                // Check payment gateway first
+                SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+                String cryptoGateway = prefs.getString("crypto_payment_gateway", "");
 
-                    if (resp != null) {
+                if ("1".equals(cryptoGateway)) {
+                    // USD/Crypto gateway - need wallet address
+                    Log.d("AddCash", "USD gateway detected - checking wallet");
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(resp);
+                    ProgressDialog progressDialog = new ProgressDialog(Homepage.this);
+                    progressDialog.setMessage("Loading user data...");
+                    progressDialog.setCancelable(false);
 
-                            String code = jsonObject.getString("code");
-
-                            if (code.equalsIgnoreCase("200")) {
-                                // Check if user_data array exists and has elements
-                                if (!jsonObject.has("user_data")) {
-                                    showPayAddressNotFoundDialog();
-                                    return;
-                                }
-                                JSONArray userDataArray = jsonObject.getJSONArray("user_data");
-                                if (userDataArray.length() == 0) {
-                                    showPayAddressNotFoundDialog();
-                                    return;
-                                }
-
-                                // Parse the full response to update user data
-                                ParseResponse(resp);
-                                // 🎯 Use PaymentGatewayHelper to show appropriate payment options
-                                Log.d("AddCash", "Using PaymentGatewayHelper from lnrbuychips click");
-                                PaymentGatewayHelper.showPaymentOptions(context);
-                            } else {
-                                Functions.showToast(context, "Failed to load user data. Please try again.");
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Functions.showToast(context, "Failed to parse user data. Please try again.");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Functions.showToast(context, "An error occurred. Please try again.");
-                        }
-                    } else {
-                        Functions.showToast(context, "Failed to load user data. Please try again.");
+                    try {
+                        progressDialog.show();
+                    } catch (Exception e) {
+                        Log.e("AddCash", "Error showing progress dialog: " + e.getMessage());
+                        return;
                     }
+
+                CommonAPI.CALL_API_UserDetails(Homepage.this, new Callback() {
+                    @Override
+                    public void Responce(String resp, String type, Bundle bundle) {
+                        if (resp != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(resp);
+                                String code = jsonObject.getString("code");
+
+                                if (code.equalsIgnoreCase("200")) {
+                                    JSONArray userDataArray = jsonObject.getJSONArray("user_data");
+                                    if (userDataArray.length() > 0) {
+                                        JSONObject userData = userDataArray.getJSONObject(0);
+                                        String payAddress = userData.optString("pay_address", "");
+
+                                        if (payAddress.isEmpty()) {
+                                            progressDialog.setMessage("Setting up wallet...");
+                                            generateWalletAddress(progressDialog);
+                                        } else {
+                                            progressDialog.dismiss();
+                                            ParseResponse(resp);
+                                            PaymentGatewayHelper.showPaymentOptions(context);
+                                        }
+                                    } else {
+                                        progressDialog.dismiss();
+                                        Functions.showToast(context, "Failed to load user data.");
+                                    }
+                                } else {
+                                    try {
+                                        if (progressDialog != null && progressDialog.isShowing()) {
+                                            progressDialog.dismiss();
+                                        }
+                                    } catch (Exception e) {
+                                        Log.e("AddCash", "Error dismissing dialog: " + e.getMessage());
+                                    }
+                                    Functions.showToast(context, "Failed to load user data.");
+                                }
+                            } catch (JSONException e) {
+                                try {
+                                    if (progressDialog != null && progressDialog.isShowing()) {
+                                        progressDialog.dismiss();
+                                    }
+                                } catch (Exception ex) {
+                                    Log.e("AddCash", "Error dismissing dialog: " + ex.getMessage());
+                                }
+                                Functions.showToast(context, "Error loading data.");
+                            }
+                        } else {
+                            try {
+                                if (progressDialog != null && progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                            } catch (Exception e) {
+                                Log.e("AddCash", "Error dismissing dialog: " + e.getMessage());
+                            }
+                            Functions.showToast(context, "Failed to load user data.");
+                        }
+                    }
+                }, token);
+                } else {
+                    // INR gateway - direct to payment options
+                    Log.d("AddCash", "INR gateway - showing payment options directly");
+                    PaymentGatewayHelper.showPaymentOptions(context);
                 }
-            }, token);
-        });
+            } catch (Exception e) {
+                Log.e("AddCash", "Error in add cash button click: " + e.getMessage());
+                e.printStackTrace();
+                Functions.showToast(context, "Error opening payment options. Please try again.");
+            }
+            });
+        } else {
+            Log.e("AddCash", "Add cash button not found in layout");
+        }
 
 
 
@@ -2406,17 +2453,35 @@ public class Homepage extends BaseActivity {
     public void openBuyChipsActivity(View view) {
         Log.d("AddCash", "Buy chips activity button clicked - fetching user data first");
 
+        // Safety check for context
+        if (context == null || isFinishing()) {
+            Log.e("AddCash", "Context is null or activity is finishing");
+            return;
+        }
+
         // Show loading dialog
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading user data...");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+
+        try {
+            progressDialog.show();
+        } catch (Exception e) {
+            Log.e("AddCash", "Error showing progress dialog: " + e.getMessage());
+            return;
+        }
 
         // Call user data API first before navigating to payment screen
         CommonAPI.CALL_API_UserDetails(context, new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
-                progressDialog.dismiss();
+                try {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                } catch (Exception e) {
+                    Log.e("AddCash", "Error dismissing progress dialog: " + e.getMessage());
+                }
 
                 if (resp != null) {
                     Log.d("AddCash", "User data fetched successfully from buy chips button, checking pay_address");
@@ -2551,7 +2616,7 @@ public class Homepage extends BaseActivity {
         dialog.setContentView(R.layout.dialog_app_update);
 
         String appName = getString(R.string.app_name);
-        String updateMessage = appName + " needs an update";
+        String updateMessage = appName + " needs an update \nPlease reinstall the app from our official website";
 
         TextView tv_heading = dialog.findViewById(R.id.tv_heading);
         tv_heading.setText(updateMessage);
@@ -2570,6 +2635,110 @@ public class Homepage extends BaseActivity {
         Window window = dialog.getWindow();
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+    }
+
+    private void generateWalletAddress(ProgressDialog progressDialog) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.GENERATE_WALLET,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String code = jsonObject.getString("code");
+
+                            if (code.equalsIgnoreCase("200")) {
+                                progressDialog.setMessage("Generating wallet address...");
+                                checkWalletAddressWithRetry(progressDialog, 0);
+                            } else {
+                                progressDialog.dismiss();
+                                Functions.showToast(context, "Failed to generate wallet address.");
+                            }
+                        } catch (JSONException e) {
+                            progressDialog.dismiss();
+                            e.printStackTrace();
+                            Functions.showToast(context, "Error generating wallet address.");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Functions.showToast(context, "Network error. Please try again.");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+                params.put("user_id", prefs.getString("user_id", ""));
+                params.put("token", prefs.getString("token", ""));
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("token", Const.TOKEN);
+                return headers;
+            }
+        };
+
+        Volley.newRequestQueue(context).add(stringRequest);
+    }
+
+    private void checkWalletAddressWithRetry(ProgressDialog progressDialog, int retryCount) {
+        if (retryCount >= 10) {
+            progressDialog.dismiss();
+            Functions.showToast(context, "Wallet setup taking longer than expected. Please try again.");
+            return;
+        }
+
+        String[] messages = {
+                "Generating wallet address...",
+                "Setting up your wallet...",
+                "Almost ready...",
+                "Finalizing wallet setup...",
+                "Please wait, processing..."
+        };
+        progressDialog.setMessage(messages[retryCount % messages.length]);
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                CommonAPI.CALL_API_UserDetails(context, new Callback() {
+                    @Override
+                    public void Responce(String resp, String type, Bundle bundle) {
+                        if (resp != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(resp);
+                                String code = jsonObject.getString("code");
+
+                                if (code.equalsIgnoreCase("200")) {
+                                    JSONArray userDataArray = jsonObject.getJSONArray("user_data");
+                                    if (userDataArray.length() > 0) {
+                                        JSONObject userData = userDataArray.getJSONObject(0);
+                                        String payAddress = userData.optString("pay_address", "");
+
+                                        if (!payAddress.isEmpty()) {
+                                            progressDialog.dismiss();
+                                            ParseResponse(resp);
+                                            PaymentGatewayHelper.showPaymentOptions(context);
+                                            return;
+                                        }
+                                    }
+                                }
+                                checkWalletAddressWithRetry(progressDialog, retryCount + 1);
+                            } catch (JSONException e) {
+                                checkWalletAddressWithRetry(progressDialog, retryCount + 1);
+                            }
+                        } else {
+                            checkWalletAddressWithRetry(progressDialog, retryCount + 1);
+                        }
+                    }
+                }, token);
+            }
+        }, 3000);
     }
 
     private void showPayAddressNotFoundDialog() {
@@ -2752,6 +2921,20 @@ public class Homepage extends BaseActivity {
                 String pay_privatekey = jsonObject0.optString("pay_privatekey", null);
                 Log.d("ParseResponse", "pay_address: " + pay_address + ", pay_privatekey: " + (pay_privatekey != null ? "***" : "null"));
 
+                // Save pay_address to SharedPreferences for wallet generation
+                if (pay_address != null && !pay_address.isEmpty()) {
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putString("pay_address", pay_address);
+                    editor.apply();
+                }
+
+                // Save pay_address to SharedPreferences for wallet generation
+                if (pay_address != null && !pay_address.isEmpty()) {
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putString("pay_address", pay_address);
+                    editor.apply();
+                }
+
                 notification_image = jsonObject.optString("notification_image");
                 Log.d("notification_image", "notification_image" + notification_image);
 
@@ -2813,8 +2996,8 @@ public class Homepage extends BaseActivity {
                     }
                 };
                 Timer timer = new Timer();
-                timer.schedule(timerTask, 8000, 8000); // Start after 8 seconds, repeat every 8 seconds
-                CirclePageIndicator indicator = findViewById(com.gamegards.gaming27.R.id.titles);
+                timer.schedule(timerTask, 5000, 5000); // Start after 3 seconds, repeat every 3 seconds
+                CirclePageIndicator indicator = findViewById(com.gamegards.bigjackpot.R.id.titles);
                 indicator.setViewPager(viewpager);
                 indicator.setCurrentItem(0);
 
@@ -2919,12 +3102,15 @@ public class Homepage extends BaseActivity {
             e.printStackTrace();
         }
 
-        findViewById(R.id.iv_add).clearAnimation();
+        View addButton = findViewById(R.id.iv_add);
+        if (addButton != null) {
+            addButton.clearAnimation();
+        }
         Functions.dismissLoader();
 
     }
 
-   // @OnClick(R.id.tvUserCategory)
+    // @OnClick(R.id.tvUserCategory)
     void openUserRanking() {
         DialogUserRanking.getInstance(context).setCallback(new Callback() {
             @Override
@@ -3068,7 +3254,7 @@ public class Homepage extends BaseActivity {
                 //long valueforpotlong= valueforpot;
 
                 txtPotLimitpri.setText("Pot limit : " + kvalue(valueforpot) + "");
-                txtMaximumbetvaluepri.setText("Maximumbet balue : " + kvalue(valueformaxi) + "");
+                txtMaximumbetvaluepri.setText("Maximum Bet Value : " + kvalue(valueformaxi) + "");
                 txtNumberofBlindpri.setText("Number of Blinds : 4");
                 //tView.setText(pval + "/" + seekBar.getMax());
             }
@@ -3077,7 +3263,7 @@ public class Homepage extends BaseActivity {
         int valueforpotinital = 50 * 1024;
         int valueformaxiinital = 50 * 128;
         txtPotLimitpri.setText("Pot limit : " + kvalue(valueforpotinital) + "");
-        txtMaximumbetvaluepri.setText("Maximumbet balue : " + kvalue(valueformaxiinital) + "");
+        txtMaximumbetvaluepri.setText("Maximum Bet Value : " + kvalue(valueformaxiinital) + "");
         txtNumberofBlindpri.setText("Number of Blinds : 4");
 
         dialog.show();
@@ -3184,7 +3370,7 @@ public class Homepage extends BaseActivity {
                 int valueforpot = pval * 1024;
                 int valueformaxi = pval * 128;
                 txtPotLimit.setText("Pot limit : " + kvalue(valueforpot) + "");
-                txtMaximumbetvalue.setText("Maximumbet balue : " + kvalue(valueformaxi) + "");
+                txtMaximumbetvalue.setText("Maximum Bet Value : " + kvalue(valueformaxi) + "");
                 txtNumberofBlind.setText("Number of Blinds : 4");
                 //tView.setText(pval + "/" + seekBar.getMax());
             }
@@ -3195,7 +3381,7 @@ public class Homepage extends BaseActivity {
         int valueforpotinitl = 50 * 1024;
         int valueformaxiiniti = 50 * 128;
         txtPotLimit.setText("Pot limit : " + kvalue(valueforpotinitl) + "");
-        txtMaximumbetvalue.setText("Maximumbet balue : " + kvalue(valueformaxiiniti) + "");
+        txtMaximumbetvalue.setText("Maximum Bet Value : " + kvalue(valueformaxiiniti) + "");
         txtNumberofBlind.setText("Number of Blinds : 4");
 
         dialog.show();

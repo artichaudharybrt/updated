@@ -1,4 +1,4 @@
-package com.gamegards.gaming27;
+package com.gamegards.bigjackpot;
 
 public enum GAMES {
  /*   JACKPOT_3PATTI,
