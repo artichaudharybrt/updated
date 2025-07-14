@@ -1,6 +1,10 @@
-package com.gamegards.gaming27.Activity;
+package com.gamegards.bigjackpot.Activity;
 
-import static com.gamegards.gaming27.Utils.Functions.SetBackgroundImageAsDisplaySize;
+import static com.gamegards.bigjackpot.Utils.Functions.SetBackgroundImageAsDisplaySize;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
@@ -15,9 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -27,17 +28,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gamegards.gaming27.Comman.CommonAPI;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.SharePref;
+import com.gamegards.bigjackpot.Adapter.ChipsBuy_SpinAdapter;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.model.ChipsBuyModel;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -47,23 +50,24 @@ import java.util.Random;
 
 import butterknife.ButterKnife;
 
-public class Spinner_Wheels_Reward extends AppCompatActivity {
+public class Spinner_Wheels extends AppCompatActivity {
     RelativeLayout rl_extra;
     private static final String[] sectors = {"1",
             "2", "3", "4", "5", "6", "7", "8",
             "9", "10", "11", "12", "13", "14", "15",
-            "16", "17", "18", "19", "20"};
+            "16", "17", "18"};
+   // @BindView(R.id.spinBtn)
     Button spinBtn;
-   // @BindView(R.id.resultTv)
+  //  @BindView(R.id.resultTv)
     TextView resultTv;
-   // @BindView(R.id.wheel)
+  //  @BindView(R.id.wheel)
     ImageView wheel;
     // We create a Random instance to make our wheel spin randomly
     private static final Random RANDOM = new Random();
     private int degree = 0, degreeOld = 0;
     // We have 37 sectors on the wheel, we divide 360 by this value to have angle for each sector
     // we divide by 2 to have a half sector
-    private static final float HALF_SECTOR = 360f / 20f / 2f;
+    private static final float HALF_SECTOR = 360f / 18f / 2f;
     String selected_payment = "", str_extraVal = "";
     public static String str_diff = "";
     static Date date1 = null, date2 = null;
@@ -71,18 +75,21 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
     String currentDateandTimeOld = sdf.format(new Date());
     public static String btn_clicked = "";
     private static final String MY_PREFS_NAME = "Login_data";
-
+    //ImageView img_back;
+    ArrayList<ChipsBuyModel> historyModelArrayList;
+    ChipsBuy_SpinAdapter historyAdapter;
+    RecyclerView rec_history;
     ProgressDialog progressDialog;
     LinearLayout linear_no_history;
     ImageView imgback;
     int spinner_result = 0;
+    public static int final_string_value = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spinner_wheels_reward);
+        setContentView(R.layout.activity_spinner_wheels);
         ButterKnife.bind(this);
-
         intWheels();
         intRecyclerview();
 
@@ -93,34 +100,30 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
         SetBackgroundImageAsDisplaySize(this, relativeLayout, R.drawable.home_bg2);
 
 
-        ((TextView) findViewById(R.id.txtheader)).setText("Spin & Win");
+        ((TextView) findViewById(R.id.txtheader)).setText("Lucky Slot");
 
 
         // img_back=findViewById(R.id.img_back);
+        rec_history = findViewById(R.id.rec_chips);
         linear_no_history = findViewById(R.id.linear_no_history);
         imgback = findViewById(R.id.imgclosetop);
+        imgback.setOnClickListener(view -> finish());
 
         spinBtn = findViewById(R.id.spinBtn);
         resultTv = findViewById(R.id.resultTv);
         wheel = findViewById(R.id.wheel);
 
 
-        imgback.setOnClickListener(view -> finish());
-
         progressDialog = new ProgressDialog(this);
+
+        getChipsList();
+
+        rec_history.setLayoutManager(new GridLayoutManager(this, 2));
+        // rec_history.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
     }
 
     private void intWheels() {
-        SharePref.getInstance().init(this);
-
-        spinBtn = findViewById(R.id.spinBtn);
-        if (!SharePref.getInstance().getSpin_remaining().equals("0")) {
-            ((TextView) findViewById(R.id.spin_txt)).setText(String.valueOf("You have " + SharePref.getInstance().getSpin_remaining() + " Spin Remaining."));
-        } else {
-            ((TextView) findViewById(R.id.spin_txt)).setText("Your have 0 spin Remaining.");
-        }
-
         if (btn_clicked.equals("")) {
             // spinBtn.setEnabled(true);
         }
@@ -143,29 +146,20 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
             Log.d("mins_diff", String.valueOf(minute));
 //            SharePref.getInstance().putInt(SharePref.isEnable, Integer.parseInt(String.valueOf(minute)));
             Log.d("difference_", String.valueOf(minute));
-           /* if (date1 != null && minute >= 10) {
+            if (date1 != null && minute >= 10) {
                 spinBtn.setEnabled(true);
+                SharePref.getInstance().putString(SharePref.spin_discount, "0");
             } else {
                 spinBtn.setEnabled(false);
-            }*/
-
+            }
 
         }
 
     }
 
 
-    //@OnClick(R.id.spinBtn)
+   // @OnClick(R.id.spinBtn)
     public void spin(View v) {
-        if (!SharePref.getInstance().getSpin_remaining().equals("0")) {
-            manaWheels();
-        } else {
-            Toast.makeText(this, "Please add amount", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    private void manaWheels(){
         try {
             date1 = sdf.parse(currentDateandTimeOld);
             Log.d("date_two", String.valueOf(date2));
@@ -176,13 +170,14 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
         degreeOld = degree % 1920;
         // we calculate random angle for rotation of our wheel
         // degree = RANDOM.nextInt(360) + 1920;
-        //  degree = 340+360;                             //custom win for 1
-        //  degree = 320 + 360;                        //custom win for 2
+        // degree = 360+345;                             //custom win for 1 0
+        // degree = 360 + 325;                        //custom win for 2 340
+
         /*this is random for 1 and 2 only */
         List<Integer> givenList = Arrays.asList(345, 325);
         Random rand = new Random();
         degree = givenList.get(rand.nextInt(givenList.size())) + 360;
-        Log.d("degree_new_", String.valueOf(givenList.get(rand.nextInt(givenList.size()))));
+        // Log.d("degree_new_", String.valueOf(givenList.get(rand.nextInt(givenList.size()))));
         Log.d("degree_new", String.valueOf(degree));
         Log.d("degree_old", String.valueOf(degreeOld));
         // rotation effect on the center of the wheel
@@ -204,10 +199,12 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
                 spinBtn.setEnabled(false);
                 resultTv.setVisibility(View.VISIBLE);
                 spinner_result = Integer.parseInt(getSector(360 - (degree % 360)));
-                resultTv.setText("You will get " + getSector(360 - (degree % 360)) + " Coin in your Wallet!");
+                resultTv.setText("You will get " + getSector(360 - (degree % 360)) + " % extra coins!");
                 str_extraVal = getSector(360 - (degree % 360));
                 Log.d("getSector_val", str_extraVal);
                 getChipsList();
+                SharePref.getInstance().putString(SharePref.spin_discount, str_extraVal);
+                final_string_value = Integer.parseInt(str_extraVal);
             }
 
             @Override
@@ -251,8 +248,9 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
     }
 
     public void getChipsList() {
-        progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.GET_spin,
+        //  progressDialog.show();
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.GET_CHIP_PLAN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -263,21 +261,40 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
                             String message = jsonObject.getString("message");
                             if (code.equals("200")) {
                                 progressDialog.dismiss();
-                                Toast.makeText(Spinner_Wheels_Reward.this, "" + message, Toast.LENGTH_SHORT).show();
-                                CommonAPI.CALL_API_UserDetails(Spinner_Wheels_Reward.this, new Callback() {
-                                    @Override
-                                    public void Responce(String resp, String type, Bundle bundle) {
+                                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                                JSONArray jsonArray = jsonObject.getJSONArray("PlanDetails");
+                                historyModelArrayList = new ArrayList<>();
+                                String str_extra = String.valueOf(SharePref.getInstance().getString(SharePref.spin_discount));     //0= visible
 
-                                    }
-                                });
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    ChipsBuyModel model = new ChipsBuyModel();
+                                    model.setId(jsonObject1.getString("id"));
+                                    model.setCoin(jsonObject1.getString("coin"));
+                                    model.title = jsonObject1.getString("title");
+                                    model.setAmount(jsonObject1.getString("price"));
+                                    if (str_extra.equalsIgnoreCase("") || str_extra.equalsIgnoreCase("0"))
+                                        model.setSpinner_result(String.valueOf("0"));
+                                    else
+                                        model.setSpinner_result(String.valueOf(str_extra));
 
+                                    Log.d("spinner_result", "onResponse() returned: " + str_extra);
+
+                                    historyModelArrayList.add(model);
+                                }
+
+                                historyAdapter = new ChipsBuy_SpinAdapter(Spinner_Wheels.this, historyModelArrayList);
+                                rec_history.setAdapter(historyAdapter);
                             } else {
-                                Toast.makeText(Spinner_Wheels_Reward.this, "" + message, Toast.LENGTH_SHORT).show();
+                                linear_no_history.setVisibility(View.VISIBLE);
+                                // Funtions.showToast(HistoryActivity.this, ""+message);
                                 progressDialog.dismiss();
+                                findViewById(R.id.progressBar).setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.dismiss();
+                            findViewById(R.id.progressBar).setVisibility(View.GONE);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -285,6 +302,7 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progressDialog.dismiss();
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
 
             }
         }) {
@@ -301,13 +319,12 @@ public class Spinner_Wheels_Reward extends AppCompatActivity {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("token", prefs.getString("token", ""));
                 params.put("user_id", prefs.getString("user_id", ""));
-                params.put("amount", String.valueOf(spinner_result));
                 //params.put("user_id", SharedPref.getVal(HistoryActivity.this,SharedPref.id));
                 return params;
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(Spinner_Wheels_Reward.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(Spinner_Wheels.this);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(50000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

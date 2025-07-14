@@ -1,5 +1,5 @@
 
-package com.gamegards.gaming27.sample;
+package com.gamegards.bigjackpot.sample;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

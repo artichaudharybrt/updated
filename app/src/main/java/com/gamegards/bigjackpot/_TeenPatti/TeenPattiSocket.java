@@ -1,8 +1,8 @@
-package com.gamegards.gaming27._TeenPatti;
+package com.gamegards.bigjackpot._TeenPatti;
 
-import static com.gamegards.gaming27.ApiClasses.Const.SOCKET_IP;
-import static com.gamegards.gaming27.Fragments.ActiveTables_BF.SEL_TABLE;
-import static com.gamegards.gaming27.Utils.Variables.TEENPATTIPUBLIC;
+import static com.gamegards.bigjackpot.ApiClasses.Const.SOCKET_IP;
+import static com.gamegards.bigjackpot.Fragments.ActiveTables_BF.SEL_TABLE;
+import static com.gamegards.bigjackpot.Utils.Variables.TEENPATTIPUBLIC;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -54,16 +54,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.gamegards.gaming27.Activity.BuyChipsList;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.ApiClasses.Dealer;
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27._TeenPatti.menu.DialogRulesTeenpatti;
+import com.gamegards.bigjackpot.Activity.BuyChipsList;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.ApiClasses.Dealer;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot._TeenPatti.menu.DialogRulesTeenpatti;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -3267,7 +3267,7 @@ public class TeenPattiSocket extends BaseActivity {
                 GameLeave("1");
                 valueforGameQuite = "1";
                 // Navigate back to home screen instead of closing app
-                Intent intent = new Intent(context, com.gamegards.gaming27.Activity.Homepage.class);
+                Intent intent = new Intent(context, com.gamegards.bigjackpot.Activity.Homepage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
                 finish();
