@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.MyAccountDetails;
+package com.gamegards.bigjackpot.MyAccountDetails;
 
 public class MyWinnigmodel {
 

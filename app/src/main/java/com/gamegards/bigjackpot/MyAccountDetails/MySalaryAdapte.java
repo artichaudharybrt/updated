@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.MyAccountDetails;
+package com.gamegards.bigjackpot.MyAccountDetails;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 import java.util.ArrayList;
 

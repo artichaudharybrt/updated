@@ -1,18 +1,18 @@
-package com.gamegards.gaming27._LuckJackpot;
+package com.gamegards.bigjackpot._LuckJackpot;
 
-import static com.gamegards.gaming27.Utils.Functions.ANIMATION_SPEED;
-import static com.gamegards.gaming27._AdharBahar.Fragments.GameFragment.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Utils.Functions.ANIMATION_SPEED;
+import static com.gamegards.bigjackpot._AdharBahar.Fragments.GameFragment.MY_PREFS_NAME;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -35,9 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -46,58 +43,59 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.gamegards.gaming27.Activity.BuyChipsPaymentDetails;
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.Interface.OnItemClickListener;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Animations;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27.Utils.Sound;
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27._LuckJackpot.menu.DialogJackpotHistory;
-import com.gamegards.gaming27._LuckJackpot.menu.DialogJackpotlastWinHistory;
-import com.gamegards.gaming27._LuckJackpot.menu.DialogRulesJackpot;
+import com.gamegards.bigjackpot.Activity.BuyChipsList;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.Interface.OnItemClickListener;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Animations;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot.Utils.Sound;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot._LuckJackpot.menu.DialogJackpotHistory;
+import com.gamegards.bigjackpot._LuckJackpot.menu.DialogJackpotlastWinHistory;
+import com.gamegards.bigjackpot._LuckJackpot.menu.DialogRulesJackpot;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
+import java.util.TimerTask;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import io.socket.engineio.client.transports.WebSocket;
-
-public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickListener {
+public class LuckJackPot_A extends BaseActivity implements View.OnClickListener {
 
     Activity context = this;
-    TextView txtName, txtBallence, txt_gameId, tvWine, tvLose;
+
+    TextView txtName, txtBallence, txt_gameId, txtGameRunning, txtGameBets, tvWine, tvLose;
     Button btGameAmount;
     ImageView ivWinnerImage, ivJackpotCard1, ivJackpotCard2, ivJackpotCard3, ivWine, ivLose;
+
     View ChipstoUser;
+
 
     private final String TIGER = "tiger";
     private final String DRAGON = "dragon";
     private final String TIE = "tie";
+
     private final String SET = "SET";
     private final String PURE_SEQ = "PURE SEQ";
     private final String SEQ = "SEQ";
     private final String COLOR = "COLOR";
     private final String PAIR = "PAIR";
     private final String HIGH_CARD = "HIGH";
+
     private String BET_ON = "";
+
     private int minGameAmt = 50;
     private int maxGameAmt = 500;
     private int GameAmount = 50;
@@ -109,7 +107,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     private String game_id = "";
     CountDownTimer pleasewaintCountDown;
     LinearLayout lnrfollow;
-    ImageView ivCardbg, txtGameRunning, txtGameBets;
+    ImageView ivCardbg;
 
     String[] jackpotRules = {
             HIGH_CARD,
@@ -137,13 +135,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
             R.drawable.ic_jackpot_strip_shade,
             R.drawable.ic_jackpot_strip_green
     };
-    ArrayList<String> betting_list = new ArrayList<>();
 
-    private static final String URL = Const.SOCKET_IP+"jackpot";
-    Socket mSocket;
-
-    public String token = "";
-    int version = 0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,296 +143,14 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_luck_jack_pot);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        try {
-            IO.Options opts = new IO.Options();
-            opts.transports = new String[]{WebSocket.NAME};
-            mSocket = IO.socket(URL, opts);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-        mSocket.connect();
-        mSocket.emit("jackpot_timer", "jackpot_timer");
-
-
         Initialization();
-//      setDataonUser();
-
-        mSocket.on("jackpot_timer", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        String resp = String.valueOf(args[0]);
-                        Log.e("RES_Timer_Response", resp);
-                        //     restartGame();
-
-                        //    aaraycards.clear();
-                        Integer intger = (Integer) args[0];
-                        time_remaining = intger;
-
-                        if (intger < 0){
-
-                            cancelStartGameTimmer();
-                            getTextView(R.id.tvStartTimer).setText("0");
-                            txtGameBets.setVisibility(View.GONE);
-
-                        }else {
-
-                            if (intger >= 15) {
-                                startBetAnim();
-                            }
-
-                            getTextView(R.id.tvStartTimer).setText(intger+"");
-                            txtGameBets.setVisibility(View.VISIBLE);
-
-                        }
-
-                    }
-                });
-
-            }
-        });
-
-
-        mSocket.on("jackpot_status", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        String resp = String.valueOf(args[0]);
-                        Log.e("RES_Socket_Response", resp);
-
-//                        CardsDistruButeTimer();
-                        try {
-
-                            JSONObject jsonObject = new JSONObject(resp);
-                            String code = jsonObject.getString("code");
-                            String message = jsonObject.getString("message");
-
-                            if (code.equalsIgnoreCase("200")) {
-
-                                JSONArray arraygame_dataa = jsonObject.getJSONArray("game_data");
-                                JSONArray online_users = jsonObject.getJSONArray("online_users");
-
-                                int online = jsonObject.getInt("online");
-                                ((TextView) findViewById(R.id.tvonlineuser)).setText("" + online);
-
-                                JSONArray last_winning = jsonObject.getJSONArray("last_winning");
-                                JSONArray big_winner = jsonObject.getJSONArray("big_winner");
-
-                                if (big_winner != null && big_winner.length() > 0) {
-
-                                    try {
-                                        JSONObject user_data = big_winner.getJSONObject(0).getJSONArray("user_data").getJSONObject(0);
-                                        if (Functions.isActivityExist(context))
-                                            Glide.with(context).load(Const.IMGAE_PATH + user_data.getString("profile_pic")).into(ivWinnerImage);
-                                        getTextView(R.id.txtName).setText("" + user_data.getString("name"));
-                                        getTextView(R.id.txt_gameId).setText("" + Variables.CURRENCY_SYMBOL + user_data.getString("winning_amount"));
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                if (last_winning.length() > 0) {
-                                    addLastWinBetonView(last_winning);
-                                }
-
-                                for (int i = 0; i < arraygame_dataa.length(); i++) {
-                                    JSONObject welcome_bonusObject = arraygame_dataa.getJSONObject(i);
-
-                                    //  GameStatus model = new GameStatus();
-                                    game_id = welcome_bonusObject.getString("id");
-//                                txt_gameId.setText("GAME ID "+game_id);
-
-
-//                                main_card  = welcome_bonusObject.getString("main_card");
-                                    // txt_min_max.setText("Min-Max: "+main_card);
-                                    status = welcome_bonusObject.getString("status");
-                                    winning = welcome_bonusObject.getString("winning");
-                                    String end_datetime = welcome_bonusObject.getString("end_datetime");
-                                    added_date = welcome_bonusObject.getString("added_date");
-//                                    time_remaining = welcome_bonusObject.optInt("time_remaining");
-
-                                    //  updated_date  = welcome_bonusObject.getString("updated_date");
-
-                                }
-                                String onlineuSer = jsonObject.getString("online");
-//                               txt_online.setText("Online User "+onlineuSer);
-//
-//                                JSONArray arrayprofile = jsonObject.getJSONArray("profile");
-//
-//                                for (int i = 0; i < arrayprofile.length(); i++) {
-//                                    JSONObject profileObject = arrayprofile.getJSONObject(i);
-//
-//                                    //  GameStatus model = new GameStatus();
-//                                    user_id = profileObject.getString("id");
-//                                    user_id_player1 = user_id;
-//                                    name = profileObject.getString("name");
-//                                    wallet = profileObject.getString("wallet");
-//
-//                                    profile_pic = profileObject.getString("profile_pic");
-//
-////                                Picasso.with(context).load(Const.IMGAE_PATH + profile_pic).into(ivWinnerImage);
-//
-//                                    txtBallence.setText(wallet);
-////                                txtName.setText(name);
-//
-//                                }
-
-                                SharedPreferences prefs = getSharedPreferences(Homepage.MY_PREFS_NAME, MODE_PRIVATE);
-                                user_id_player1 = prefs.getString("user_id", "");
-
-                                JSONArray arraypgame_cards = jsonObject.getJSONArray("game_cards");
-
-                                for (int i = 0; i < arraypgame_cards.length(); i++) {
-                                    JSONObject cardsObject = arraypgame_cards.getJSONObject(i);
-
-                                    //  GameStatus model = new GameStatus();
-                                    String card = cardsObject.getString("card");
-                                    aaraycards.add(card);
-
-                                }
-//New Game Started here ------------------------------------------------------------------------
-
-                                if (status.equals("0") && !isGameBegning) {
-
-                                    RestartGame(false);
-
-//                                    if (time_remaining > 0) {
-////                                    parseGameUsersAmount(jsonObject);
-//                                        startBetAnim();
-////                                        CardsDistruButeTimer();
-//                                    } else {
-//                                        cancelStartGameTimmer();
-//                                    }
-
-                                } else if (status.equals("0") && isGameBegning) {
-                                    parseGameUsersAmount(jsonObject);
-
-                                }
-
-//Game Started here
-                                if (status.equals("1") && !isGameBegning) {
-                                    VisiblePleasewaitforNextRound(true);
-
-                                }
-
-                                if (status.equals("1") && isGameBegning) {
-
-                                    isGameBegning = false;
-                                    Log.v("game", "stoped");
-                                    if (aaraycards.size() > 0) {
-
-                                        cancelStartGameTimmer();
-                                        if (counttimerforcards != null) {
-                                            counttimerforcards.cancel();
-                                        }
-
-                                        counttimerforcards = new CountDownTimer(aaraycards.size() * 1000, 1000) {
-
-                                            @Override
-                                            public void onTick(long millisUntilFinished) {
-                                                isCardsDisribute = true;
-
-                                                makeWinnertoPlayer("");
-                                                makeLosstoPlayer("");
-                                                setDefultBackgroundforCard();
-
-
-                                                if (aaraycards != null && aaraycards.size() >= 2 && !isCardDistribute) {
-                                                    CardAnimationUtils();
-                                                    isCardDistribute = true;
-                                                }
-
-
-                                            }
-
-                                            @Override
-                                            public void onFinish() {
-
-//                                                getStatus();
-                                                //secondtimestart(18);
-                                                VisiblePleasewaitforNextRound(true);
-
-                                                isCardsDisribute = false;
-
-                                                highlistWinRules(Integer.parseInt(winning));
-                                                boolean iswin = betting_list.contains(winning) ? true : false;
-                                                AnimationUtils(iswin);
-//                                            if(betplace != null && !betplace.equalsIgnoreCase("") && betplace.equalsIgnoreCase(winning))
-//                                            {
-//                                                AnimationUtils(true);
-//                                            }
-//                                            else {
-//
-//                                                if(betplace != null && !betplace.equalsIgnoreCase("") && !betplace.equalsIgnoreCase(winning))
-//                                                {
-//                                                    AnimationUtils(false);
-//                                                //    makeLosstoPlayer(SharePref.getU_id());
-//                                                }
-//
-//                                            }
-
-                                            }
-
-
-                                        };
-                                        stopBetAnim();
-
-
-                                    }
-
-                                }
-
-                            } else {
-                                if (jsonObject.has("message")) {
-
-                                    Functions.showToast(context, message);
-
-
-                                }
-
-                            }
-
-                            if (status.equals("1")) {
-//                            VisiblePleasewaitforNextRound(true);
-                                VisiblePleaseBetsAmount(false);
-                            } else {
-                                VisiblePleasewaitforNextRound(false);
-
-                                parseLastBetAmount(jsonObject);
-
-                                if (!isConfirm)
-                                    VisiblePleaseBetsAmount(true);
-
-                                setDefultBackgroundforCard();
-                                makeWinnertoPlayer("");
-                                makeLosstoPlayer("");
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                });
-
-            }
-        });
-
+        setDataonUser();
     }
 
     private void Initialization() {
 
         sound = new Sound();
         initSoundPool();
-
         rl_AnimationView = ((RelativeLayout) findViewById(R.id.sticker_animation_layout));
         ChipstoUser = findViewById(R.id.ChipstoUser);
         ivCardbg = findViewById(R.id.ivCardbg);
@@ -458,14 +168,8 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
         txtBallence = findViewById(R.id.txtBallence);
         txt_gameId = findViewById(R.id.txt_gameId);
-
         txtGameRunning = findViewById(R.id.txtGameRunning);
-        Glide.with(context) .asGif()
-                .load(R.drawable.waiting_for_next).into(txtGameRunning);
-
         txtGameBets = findViewById(R.id.txtGameBets);
-        Glide.with(context) .asGif()
-                .load(R.drawable.place_your_bet).into(txtGameBets);
 
         ivWine = findViewById(R.id.ivWine);
         ivLose = findViewById(R.id.ivlose);
@@ -483,11 +187,13 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
         addChipsonView();
 
-        pleaswaitTimer();
 
+        pleaswaitTimer();
         RestartGame(true);
 
         setDataonUser();
+
+        startService();
 
         initiAnimation();
 
@@ -512,7 +218,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     /*
      *Call this function from code with the sound you want e.g. playSound(SOUND_1);
      */
-
     public void playSound(int sound) {
 
         if (!SharePref.getInstance().isSoundEnable())
@@ -527,6 +232,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
             mSoundPool.play(mSoundMap.get(sound), volume, volume, 1, 0, 1.0f);
         }
     }
+
 
     JackpotRulesAdapter jackpotRulesAdapter;
 
@@ -550,6 +256,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         rec_rules.setAdapter(jackpotRulesAdapter);
         setSetRulesValue();
     }
+
 
     List<JackpotRulesModel> rulesModelList = new ArrayList<>();
 
@@ -635,6 +342,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
     }
 
+
     private void initiAnimation() {
         blinksAnimation = AnimationUtils.loadAnimation(context, R.anim.blink);
         blinksAnimation.setDuration(1000);
@@ -645,6 +353,39 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     boolean isCardsDisribute = false;
     int timertime = 4000;
     Timer timerstatus;
+
+    private void startService() {
+
+        timerstatus = new Timer();
+        timerstatus.scheduleAtFixedRate(new TimerTask() {
+
+                                            @Override
+                                            public void run() {
+
+                                                // if (table_id.trim().length() > 0) {
+
+                                                if (isCardsDisribute) {
+
+
+                                                } else {
+
+                                                    CALL_API_getGameStatus();
+
+                                                }
+
+
+                                                // }
+
+                                            }
+
+                                        },
+//Set how long before to start calling the TimerTask (in milliseconds)
+                200,
+//Set the amount of time between each execution (in milliseconds)
+                timertime);
+
+
+    }
 
     CountDownTimer gameStartTime;
     boolean isGameTimerStarted = false;
@@ -707,7 +448,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         }
 
         stopPlaying();
-        mSocket.disconnect();
     }
 
     public String status = "";
@@ -728,6 +468,243 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     boolean isCardDistribute = false;
     boolean isBetputes = false;
 
+    private void CALL_API_getGameStatus() {
+
+        HashMap params = new HashMap();
+
+        params.put("user_id", SharePref.getInstance().getString("user_id", ""));
+        params.put("token", SharePref.getInstance().getString("token", ""));
+
+        params.put("room_id", "1");
+
+        params.put("total_bet_high_card", "" + high_card_amount);
+        params.put("total_bet_pair", "" + pair_amount);
+        params.put("total_bet_color", "" + color_amount);
+        params.put("total_bet_sequence", "" + sequence_amount);
+        params.put("total_bet_pure_sequence", "" + pure_sequence_amount);
+
+        ApiRequest.Call_Api(context, Const.JackpotStatus, params, new Callback() {
+            @Override
+            public void Responce(String resp, String type, Bundle bundle) {
+
+                if (resp != null) {
+
+                    try {
+
+                        JSONObject jsonObject = new JSONObject(resp);
+                        String code = jsonObject.getString("code");
+                        String message = jsonObject.getString("message");
+
+                        if (code.equalsIgnoreCase("200")) {
+
+                            JSONArray arraygame_dataa = jsonObject.getJSONArray("game_data");
+                            JSONArray online_users = jsonObject.getJSONArray("online_users");
+                            int online = jsonObject.getInt("online");
+                            ((TextView) findViewById(R.id.tvonlineuser))
+                                    .setText("" + online);
+                            JSONArray last_winning = jsonObject.getJSONArray("last_winning");
+                            JSONArray big_winner = jsonObject.getJSONArray("big_winner");
+                            if (big_winner != null && big_winner.length() > 0) {
+                                try {
+                                    JSONObject user_data = big_winner.getJSONObject(0).getJSONArray("user_data").getJSONObject(0);
+                                    if (Functions.isActivityExist(context))
+                                        Glide.with(context).load(Const.IMGAE_PATH + user_data.getString("profile_pic")).into(ivWinnerImage);
+                                    getTextView(R.id.txtName).setText("" + user_data.getString("name"));
+                                    getTextView(R.id.txt_gameId).setText("" + Variables.CURRENCY_SYMBOL + user_data.getString("winning_amount"));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+
+                            if (last_winning.length() > 0) {
+                                addLastWinBetonView(last_winning);
+                            }
+
+                            for (int i = 0; i < arraygame_dataa.length(); i++) {
+                                JSONObject welcome_bonusObject = arraygame_dataa.getJSONObject(i);
+
+                                //  GameStatus model = new GameStatus();
+                                game_id = welcome_bonusObject.getString("id");
+//                                txt_gameId.setText("GAME ID "+game_id);
+
+
+//                                main_card  = welcome_bonusObject.getString("main_card");
+                                // txt_min_max.setText("Min-Max: "+main_card);
+                                status = welcome_bonusObject.getString("status");
+                                winning = welcome_bonusObject.getString("winning");
+                                String end_datetime = welcome_bonusObject.getString("end_datetime");
+                                added_date = welcome_bonusObject.getString("added_date");
+                                time_remaining = welcome_bonusObject.optInt("time_remaining");
+
+                                //  updated_date  = welcome_bonusObject.getString("updated_date");
+
+                            }
+                            String onlineuSer = jsonObject.getString("online");
+//                            txt_online.setText("Online User "+onlineuSer);
+                            JSONArray arrayprofile = jsonObject.getJSONArray("profile");
+
+                            for (int i = 0; i < arrayprofile.length(); i++) {
+                                JSONObject profileObject = arrayprofile.getJSONObject(i);
+
+                                //  GameStatus model = new GameStatus();
+                                user_id = profileObject.getString("id");
+                                user_id_player1 = user_id;
+                                name = profileObject.getString("name");
+                                wallet = profileObject.getString("wallet");
+
+                                profile_pic = profileObject.getString("profile_pic");
+
+//                                Picasso.with(context).load(Const.IMGAE_PATH + profile_pic).into(ivWinnerImage);
+
+                                txtBallence.setText(wallet);
+//                                txtName.setText(name);
+
+                            }
+
+
+                            JSONArray arraypgame_cards = jsonObject.getJSONArray("game_cards");
+
+                            for (int i = 0; i < arraypgame_cards.length(); i++) {
+                                JSONObject cardsObject = arraypgame_cards.getJSONObject(i);
+
+                                //  GameStatus model = new GameStatus();
+                                String card = cardsObject.getString("card");
+                                aaraycards.add(card);
+
+                            }
+//New Game Started here ------------------------------------------------------------------------
+
+                            if (status.equals("0") && !isGameBegning) {
+
+
+                                RestartGame(false);
+
+                                if (time_remaining > 0) {
+//                                    parseGameUsersAmount(jsonObject);
+                                    startBetAnim();
+                                    CardsDistruButeTimer();
+                                } else {
+                                    cancelStartGameTimmer();
+                                }
+
+                            } else if (status.equals("0") && isGameBegning) {
+                                parseGameUsersAmount(jsonObject);
+
+                            }
+
+//Game Started here
+                            if (status.equals("1") && !isGameBegning) {
+                                VisiblePleasewaitforNextRound(true);
+
+                            }
+
+                            if (status.equals("1") && isGameBegning) {
+
+                                isGameBegning = false;
+                                Log.v("game", "stoped");
+                                if (aaraycards.size() > 0) {
+
+                                    cancelStartGameTimmer();
+                                    if (counttimerforcards != null) {
+                                        counttimerforcards.cancel();
+                                    }
+
+                                    counttimerforcards = new CountDownTimer(aaraycards.size() * 1000, 1000) {
+
+                                        @Override
+                                        public void onTick(long millisUntilFinished) {
+                                            isCardsDisribute = true;
+
+                                            makeWinnertoPlayer("");
+                                            makeLosstoPlayer("");
+                                            setDefultBackgroundforCard();
+
+
+                                            if (aaraycards != null && aaraycards.size() >= 2 && !isCardDistribute) {
+                                                CardAnimationUtils();
+                                                isCardDistribute = true;
+                                            }
+
+
+                                        }
+
+                                        @Override
+                                        public void onFinish() {
+
+//                                                getStatus();
+                                            //secondtimestart(18);
+                                            VisiblePleasewaitforNextRound(true);
+
+                                            isCardsDisribute = false;
+
+                                            highlistWinRules(Integer.parseInt(winning));
+
+//                                            if(betplace != null && !betplace.equalsIgnoreCase("") && betplace.equalsIgnoreCase(winning))
+//                                            {
+//                                                AnimationUtils(true);
+//                                            }
+//                                            else {
+//
+//                                                if(betplace != null && !betplace.equalsIgnoreCase("") && !betplace.equalsIgnoreCase(winning))
+//                                                {
+//                                                    AnimationUtils(false);
+////                                                    makeLosstoPlayer(SharePref.getU_id());
+//                                                }
+//
+//                                            }
+
+
+                                        }
+
+
+                                    };
+                                    stopBetAnim();
+
+
+                                }
+
+
+                            }
+
+                        } else {
+                            if (jsonObject.has("message")) {
+
+                                Functions.showToast(context, message);
+
+
+                            }
+
+
+                        }
+
+                        if (status.equals("1")) {
+//                            VisiblePleasewaitforNextRound(true);
+                            VisiblePleaseBetsAmount(false);
+                        } else {
+                            VisiblePleasewaitforNextRound(false);
+
+                            parseLastBetAmount(jsonObject);
+
+                            if (!isConfirm)
+                                VisiblePleaseBetsAmount(true);
+
+                            setDefultBackgroundforCard();
+                            makeWinnertoPlayer("");
+                            makeLosstoPlayer("");
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
     LinearLayout lnrcancelist;
 
     private void addLastWinBetonView(JSONArray last_bet) throws JSONException {
@@ -743,8 +720,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     }
 
     private void addLastWinBet(String items, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_last_bet1, null);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        View view = LayoutInflater.from(context).inflate(R.layout.item_last_bet, null);
         TextView tvItems = view.findViewById(R.id.tvItems);
         ImageView ivlastwinbg = view.findViewById(R.id.ivlastwinbg);
         int itemValue = Integer.parseInt(items);
@@ -759,9 +735,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         if (Functions.checkStringisValid(Functions.getStringFromTextView(tvItems)))
             lnrcancelist.addView(view);
     }
-
-
-
 
     private void setDefultBackgroundforCard() {
         ivCardbg.setBackground(Functions.getDrawable(context, R.drawable.ic_jackpot_cardsbg));
@@ -899,7 +872,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
             JackpotRulesModel model = rulesModelList.get(i);
             int betRuleTypeOn = model.rule_value;
             int putbetAmount = 0;
-
             if (model.rule_type.equalsIgnoreCase(SET)) {
                 betRuleTypeOn = model.rule_value;
                 int mSetAmount = jsonObject.getInt("set_amount");
@@ -976,7 +948,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         fromView[0] = ivJackpotCard3;
         toView[0] = ivJackpotCard1;
         count = 0;
-
         new CountDownTimer(600, 200) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -1013,6 +984,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
 //        CardAnimationAnimations(fromView[0], toView[0],true);
 
+
     }
 
     int coins_count = 10;
@@ -1020,6 +992,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
     private void AnimationUtils(boolean iswin) {
         coins_count = 10;
+
         if (!iswin)
             makeLosstoPlayer(SharePref.getU_id());
         else
@@ -1049,12 +1022,13 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         }
 
         findViewById(R.id.rltOngoinGame).setVisibility(visible ? View.VISIBLE : View.GONE);
-//      txtGameRunning.setVisibility(visible ? View.VISIBLE : View.GONE);
+//        txtGameRunning.setVisibility(visible ? View.VISIBLE : View.GONE);
 
         if (visible) {
             if (!Functions.checkisStringValid(((TextView) findViewById(R.id.txtcountdown)).getText().toString().trim()))
                 pleasewaintCountDown.start();
-//              BlinkAnimation(txtGameRunning);
+
+//            BlinkAnimation(txtGameRunning);
         } else {
             pleasewaintCountDown.cancel();
             pleasewaintCountDown.onFinish();
@@ -1117,7 +1091,9 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         float scale = context.getResources().getDisplayMetrics().density;
         imageView.setCameraDistance(distance * scale);
 
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.out_animation);
+
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(context,
+                R.animator.out_animation);
         set.setTarget(imageView);
 
         set.addListener(new Animator.AnimatorListener() {
@@ -1153,7 +1129,10 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
             }
         });
         set.start();
+
+
     }
+
 
     private void addJakpotCard3(String image_name, int countvaue) {
 
@@ -1179,11 +1158,14 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 //                .load(path > 0 ? path : R.drawable.card_bg)
 //                .placeholder(R.drawable.card_bg)
 //                .into(ivJackpotCard2);
+
         TranslateLayout(ivJackpotCard2, path);
 
     }
 
+
     private void putbet(final String type, JackpotRulesModel jackpotRulesModel) {
+
 
         HashMap params = new HashMap();
         params.put("user_id", SharePref.getInstance().getString("user_id", ""));
@@ -1200,6 +1182,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
                     try {
 
+
                         JSONObject jsonObject = new JSONObject(resp);
                         String code = jsonObject.getString("code");
                         String message = jsonObject.getString("message");
@@ -1209,10 +1192,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
                             playChipsSound();
                             bet_id = jsonObject.getString("bet_id");
                             wallet = jsonObject.getString("wallet");
-                            Log.v("RES_CHECK_PUTBET", "wallet : " + wallet);
-
                             txtBallence.setText(wallet);
-                            betting_list.add(betplace);
 //                            Functions.showToast(context, "Bet has been added successfully!");
 
                             betvalue = "";
@@ -1223,6 +1203,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
                             jackpotRulesModel.select_amount += GameAmount;
                             jackpotRulesAdapter.notifyDataSetChanged();
+                            CALL_API_getGameStatus();
 
                         } else {
                             RemoveChips();
@@ -1231,7 +1212,10 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
                                 Functions.showToast(context, message);
 
+
                             }
+
+
                         }
 
                     } catch (JSONException e) {
@@ -1308,76 +1292,76 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
     }
 
-//    private void repeatBet() {
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.JackpotREPEAT_BET,
-//                new Response.Listener<String>() {
-//
-//
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                        Log.v("Repeat Responce", response);
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(response);
-//                            String code = jsonObject.getString("code");
-//                            String message = jsonObject.getString("message");
-//
-//                            if (code.equals("200")) {
-//
-//                                wallet = jsonObject.getString("wallet");
-//                                String bet = jsonObject.getString("bet");
-//                                // bet_id = jsonObject.getString("bet_id");
-//                                String amount = jsonObject.getString("amount");
-//                                txtBallence.setText(wallet);
-//                                betvalue = amount;
-//                                betplace = bet;
-//                                if (bet.equals("0")) {
-//
-//
-//                                } else {
-//
-//                                }
-//
-//                            }
-//                            Functions.showToast(context, message);
-//
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                //  progressDialog.dismiss();
-//                Functions.showToast(context, "Something went wrong");
-//
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<String, String>();
-//                SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-//                params.put("user_id", prefs.getString("user_id", ""));
-//                params.put("token", prefs.getString("token", ""));
-//
-//                params.put("game_id", game_id);
-//                return params;
-//            }
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("token", Const.TOKEN);
-//                return headers;
-//            }
-//        };
-//
-//        Volley.newRequestQueue(this).add(stringRequest);
-//
-//    }
+    private void repeatBet() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.JackpotREPEAT_BET,
+                new Response.Listener<String>() {
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.v("Repeat Responce", response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String code = jsonObject.getString("code");
+                            String message = jsonObject.getString("message");
+
+                            if (code.equals("200")) {
+
+                                wallet = jsonObject.getString("wallet");
+                                String bet = jsonObject.getString("bet");
+                                // bet_id = jsonObject.getString("bet_id");
+                                String amount = jsonObject.getString("amount");
+                                txtBallence.setText(wallet);
+                                betvalue = amount;
+                                betplace = bet;
+                                if (bet.equals("0")) {
+
+
+                                } else {
+
+                                }
+
+                            }
+                            Functions.showToast(context, message);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //  progressDialog.dismiss();
+                Functions.showToast(context, "Something went wrong");
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+                params.put("user_id", prefs.getString("user_id", ""));
+                params.put("token", prefs.getString("token", ""));
+
+                params.put("game_id", game_id);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("token", Const.TOKEN);
+                return headers;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(stringRequest);
+
+    }
 
     private void setDataonUser() {
 
@@ -1415,7 +1399,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         rtllosesymble1.setVisibility(View.GONE);
 
         if (chaal_user_id.equals(user_id_player1)) {
-            PlaySaund(R.raw.game_loos_track);
+           // PlaySaund(R.raw.game_loos_track);
             rtllosesymble1.setVisibility(View.VISIBLE);
 
         }
@@ -1437,11 +1421,13 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
         }
 
+
     }
 
     Sound sound;
 
     public void cardflipSound() {
+
         if (!isInPauseState) {
             mp = MediaPlayer.create(this, R.raw.teenpatticardflip_android);
             mp.start();
@@ -1468,6 +1454,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 //        }
 
     }
+
 
     private void stopPlaying() {
         if (mp != null) {
@@ -1531,8 +1518,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     }
 
     private void openBuyChipsListActivity() {
-      //  startActivity(new Intent(context, BuyChipsListCrypto.class));
-        startActivity(new Intent(context, BuyChipsPaymentDetails.class));
+        startActivity(new Intent(context, BuyChipsList.class));
     }
 
     private void ChangeGameAmount(boolean isPlus) {
@@ -1557,17 +1543,17 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         SharePref.getInstance().putInt(SharePref.lastAmountAddedID, -1);
         removeTotalAddedAmount();
 
+
         ivCardbg.setBackground(Functions.getDrawable(context, R.drawable.ic_jackpot_cardsbg));
         RemoveChips();
         setSetRulesValue();
-
         addJackpotCard1("0", 0);
         addJackpotCard2("0", 1);
         addJakpotCard3("0", 1);
 
         VisiblePleasewaitforNextRound(false);
 
-//        cancelStartGameTimmer();
+        cancelStartGameTimmer();
 
         isCardDistribute = false;
 
@@ -1577,9 +1563,6 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         aaraycards.clear();
         if (!isFromonCreate)
             isGameBegning = true;
-
-        UserProfile();
-        betting_list.clear();
 
     }
 
@@ -1599,14 +1582,13 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
 
-       // super.onBackPressed();
+        super.onBackPressed();
         Functions.Dialog_CancelAppointment(context, "Confirmation", "Leave ?", new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
                 if (resp.equals("yes")) {
                     stopPlaying();
                     finish();
-                    mSocket.disconnect();
                 }
             }
         });
@@ -1690,13 +1672,12 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
     private void startBetAnim() {
         txtGameBets.setVisibility(View.VISIBLE);
-        Glide.with(context) .asGif()
-                .load(R.drawable.place_your_bet).into(txtGameBets);
-     //   txtGameBets.bringToFront();
+        txtGameBets.setBackgroundResource(R.drawable.iv_bet_begin);
+        txtGameBets.bringToFront();
         ScaleAnimation fade_in = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         fade_in.setDuration(1200);     // animation duration in milliseconds
         fade_in.setFillAfter(true);    // If fillAfter is true, the transformation that this animation performed will persist when it is finished.
-     //   txtGameBets.startAnimation(fade_in);
+        txtGameBets.startAnimation(fade_in);
         fade_in.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -1725,7 +1706,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 
     private void stopBetAnim() {
         txtGameBets.setVisibility(View.VISIBLE);
-        txtGameBets.setImageDrawable(null);
+        txtGameBets.setBackgroundResource(R.drawable.iv_bet_stops);
 
 //        Animation sgAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shrink_grow);
 //        txtGameBets.startAnimation(sgAnimation);
@@ -1777,6 +1758,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 //        Toast.makeText(context, "stops", Toast.LENGTH_SHORT).show();
 
         animationon = true;
+
 
         final View fromView, toView, shuttleView;
 
@@ -1868,6 +1850,7 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
 //            putbet(betplace);
     }
 
+
     public void cancelBooking(View view) {
 
         cancelbet();
@@ -1887,46 +1870,5 @@ public class LuckJackPot_A_Socket extends BaseActivity implements View.OnClickLi
         DialogJackpotlastWinHistory.getInstance(context).setRoomid(game_id).show();
     }
 
-    public void UserProfile() {
-
-        HashMap<String, String> params = new HashMap<String, String>();
-        SharedPreferences prefs = context.getSharedPreferences(Homepage.MY_PREFS_NAME, MODE_PRIVATE);
-        params.put("id", prefs.getString("user_id", ""));
-        params.put("fcm", token);
-
-        try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            version = pInfo.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        params.put("app_version", version + "");
-        params.put("token", prefs.getString("token", ""));
-
-        ApiRequest.Call_Api(context, Const.PROFILE, params, new Callback() {
-            @Override
-            public void Responce(String resp, String type, Bundle bundle) {
-
-                if(resp != null)
-                {
-                    try {
-                        JSONObject jsonObject = new JSONObject(resp);
-                        Log.d("profile_res", resp);
-                        String code = jsonObject.getString("code");
-                        if (code.equalsIgnoreCase("200")) {
-                            JSONObject jsonObject0 = jsonObject.getJSONArray("user_data").getJSONObject(0);
-                            wallet = jsonObject0.optString("wallet");
-                            txtBallence.setText(wallet);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        });
-
-    }
 
 }

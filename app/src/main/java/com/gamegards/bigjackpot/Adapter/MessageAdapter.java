@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.model.Chats;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.model.Chats;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

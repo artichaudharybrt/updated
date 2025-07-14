@@ -1,11 +1,11 @@
-package com.gamegards.gaming27._Aviator;
+package com.gamegards.bigjackpot._Aviator;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.view.Window;
 
 
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 public class LoadingDialog {
 

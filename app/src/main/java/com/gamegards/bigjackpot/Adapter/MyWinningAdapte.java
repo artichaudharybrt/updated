@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27.model.MyWinnigmodel;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot.model.MyWinnigmodel;
 
 import java.util.ArrayList;
 

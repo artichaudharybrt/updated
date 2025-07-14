@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.MyAccountDetails;
+package com.gamegards.bigjackpot.MyAccountDetails;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -12,16 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 import java.util.ArrayList;
 
-public class MyBetAdapte extends RecyclerView.Adapter<MyBetAdapte.Myholder> {
+public class MyDepositAdapte extends RecyclerView.Adapter<MyDepositAdapte.Myholder> {
 
     Context context;
     ArrayList<MyWinnigmodel> myWinnigmodelArrayList;
 
-    public MyBetAdapte(Context context, ArrayList<MyWinnigmodel> myWinnigmodelArrayList) {
+    public MyDepositAdapte(Context context, ArrayList<MyWinnigmodel> myWinnigmodelArrayList) {
 
         this.context = context;
         this.myWinnigmodelArrayList = myWinnigmodelArrayList;
@@ -32,7 +32,7 @@ public class MyBetAdapte extends RecyclerView.Adapter<MyBetAdapte.Myholder> {
     @Override
     public Myholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.bet_itemview,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.deposit_itemview,parent,false);
         return new Myholder(view);
     }
 
@@ -45,7 +45,6 @@ public class MyBetAdapte extends RecyclerView.Adapter<MyBetAdapte.Myholder> {
         getTextView(view, R.id.tvSerial).setText(""+myWinnigmodelArrayList.get(position).coin);
         getTextView(view, R.id.tvDates).setText(""+myWinnigmodelArrayList.get(position).level);
         getTextView(view, R.id.tvGames).setText(""+ myWinnigmodelArrayList.get(position).purchase_user_id);
-        getTextView(view, R.id.tvamount).setText(""+ myWinnigmodelArrayList.get(position).amount);
         getTextView(view, R.id.txtammount).setText(""+ myWinnigmodelArrayList.get(position).added_date);
 //        if(myWinnigmodel.ViewType == myWinnigmodel.TRANSACTION_LIST)
 //        {

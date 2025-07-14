@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Menu;
+package com.gamegards.bigjackpot.Menu;
 
 public class MenuModel {
 

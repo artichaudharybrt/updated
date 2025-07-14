@@ -1,4 +1,4 @@
-package com.gamegards.gaming27;
+package com.gamegards.bigjackpot;
 
 import android.content.Context;
 import android.content.res.TypedArray;

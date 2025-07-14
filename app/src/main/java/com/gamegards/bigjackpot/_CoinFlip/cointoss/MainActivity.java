@@ -1,12 +1,12 @@
 
 
 /**
-* authors : Anastasios Temperekidis(AEM : 2808) , Athanasios Mpollas(AEM : 2779)
-*
-*/
+ * authors : Anastasios Temperekidis(AEM : 2808) , Athanasios Mpollas(AEM : 2779)
+ *
+ */
 
 
-package com.gamegards.gaming27._CoinFlip.cointoss;
+package com.gamegards.bigjackpot._CoinFlip.cointoss;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gamegards.gaming27.R;
+import com.gamegards.bigjackpot.R;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

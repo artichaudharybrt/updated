@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.MyAccountDetails;
+package com.gamegards.bigjackpot.MyAccountDetails;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,15 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.TimeConversion;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.TimeConversion;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.Variables;
 
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Utils.Functions.makeFistLaterCaptial;
+import static com.gamegards.bigjackpot.Utils.Functions.makeFistLaterCaptial;
 
 public class MyWinningAdapte extends RecyclerView.Adapter<MyWinningAdapte.Myholder> {
 

@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Utils;
+package com.gamegards.bigjackpot.Utils;
 
 import android.graphics.Canvas;
 import android.graphics.Point;

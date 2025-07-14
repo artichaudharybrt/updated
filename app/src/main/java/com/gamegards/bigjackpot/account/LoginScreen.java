@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.account;
+package com.gamegards.bigjackpot.account;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -39,16 +39,16 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.BaseActivity;
-import com.gamegards.gaming27.ApiClasses.CommonFunctions;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.BaseActivity;
+import com.gamegards.bigjackpot.ApiClasses.CommonFunctions;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

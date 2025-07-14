@@ -226,12 +226,15 @@ public class LocalGame extends BaseActivity {
         }
         Toast.makeText(this, "P1 click on Dice to start the game.", Toast.LENGTH_LONG).show();
 
-//        findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        View imgBack = findViewById(R.id.imgback);
+        if(imgBack != null) {
+            imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showExitDialog();
+                }
+            });
+        }
     }
 
     public void showDice(int turn){
@@ -259,9 +262,7 @@ public class LocalGame extends BaseActivity {
             arrows[i].setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
+    private void showExitDialog() {
         RelativeLayout relativeLayout = (RelativeLayout) getLayoutInflater().inflate(R.layout.alert_exit_game,null);
         final AlertDialog alert = new AlertDialog.Builder(LocalGame.this).setView(relativeLayout).create();
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -278,6 +279,11 @@ public class LocalGame extends BaseActivity {
             }
         });
         alert.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
     }
 
     public void playySound() {
