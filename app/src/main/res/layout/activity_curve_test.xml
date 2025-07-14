@@ -5,7 +5,7 @@
     android:background="#000000">
 
     <!-- Animation View - Full Screen -->
-    <com.gamegards.gaming27._Aviator.AviatorAnimationView
+    <com.gamegards.bigjackpot._Aviator.AviatorAnimationView
         android:id="@+id/aviator_animation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
