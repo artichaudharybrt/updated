@@ -6,13 +6,13 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.gamegards.gaming27"
+        applicationId "com.gamegards.bigjackpot"
         minSdk 23
         targetSdk 34
         versionCode 1
         versionName "1.5"
         multiDexEnabled true
-        archivesBaseName = "gaming27games_" + versionCode
+        archivesBaseName = "bigjackpotgames_" + versionCode
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -61,7 +61,7 @@ android {
         }
     }
 
-    namespace 'com.gamegards.gaming27'
+    namespace 'com.gamegards.bigjackpot'
 }
 
 repositories {
