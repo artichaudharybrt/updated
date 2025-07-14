@@ -138,6 +138,13 @@ public class OnlineGame_V2 extends BaseActivity {
         Glide.with(OnlineGame_V2.this).asGif()
                 .load(R.drawable.reconnect).into(imgGameReconnect);
         diamonds = getIntent().getIntExtra("diamonds", -1);
+
+        findViewById(R.id.imgback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         System.out.println("DIAMONDS IN GAME ARE    " + diamonds);
         dotview = findViewById(R.id.ludodotview);
         dicecontainer = findViewById(R.id.dicecontainer);

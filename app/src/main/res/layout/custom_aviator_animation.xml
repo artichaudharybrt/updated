@@ -6,7 +6,7 @@
     android:background="@drawable/aviator_graph_bg">
 
     <!-- Custom Animation View -->
-    <com.gamegards.gaming27._Aviator.AviatorAnimationView
+    <com.gamegards.bigjackpot._Aviator.AviatorAnimationView
         android:id="@+id/aviator_animation_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_350dp"

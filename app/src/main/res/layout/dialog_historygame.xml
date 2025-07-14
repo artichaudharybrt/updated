@@ -23,7 +23,7 @@
             android:padding="10dp"
             >
 
-            <com.gamegards.gaming27.MyFlowLayout
+            <com.gamegards.bigjackpot.MyFlowLayout
                 android:id="@+id/lnrTabs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

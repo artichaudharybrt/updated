@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Maximumbet balue : 0"
+                    android:text="Maximum Bet Value : 0"
                     android:textColor="#ffffff"
                     android:textSize="15dp"
                     android:textStyle="bold" />

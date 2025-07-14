@@ -11,6 +11,18 @@
         android:layout_centerInParent="true"
         android:background="@drawable/dialog_exit_bg_new">
 
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="Are you sure you want to exit the game?"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
