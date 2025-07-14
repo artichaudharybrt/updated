@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Poker.dialog;
+package com.gamegards.bigjackpot._baccarat.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,28 +8,31 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesPoker {
 
-    Context context;
+public class DialogRulesBaccarat {
+
+    private  Context context;
     Callback callback;
-    private static DialogRulesPoker mInstance;
+    private static DialogRulesBaccarat mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_poker_rule,
+            R.drawable.ic_ab_rule1,
+            R.drawable.ic_ab_rule2,
     };
 
-    public static DialogRulesPoker getInstance(Context context) {
+    public static DialogRulesBaccarat getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesPoker.class) {
+            synchronized (DialogRulesBaccarat.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesPoker(context);
+                    mInstance = new DialogRulesBaccarat(context);
                 }
             }
         }
@@ -45,7 +48,7 @@ public class DialogRulesPoker {
      *
      * @param context app context: first time
      */
-    public DialogRulesPoker init(Context context) {
+    public DialogRulesBaccarat init(Context context) {
         try {
 
             if (context != null) {
@@ -61,18 +64,21 @@ public class DialogRulesPoker {
         return mInstance;
     }
 
+    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesPoker initDialog() {
+    private DialogRulesBaccarat initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rulespoker);
+        dialog.setContentView(R.layout.dialog_rules_baccarat);
 
-//        lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
+        lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
 //        lnrRuleslist.removeAllViews();
 //        for (int item: rummy_rules) {
 //            addRulesonView(item);
 //        }
+        txtheader = dialog.findViewById(R.id.txtheader);
+        txtheader.setText("How To Play");
 
         return mInstance;
     }
@@ -87,15 +93,15 @@ public class DialogRulesPoker {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesPoker(Context context) {
+    public DialogRulesBaccarat(Context context) {
         this.context = context;
     }
 
-    public DialogRulesPoker() {
+    public DialogRulesBaccarat() {
     }
     Dialog dialog;
 
-    public DialogRulesPoker show() {
+    public DialogRulesBaccarat show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

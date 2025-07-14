@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._ColorPrediction;
+package com.gamegards.bigjackpot._jhandhiMunda.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,26 +12,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesColor {
+public class DialogRulesJhandiMunda {
 
     private  Context context;
     Callback callback;
-    private static DialogRulesColor mInstance;
+    private static DialogRulesJhandiMunda mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_ab_rule1,
-            R.drawable.ic_ab_rule2,
+            R.drawable.ic_dt_rule1,
+            R.drawable.ic_dt_rule2,
     };
 
-    public static DialogRulesColor getInstance(Context context) {
+    public static DialogRulesJhandiMunda getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesColor.class) {
+            synchronized (DialogRulesJhandiMunda.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesColor(context);
+                    mInstance = new DialogRulesJhandiMunda(context);
                 }
             }
         }
@@ -47,7 +47,7 @@ public class DialogRulesColor {
      *
      * @param context app context: first time
      */
-    public DialogRulesColor init(Context context) {
+    public DialogRulesJhandiMunda init(Context context) {
         try {
 
             if (context != null) {
@@ -65,20 +65,20 @@ public class DialogRulesColor {
 
     TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesColor initDialog() {
+    private DialogRulesJhandiMunda initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rules_color);
+        dialog.setContentView(R.layout.dailog_rulesjhandimunda);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
 //        lnrRuleslist.removeAllViews();
 //        for (int item: rummy_rules) {
 //            addRulesonView(item);
 //        }
-        txtheader = dialog.findViewById(R.id.txtheader);
-        txtheader.setText("Rules");
 
+        txtheader = dialog.findViewById(R.id.txtheader);
+        txtheader.setText("How To Play");
         return mInstance;
     }
 
@@ -92,15 +92,15 @@ public class DialogRulesColor {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesColor(Context context) {
+    public DialogRulesJhandiMunda(Context context) {
         this.context = context;
     }
 
-    public DialogRulesColor() {
+    public DialogRulesJhandiMunda() {
     }
     Dialog dialog;
 
-    public DialogRulesColor show() {
+    public DialogRulesJhandiMunda show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

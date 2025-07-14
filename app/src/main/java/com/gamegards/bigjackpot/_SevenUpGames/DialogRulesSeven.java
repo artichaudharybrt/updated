@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._DragonTiger.menu;
+package com.gamegards.bigjackpot._SevenUpGames;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,26 +12,27 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesDragonTiger {
+
+public class DialogRulesSeven {
 
     private  Context context;
     Callback callback;
-    private static DialogRulesDragonTiger mInstance;
+    private static DialogRulesSeven mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_dt_rule1,
-            R.drawable.ic_dt_rule2,
+            R.drawable.ic_ab_rule1,
+            R.drawable.ic_ab_rule2,
     };
 
-    public static DialogRulesDragonTiger getInstance(Context context) {
+    public static DialogRulesSeven getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesDragonTiger.class) {
+            synchronized (DialogRulesSeven.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesDragonTiger(context);
+                    mInstance = new DialogRulesSeven(context);
                 }
             }
         }
@@ -47,7 +48,7 @@ public class DialogRulesDragonTiger {
      *
      * @param context app context: first time
      */
-    public DialogRulesDragonTiger init(Context context) {
+    public DialogRulesSeven init(Context context) {
         try {
 
             if (context != null) {
@@ -65,20 +66,20 @@ public class DialogRulesDragonTiger {
 
     TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesDragonTiger initDialog() {
+    private DialogRulesSeven initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rulesdragontiger);
+        dialog.setContentView(R.layout.dialog_rules_seven);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
 //        lnrRuleslist.removeAllViews();
 //        for (int item: rummy_rules) {
 //            addRulesonView(item);
 //        }
-
         txtheader = dialog.findViewById(R.id.txtheader);
         txtheader.setText("How To Play");
+
         return mInstance;
     }
 
@@ -92,15 +93,15 @@ public class DialogRulesDragonTiger {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesDragonTiger(Context context) {
+    public DialogRulesSeven(Context context) {
         this.context = context;
     }
 
-    public DialogRulesDragonTiger() {
+    public DialogRulesSeven() {
     }
     Dialog dialog;
 
-    public DialogRulesDragonTiger show() {
+    public DialogRulesSeven show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

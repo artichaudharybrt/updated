@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._jhandhiMunda.menu;
+package com.gamegards.bigjackpot._Rummy.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,30 +8,34 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesJhandiMunda {
+public class DialogRulesRummy {
 
-    private  Context context;
+    Context context;
     Callback callback;
-    private static DialogRulesJhandiMunda mInstance;
+    private static DialogRulesRummy mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_dt_rule1,
-            R.drawable.ic_dt_rule2,
+            R.drawable.ic_rummy_rule1,
+            R.drawable.ic_rummy_rule2,
+            R.drawable.ic_rummy_rule3,
+            R.drawable.ic_rummy_rule4,
+            R.drawable.ic_rummy_rule5,
+            R.drawable.ic_rummy_rule6,
+            R.drawable.ic_rummy_rule7,
     };
 
-    public static DialogRulesJhandiMunda getInstance(Context context) {
+    public static DialogRulesRummy getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesJhandiMunda.class) {
+            synchronized (DialogRulesRummy.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesJhandiMunda(context);
+                    mInstance = new DialogRulesRummy(context);
                 }
             }
         }
@@ -47,7 +51,7 @@ public class DialogRulesJhandiMunda {
      *
      * @param context app context: first time
      */
-    public DialogRulesJhandiMunda init(Context context) {
+    public DialogRulesRummy init(Context context) {
         try {
 
             if (context != null) {
@@ -63,22 +67,20 @@ public class DialogRulesJhandiMunda {
         return mInstance;
     }
 
-    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesJhandiMunda initDialog() {
+    private DialogRulesRummy initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dailog_rulesjhandimunda);
+        dialog.setContentView(R.layout.dialog_rulesrummypoint);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
-//        lnrRuleslist.removeAllViews();
-//        for (int item: rummy_rules) {
-//            addRulesonView(item);
-//        }
+        lnrRuleslist.removeAllViews();
+        for (int item: rummy_rules) {
+            addRulesonView(item);
+        }
 
-        txtheader = dialog.findViewById(R.id.txtheader);
-        txtheader.setText("How To Play");
+
         return mInstance;
     }
 
@@ -92,15 +94,15 @@ public class DialogRulesJhandiMunda {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesJhandiMunda(Context context) {
+    public DialogRulesRummy(Context context) {
         this.context = context;
     }
 
-    public DialogRulesJhandiMunda() {
+    public DialogRulesRummy() {
     }
     Dialog dialog;
 
-    public DialogRulesJhandiMunda show() {
+    public DialogRulesRummy show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

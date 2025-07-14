@@ -1,7 +1,7 @@
-package com.gamegards.gaming27._LuckJackpot.menu;
+package com.gamegards.bigjackpot._LuckJackpot.menu;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,16 +16,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.gamegards.gaming27._LuckJackpot.Model.JackpotLastWinHistory;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
+import com.gamegards.bigjackpot._LuckJackpot.Model.JackpotLastWinHistory;
 import com.google.gson.Gson;
 
 import java.io.Reader;
@@ -89,13 +88,10 @@ public class DialogRulesJackpot {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_jackpot_lastwin_record);
+        dialog.setContentView(R.layout.dialog_jackpot_game_rules);
 
         tvHeader = dialog.findViewById(R.id.txtheader);
         tvHeader.setText("How to Play");
-        recJackpotHistory = dialog.findViewById(R.id.recJackpotHistory);
-        recJackpotHistory.setLayoutManager(new GridLayoutManager(context,3));
-        getJackpotHistoryList();
 
         return mInstance;
     }
@@ -118,6 +114,7 @@ public class DialogRulesJackpot {
         });
 
         dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.show();
         Functions.setDialogParams(dialog);
         Window window = dialog.getWindow();
@@ -149,27 +146,27 @@ public class DialogRulesJackpot {
             public void Responce(String resp, String type, Bundle bundle) {
                 if(resp != null)
                 {
-                        Gson gson = new Gson();
-                        Reader reader = new StringReader(resp);
-                        final JackpotLastWinHistory jackpotWinHistory = gson.fromJson(reader, JackpotLastWinHistory.class);
+                    Gson gson = new Gson();
+                    Reader reader = new StringReader(resp);
+                    final JackpotLastWinHistory jackpotWinHistory = gson.fromJson(reader, JackpotLastWinHistory.class);
                     ArrayList<JackpotLastWinHistory.Winner> ruleList = new ArrayList<>();
                     ruleList.addAll(getRuleValue());
                     if(jackpotWinHistory.getCode() == 200)
-                        {
-                            rulesModelArrayList.clear();
-                            rulesModelArrayList.addAll(jackpotWinHistory.getWinners());
-                            for (JackpotLastWinHistory.Winner model: ruleList) {
-                                for (JackpotLastWinHistory.Winner winningModel: rulesModelArrayList) {
-                                    int winning_value = Integer.parseInt(winningModel.getWinning());
-                                    if(model.rule_value == winning_value)
-                                    {
-                                        model.wining_count++;
-                                    }
-
+                    {
+                        rulesModelArrayList.clear();
+                        rulesModelArrayList.addAll(jackpotWinHistory.getWinners());
+                        for (JackpotLastWinHistory.Winner model: ruleList) {
+                            for (JackpotLastWinHistory.Winner winningModel: rulesModelArrayList) {
+                                int winning_value = Integer.parseInt(winningModel.getWinning());
+                                if(model.rule_value == winning_value)
+                                {
+                                    model.wining_count++;
                                 }
-                            }
 
+                            }
                         }
+
+                    }
 
                     recJackpotHistory.setAdapter(new jackpotHistoryAdapter(ruleList));
                 }
@@ -236,7 +233,7 @@ public class DialogRulesJackpot {
             }
 
             TextView getTextView(int id){
-               return  ((TextView) itemView.findViewById(id));
+                return  ((TextView) itemView.findViewById(id));
             }
         }
 

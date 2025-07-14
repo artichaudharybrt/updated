@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._baccarat.menu;
+package com.gamegards.bigjackpot._AnimalRoulate.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,31 +8,28 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-
-public class DialogRulesBaccarat {
-
-    private  Context context;
+public class DialogRulesAnimalRoulette 
+{
+    Context context;
     Callback callback;
-    private static DialogRulesBaccarat mInstance;
+    private static DialogRulesAnimalRoulette mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_ab_rule1,
-            R.drawable.ic_ab_rule2,
+            R.drawable.animal_roulette_rules,
     };
 
-    public static DialogRulesBaccarat getInstance(Context context) {
+    public static DialogRulesAnimalRoulette getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesBaccarat.class) {
+            synchronized (DialogRulesAnimalRoulette.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesBaccarat(context);
+                    mInstance = new DialogRulesAnimalRoulette(context);
                 }
             }
         }
@@ -48,7 +45,7 @@ public class DialogRulesBaccarat {
      *
      * @param context app context: first time
      */
-    public DialogRulesBaccarat init(Context context) {
+    public DialogRulesAnimalRoulette init(Context context) {
         try {
 
             if (context != null) {
@@ -64,21 +61,19 @@ public class DialogRulesBaccarat {
         return mInstance;
     }
 
-    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesBaccarat initDialog() {
+    private DialogRulesAnimalRoulette initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rules_baccarat);
+        dialog.setContentView(R.layout.dialog_rulesrummypoint);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
-//        lnrRuleslist.removeAllViews();
-//        for (int item: rummy_rules) {
-//            addRulesonView(item);
-//        }
-        txtheader = dialog.findViewById(R.id.txtheader);
-        txtheader.setText("How To Play");
+        lnrRuleslist.removeAllViews();
+        for (int item: rummy_rules) {
+            addRulesonView(item);
+        }
+
 
         return mInstance;
     }
@@ -93,15 +88,15 @@ public class DialogRulesBaccarat {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesBaccarat(Context context) {
+    public DialogRulesAnimalRoulette(Context context) {
         this.context = context;
     }
 
-    public DialogRulesBaccarat() {
+    public DialogRulesAnimalRoulette() {
     }
     Dialog dialog;
 
-    public DialogRulesBaccarat show() {
+    public DialogRulesAnimalRoulette show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

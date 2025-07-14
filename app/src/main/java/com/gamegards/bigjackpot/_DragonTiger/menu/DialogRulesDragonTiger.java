@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._CarRoullete.menu;
+package com.gamegards.bigjackpot._DragonTiger.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,28 +8,30 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
+public class DialogRulesDragonTiger {
 
-public class DialogRulesCarRoulette {
-    Context context;
+    private  Context context;
     Callback callback;
-    private static DialogRulesCarRoulette mInstance;
+    private static DialogRulesDragonTiger mInstance;
 
     int[] rummy_rules = {
-            R.drawable.car_oulette_rules,
+            R.drawable.ic_dt_rule1,
+            R.drawable.ic_dt_rule2,
     };
 
-    public static DialogRulesCarRoulette getInstance(Context context) {
+    public static DialogRulesDragonTiger getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesCarRoulette.class) {
+            synchronized (DialogRulesDragonTiger.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesCarRoulette(context);
+                    mInstance = new DialogRulesDragonTiger(context);
                 }
             }
         }
@@ -45,7 +47,7 @@ public class DialogRulesCarRoulette {
      *
      * @param context app context: first time
      */
-    public DialogRulesCarRoulette init(Context context) {
+    public DialogRulesDragonTiger init(Context context) {
         try {
 
             if (context != null) {
@@ -61,20 +63,22 @@ public class DialogRulesCarRoulette {
         return mInstance;
     }
 
+    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesCarRoulette initDialog() {
+    private DialogRulesDragonTiger initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rulesrummypoint);
+        dialog.setContentView(R.layout.dialog_rulesdragontiger);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
-        lnrRuleslist.removeAllViews();
-        for (int item: rummy_rules) {
-            addRulesonView(item);
-        }
+//        lnrRuleslist.removeAllViews();
+//        for (int item: rummy_rules) {
+//            addRulesonView(item);
+//        }
 
-        
+        txtheader = dialog.findViewById(R.id.txtheader);
+        txtheader.setText("How To Play");
         return mInstance;
     }
 
@@ -88,15 +92,15 @@ public class DialogRulesCarRoulette {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesCarRoulette(Context context) {
+    public DialogRulesDragonTiger(Context context) {
         this.context = context;
     }
 
-    public DialogRulesCarRoulette() {
+    public DialogRulesDragonTiger() {
     }
     Dialog dialog;
 
-    public DialogRulesCarRoulette show() {
+    public DialogRulesDragonTiger show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

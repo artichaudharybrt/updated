@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._CoinFlip;
+package com.gamegards.bigjackpot._CarRoullete.menu;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,30 +8,28 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesHeadtail {
 
-    private  Context context;
+public class DialogRulesCarRoulette {
+    Context context;
     Callback callback;
-    private static DialogRulesHeadtail mInstance;
+    private static DialogRulesCarRoulette mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_ab_rule1,
-            R.drawable.ic_ab_rule2,
+            R.drawable.car_oulette_rules,
     };
 
-    public static DialogRulesHeadtail getInstance(Context context) {
+    public static DialogRulesCarRoulette getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesHeadtail.class) {
+            synchronized (DialogRulesCarRoulette.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesHeadtail(context);
+                    mInstance = new DialogRulesCarRoulette(context);
                 }
             }
         }
@@ -47,7 +45,7 @@ public class DialogRulesHeadtail {
      *
      * @param context app context: first time
      */
-    public DialogRulesHeadtail init(Context context) {
+    public DialogRulesCarRoulette init(Context context) {
         try {
 
             if (context != null) {
@@ -63,23 +61,20 @@ public class DialogRulesHeadtail {
         return mInstance;
     }
 
-    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesHeadtail initDialog() {
+    private DialogRulesCarRoulette initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rules_head);
+        dialog.setContentView(R.layout.dialog_rulesrummypoint);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
-//        lnrRuleslist.removeAllViews();
-//        for (int item: rummy_rules) {
-//            addRulesonView(item);
-//        }
-        txtheader = dialog.findViewById(R.id.txtheader);
-        txtheader.setText("How To Play");
+        lnrRuleslist.removeAllViews();
+        for (int item: rummy_rules) {
+            addRulesonView(item);
+        }
 
-
+        
         return mInstance;
     }
 
@@ -93,15 +88,15 @@ public class DialogRulesHeadtail {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesHeadtail(Context context) {
+    public DialogRulesCarRoulette(Context context) {
         this.context = context;
     }
 
-    public DialogRulesHeadtail() {
+    public DialogRulesCarRoulette() {
     }
     Dialog dialog;
 
-    public DialogRulesHeadtail show() {
+    public DialogRulesCarRoulette show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override

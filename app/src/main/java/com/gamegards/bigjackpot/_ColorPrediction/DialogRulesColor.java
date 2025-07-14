@@ -1,4 +1,4 @@
-package com.gamegards.gaming27._Rummy.menu;
+package com.gamegards.bigjackpot._ColorPrediction;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,34 +8,30 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
 
-public class DialogRulesRummy {
+public class DialogRulesColor {
 
-    Context context;
+    private  Context context;
     Callback callback;
-    private static DialogRulesRummy mInstance;
+    private static DialogRulesColor mInstance;
 
     int[] rummy_rules = {
-            R.drawable.ic_rummy_rule1,
-            R.drawable.ic_rummy_rule2,
-            R.drawable.ic_rummy_rule3,
-            R.drawable.ic_rummy_rule4,
-            R.drawable.ic_rummy_rule5,
-            R.drawable.ic_rummy_rule6,
-            R.drawable.ic_rummy_rule7,
+            R.drawable.ic_ab_rule1,
+            R.drawable.ic_ab_rule2,
     };
 
-    public static DialogRulesRummy getInstance(Context context) {
+    public static DialogRulesColor getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (DialogRulesRummy.class) {
+            synchronized (DialogRulesColor.class) {
                 if (null == mInstance) {
-                    mInstance = new DialogRulesRummy(context);
+                    mInstance = new DialogRulesColor(context);
                 }
             }
         }
@@ -51,7 +47,7 @@ public class DialogRulesRummy {
      *
      * @param context app context: first time
      */
-    public DialogRulesRummy init(Context context) {
+    public DialogRulesColor init(Context context) {
         try {
 
             if (context != null) {
@@ -67,19 +63,21 @@ public class DialogRulesRummy {
         return mInstance;
     }
 
+    TextView txtheader;
     LinearLayout lnrRuleslist ;
-    private DialogRulesRummy initDialog() {
+    private DialogRulesColor initDialog() {
         dialog = Functions.DialogInstance(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setTitle("");
-        dialog.setContentView(R.layout.dialog_rulesrummypoint);
+        dialog.setContentView(R.layout.dialog_rules_color);
 
         lnrRuleslist = dialog.findViewById(R.id.lnrRuleslist);
-        lnrRuleslist.removeAllViews();
-        for (int item: rummy_rules) {
-            addRulesonView(item);
-        }
-
+//        lnrRuleslist.removeAllViews();
+//        for (int item: rummy_rules) {
+//            addRulesonView(item);
+//        }
+        txtheader = dialog.findViewById(R.id.txtheader);
+        txtheader.setText("Rules");
 
         return mInstance;
     }
@@ -94,15 +92,15 @@ public class DialogRulesRummy {
         lnrRuleslist.addView(imageView);
     }
 
-    public DialogRulesRummy(Context context) {
+    public DialogRulesColor(Context context) {
         this.context = context;
     }
 
-    public DialogRulesRummy() {
+    public DialogRulesColor() {
     }
     Dialog dialog;
 
-    public DialogRulesRummy show() {
+    public DialogRulesColor show() {
 
         dialog.findViewById(R.id.imgclosetop).setOnClickListener(new View.OnClickListener() {
             @Override
