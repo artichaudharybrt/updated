@@ -76,3 +76,10 @@
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
+
+# Keep ludo game classes
+-keep class com.first_player_games.** { *; }
+-keep class com.first_player_games.LocalGame.** { *; }
+-keep class com.first_player_games.OnlineGame.** { *; }
+-keep class com.first_player_games.Menu.** { *; }
+-keep class com.first_player_games.Api.** { *; }
