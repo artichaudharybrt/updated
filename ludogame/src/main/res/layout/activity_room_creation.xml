@@ -217,7 +217,7 @@
                 android:hapticFeedbackEnabled="true"
                 android:text="Quick > Entry Amount : "
                 android:textColor="#13F31C"
-                android:textSize="15dp"
+                android:textSize="@dimen/dimen_15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -230,7 +230,7 @@
                 android:hapticFeedbackEnabled="true"
                 android:text="50"
                 android:textColor="#13F31C"
-                android:textSize="15dp"
+                android:textSize="@dimen/dimen_15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 

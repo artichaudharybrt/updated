@@ -95,54 +95,54 @@
         android:visibility="gone"
         android:src="@drawable/txtcopy" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignLeft="@id/lnrTableDetails"
-        android:layout_alignTop="@id/lnrTableDetails"
-        android:layout_alignRight="@id/lnrTableDetails"
-        android:layout_alignBottom="@id/lnrTableDetails"
-        android:background="@drawable/ic_jackpot_change_strip" />
+    <!--    <ImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_alignLeft="@id/lnrTableDetails"-->
+    <!--        android:layout_alignTop="@id/lnrTableDetails"-->
+    <!--        android:layout_alignRight="@id/lnrTableDetails"-->
+    <!--        android:layout_alignBottom="@id/lnrTableDetails"-->
+    <!--        android:background="@drawable/ic_jackpot_change_strip" />-->
 
     <LinearLayout
         android:id="@+id/lnrTableDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10">
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tv_gameid"
             style="@style/RummDetailsText"
-            android:text="#" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Table #"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:ellipsize="end" />
 
         <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp5"
-            android:layout_marginRight="@dimen/dp5"
-            android:background="?dividerHorizontal" />
-
-        <TextView
-            android:id="@+id/tvTableType"
-            style="@style/RummDetailsText"
-            android:layout_width="wrap_content"
-            android:text="" />
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp5"
-            android:layout_marginRight="@dimen/dp5"
+            android:id="@+id/dividerPrize"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
             android:background="?dividerHorizontal" />
 
         <TextView
             android:id="@+id/tvTableamount"
             style="@style/RummDetailsText"
-            android:layout_width="wrap_content"
-            android:text="" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Prize Pool"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:ellipsize="end" />
     </LinearLayout>
 
     <RelativeLayout
@@ -758,13 +758,13 @@
         <!--  player2-->
         <RelativeLayout
             android:id="@+id/rltplayer2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imgTable"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/dp20"
-        android:layout_marginBottom="@dimen/startpalyer_bottomargin"
-        android:layout_toRightOf="@+id/rltplayer3">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imgTable"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginBottom="@dimen/startpalyer_bottomargin"
+            android:layout_toRightOf="@+id/rltplayer3">
 
             <RelativeLayout
                 android:layout_width="@dimen/player_width"
@@ -1894,14 +1894,14 @@
         </LinearLayout>
     </RelativeLayout>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_pointStatus"-->
-<!--        style="@style/RummDetailsText"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:visibility="visible"-->
-<!--        android:layout_marginRight="@dimen/dp20"-->
-<!--        android:layout_marginTop="@dimen/dp20"-->
-<!--        tools:text="Points" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_pointStatus"-->
+    <!--        style="@style/RummDetailsText"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:visibility="visible"-->
+    <!--        android:layout_marginRight="@dimen/dp20"-->
+    <!--        android:layout_marginTop="@dimen/dp20"-->
+    <!--        tools:text="Points" />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -2003,28 +2003,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Card History"
-            android:layout_marginTop="@dimen/dp10"
-            android:textColor="@color/Golder_yellow"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Card History"
+                android:layout_marginTop="@dimen/dp10"
+                android:textColor="@color/Golder_yellow"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_cardhistory_close"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="X"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/Golder_yellow"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp" />
+            <TextView
+                android:id="@+id/tv_cardhistory_close"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="X"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/Golder_yellow"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp" />
 
         </RelativeLayout>
 
@@ -2068,27 +2068,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Game History"
-            android:layout_marginTop="@dimen/dp10"
-            android:textColor="@color/Golder_yellow"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Game History"
+                android:layout_marginTop="@dimen/dp10"
+                android:textColor="@color/Golder_yellow"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_gamehistory_close"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="X"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/Golder_yellow"
-            android:layout_marginLeft="10dp" />
+            <TextView
+                android:id="@+id/tv_gamehistory_close"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="X"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/Golder_yellow"
+                android:layout_marginLeft="10dp" />
 
         </RelativeLayout>
 
