@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.MyAccountDetails;
+package com.gamegards.bigjackpot.MyAccountDetails;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.RedeemCoins.RedeemModel;
-import com.gamegards.gaming27.TimeConversion;
-import com.gamegards.gaming27.Utils.Variables;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.RedeemCoins.RedeemModel;
+import com.gamegards.bigjackpot.TimeConversion;
+import com.gamegards.bigjackpot.Utils.Variables;
 
 import java.util.ArrayList;
 

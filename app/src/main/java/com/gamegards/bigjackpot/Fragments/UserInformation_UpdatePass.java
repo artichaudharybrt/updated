@@ -1,11 +1,13 @@
-package com.gamegards.gaming27.Fragments;
+package com.gamegards.bigjackpot.Fragments;
 
-import android.Manifest;
+import static android.content.Context.MODE_PRIVATE;
+import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,10 +16,10 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -26,6 +28,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -38,7 +41,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.exifinterface.media.ExifInterface;
 
@@ -49,23 +51,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.Menu.DialogSelectAvaitars;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.FileUtils;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.FileUtils;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.snackbar.Snackbar;
 //import com.google.firebase.messaging.FirebaseMessaging;
 
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,21 +79,16 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
-import static com.facebook.FacebookSdk.getApplicationContext;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
-;
 
-public class UserInformation_BT extends BottomSheetDialogFragment {
+public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
 
-    public UserInformation_BT() {
+    public UserInformation_UpdatePass() {
         // Required empty public constructor
     }
 
     Callback callback;
-    public UserInformation_BT(Callback callback) {
+    public UserInformation_UpdatePass(Callback callback) {
         // Required empty public constructor
         this.callback = callback;
     }
@@ -116,16 +109,14 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         }
     };
 
-    private View views;
-    String[] PERMISSIONS = { Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE };
-    public static final int MY_PEQUEST_CODE = 123;
+
     View contentView;
+
     EditText edtText;
     Activity context;
     private String user_id, name, mobile, profile_pic, referral_code, wallet, game_played, bank_detail, adhar_card, upi;
     ProgressDialog progressDialog;
-    String base_64 = "";
+    String base_64 = "", pan_base64="", aadhar_ase64="";
 
 
     @NonNull
@@ -137,7 +128,6 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
                 //setupFullHeight(bottomSheetDialog);
             }
         });
-
         return  dialog;
     }
     CoordinatorLayout.Behavior behavior;
@@ -148,7 +138,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
         BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
-        contentView = View.inflate(getContext(), R.layout.dialog_user, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_update_pass, null);
         dialog.setContentView(contentView);
 
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
@@ -190,7 +180,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         super.setupDialog(dialog, style);
 
         // Inflate the custom layout for the Bottom Sheet
-        contentView = View.inflate(getContext(), R.layout.dialog_user, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_update_pass, null);
         dialog.setContentView(contentView);
 
         // Get the parent layout (CoordinatorLayout)
@@ -252,28 +242,20 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
 
 
 
-
-
-
-
-
-
-
-
-    ImageView img_diaProfile;
-    EditText edtUsername,edtUserbank,edtUserupi,edtUseradhar,edtWalletAddress;
-    TextView txt_diaName ;
+    ImageView img_diaProfile,img_verified, img_pan, img_aadhar;
+    EditText edtUsername,edtUserbank,edtUserupi,edtUseradhar , edt_pan, edt_aadar, edt_oldpass, edt_newpass;
+    TextView txt_diaName, txt_status, txt_reason;
     TextView txt_diaPhone;
     TextView txt_bank;
-//    TextView txt_adhar;
+    TextView txt_adhar;
     TextView txt_upi ;
-    TextView txt_wallet_address;
     RadioButton radioBank;
     RadioButton radioUpi;
     Spinner spUserTpye;
     ArrayList<String> UserTpyeList;
+    Button upload_pan, upload_aadhar;
+    String str_chk="";
     private void Intilization(){
-        ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, MY_PEQUEST_CODE);
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
@@ -310,134 +292,59 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         });
 
         img_diaProfile = contentView.findViewById(R.id.img_diaProfile);
+        img_verified = contentView.findViewById(R.id.verified);
         txt_diaName = contentView.findViewById(R.id.txt_diaName);
         txt_diaPhone = contentView.findViewById(R.id.txt_diaPhone);
         txt_bank = contentView.findViewById(R.id.txt_bank);
-//        txt_adhar = contentView.findViewById(R.id.txt_adhar);
+        txt_adhar = contentView.findViewById(R.id.txt_adhar);
         txt_upi = contentView.findViewById(R.id.txt_upi);
-        txt_wallet_address = contentView.findViewById(R.id.txt_wallet_address);
+        txt_status = contentView.findViewById(R.id.txt_status);
+        txt_reason = contentView.findViewById(R.id.txt_reason);
 
+        img_pan = contentView.findViewById(R.id.img_pan);
+        img_aadhar = contentView.findViewById(R.id.img_aadhar);
 
-//        RadioGroup radio_details = contentView.findViewById(R.id.radio_details);
-//        spUserTpye = contentView.findViewById(R.id.sp_profiletype);
-//
-//         UserTpyeList= new ArrayList<>();
-//        UserTpyeList.add("Personal");
-//        UserTpyeList.add("Agent");
-
-//        spUserTpye.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,UserTpyeList));
-//
-//        radioBank = contentView.findViewById(R.id.radioBank);
-//        radioUpi = contentView.findViewById(R.id.radioUpi);
-//        contentView.findViewById(R.id.lnrBankDetails).setVisibility(View.VISIBLE);
-//        contentView.findViewById(R.id.lnrUpi).setVisibility(View.GONE);
-
-//        radio_details.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//
-//                RadioButton radioButton = contentView.findViewById(checkedId);
-//
-//                if(radioButton.getText().toString().trim().equals("Bank Details"))
-//                {
-//                    contentView.findViewById(R.id.lnrBankDetails).setVisibility(View.VISIBLE);
-//                    contentView.findViewById(R.id.lnrUpi).setVisibility(View.GONE);
-//                    radioBank.setChecked(true);
-//                    radioUpi.setChecked(false);
-//                }
-//                else {
-//                    contentView.findViewById(R.id.lnrBankDetails).setVisibility(View.GONE);
-//                    contentView.findViewById(R.id.lnrUpi).setVisibility(View.VISIBLE);
-//                    radioBank.setChecked(false);
-//                    radioUpi.setChecked(true);
-//                }
-//
-//
-//            }
-//        });
 
         edtUsername = contentView.findViewById(R.id.edtUsername);
+        edt_pan = contentView.findViewById(R.id.edt_pan);
+        edt_aadar = contentView.findViewById(R.id.edt_aadar);
+
+        edt_oldpass = contentView.findViewById(R.id.edt_oldpass);
+        edt_newpass = contentView.findViewById(R.id.edt_newpass);
+
         edtUserbank = contentView.findViewById(R.id.edtUserbank);
+
         edtUserupi = contentView.findViewById(R.id.edtUserupi);
         edtUseradhar = contentView.findViewById(R.id.edtUseradhar);
-        edtWalletAddress = contentView.findViewById(R.id.edtWalletAddress);
+
+        upload_pan = contentView.findViewById(R.id.upload_pan);
+        upload_aadhar = contentView.findViewById(R.id.upload_aadhar);
 
         final LinearLayout lnrUserinfo = contentView.findViewById(R.id.lnr_userinfo);
         final LinearLayout lnr_updateuser = contentView.findViewById(R.id.lnr_updateuser);
         lnrUserinfo.setVisibility(View.GONE);
         lnr_updateuser.setVisibility(View.VISIBLE);
 
+        upload_pan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                str_chk="0";
+                selectImage();
+            }
+        });
+
+        upload_aadhar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                str_chk="1";
+                selectImage();
+            }
+        });
 
         img_diaProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
-                /*if (!hasPermissions(getActivity(), PERMISSIONS)) {
-                    ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, MY_PEQUEST_CODE);
-                } else {
-                    selectImage();
-                }*/
-            }
-        });
-
-
-//        ((View) contentView.findViewById(R.id.img_edit)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                if(lnrUserinfo.getVisibility() == View.VISIBLE)
-//                {
-//                    lnrUserinfo.setVisibility(View.GONE);
-//                    lnr_updateuser.setVisibility(View.VISIBLE);
-//                }
-//                else {
-//                    lnrUserinfo.setVisibility(View.VISIBLE);
-//                    lnr_updateuser.setVisibility(View.GONE);
-//                }
-//
-//
-//            }
-//        });
-
-        ((View) contentView.findViewById(R.id.tvKYC)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserInformation_KYC userInformation_bt = new UserInformation_KYC(new Callback() {
-                    @Override
-                    public void Responce(String resp, String type, Bundle bundle) {
-//                        UserProfile();
-                    }
-                });
-                userInformation_bt.setCancelable(false);
-                userInformation_bt.show(getActivity().getSupportFragmentManager(), userInformation_bt.getTag());
-            }
-        });
-
-        ((View) contentView.findViewById(R.id.tv_password)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserInformation_UpdatePass userInformation_updatePass = new UserInformation_UpdatePass(new Callback() {
-                    @Override
-                    public void Responce(String resp, String type, Bundle bundle) {
-//                        UserProfile();
-                    }
-                });
-                userInformation_updatePass.setCancelable(false);
-                userInformation_updatePass.show(getActivity().getSupportFragmentManager(), userInformation_updatePass.getTag());
-            }
-        });
-
-        ((View) contentView.findViewById(R.id.tv_bank)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserInformation_BankDetails userInformation_bankDetails = new UserInformation_BankDetails(new Callback() {
-                    @Override
-                    public void Responce(String resp, String type, Bundle bundle) {
-//                        UserProfile();
-                    }
-                });
-                userInformation_bankDetails.setCancelable(false);
-                userInformation_bankDetails.show(getActivity().getSupportFragmentManager(), userInformation_bankDetails.getTag());
             }
         });
 
@@ -445,16 +352,14 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
 
-
-                if (!edtUsername.getText().toString().trim().equals("")) {
-//                    lnrUserinfo.setVisibility(View.VISIBLE);
-//                    lnr_updateuser.setVisibility(View.GONE);
-
+                if(edt_oldpass.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your Old Password", Toast.LENGTH_SHORT).show();
+                } else if(edt_newpass.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your New Password", Toast.LENGTH_SHORT).show();
+                }
+                else {
+//                    Functions.showToast(context, "Input field in empty!");
                     UserUpdateProfile();
-
-
-                } else {
-                    Functions.showToast(context, "Input field in empty!");
                 }
 
             }
@@ -466,8 +371,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
 
     public String token = "";
     int version = 0 ;
-    String imageFilePath;
-    File image_file;
+
     private void UserProfile() {
 
         HashMap<String, String> params = new HashMap<String, String>();
@@ -484,14 +388,14 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
 
         params.put("app_version", version + "");
         params.put("token", prefs.getString("token", ""));
-
+        Log.d("user_params_", String.valueOf(params));
         ApiRequest.Call_Api(context, Const.PROFILE, params, new Callback() {
             @Override
             public void Responce(String resp, String type, Bundle bundle) {
 
                 if(resp != null)
                 {
-                    ParseResponse(resp);
+//                    ParseResponse(resp);
                 }
 
             }
@@ -515,53 +419,95 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
                 game_played = jsonObject0.optString("game_played");
                 bank_detail = jsonObject0.optString("bank_detail");
                 upi = jsonObject0.optString("upi");
-                String wallet_address = jsonObject0.optString("wallet_address", "");
+                adhar_card = jsonObject0.optString("adhar_card");
+                // txtName.setText("Welcome Back "+name);
+//                long numberamount = Long.parseLong(wallet);
 
                 edtUsername.setText("" + name);
-                if (edtUserbank != null) edtUserbank.setText("" + bank_detail);
-                if (edtUserupi != null) edtUserupi.setText("" + upi);
-                if (edtWalletAddress != null) edtWalletAddress.setText(wallet_address != null ? wallet_address : "");
+                edtUserbank.setText("" + bank_detail);
+                edtUserupi.setText("" + upi);
+                edtUseradhar.setText("" + adhar_card);
 
-                // Set phone display text
-                TextView phoneDisplay = contentView.findViewById(R.id.txt_diaPhone_display);
-                if (phoneDisplay != null) phoneDisplay.setText(mobile);
 
                 String setting = jsonObject.optString("setting");
                 JSONObject jsonObjectSetting = new JSONObject(setting);
 
                 String bank_detail_field = jsonObjectSetting.optString("bank_detail_field");
+                String adhar_card_field = jsonObjectSetting.optString("adhar_card_field");
                 String upi_field = jsonObjectSetting.optString("upi_field");
 
                 SharePref.getInstance().putString(SharePref.Profile_Field3,bank_detail_field);
+                SharePref.getInstance().putString(SharePref.Profile_Field4,adhar_card_field);
                 SharePref.getInstance().putString(SharePref.Profile_Field5,upi_field);
+
+                JSONArray user_kyc = jsonObject.getJSONArray("user_kyc");
+                for (int i = 0; i < user_kyc.length(); i++) {
+                    JSONObject jsonObject1 = user_kyc.getJSONObject(i);
+                    String pan = jsonObject1.getString("pan_no");
+                    String aadhar = jsonObject1.getString("aadhar_no");
+                    String status = jsonObject1.getString("status");
+//                    Toast.makeText(context, ""+status, Toast.LENGTH_SHORT).show();
+                    String reason = jsonObject1.getString("reason");
+                    String imgpan = jsonObject1.getString("pan_img");
+                    String imgaadhar = jsonObject1.getString("aadhar_img");
+                    edt_pan.setText(pan);
+                    edt_aadar.setText(aadhar);
+                    if (status.equals("1")){    //approved
+                        img_verified.setVisibility(View.VISIBLE);
+                        img_verified.setBackgroundResource(R.drawable.green_tick);
+                        txt_status.setVisibility(View.VISIBLE);
+                        txt_status.setText("Docs Status: Approved");
+                        txt_status.setTextColor(Color.parseColor("#00FF00"));
+                        edt_pan.setEnabled(false);
+                        edt_pan.setEnabled(false);
+                        upload_pan.setEnabled(false);
+                        upload_aadhar.setEnabled(false);
+                        ((ImageView) contentView.findViewById(R.id.imgsub)).setEnabled(false);
+                    }
+                    if (status.equals("2")){    //rejected
+                        img_verified.setVisibility(View.VISIBLE);
+                        img_verified.setBackgroundResource(R.drawable.red_reject);
+                        txt_status.setVisibility(View.VISIBLE);
+                        txt_status.setText("Docs Status: Rejected");
+                        txt_status.setTextColor(Color.parseColor("#FF0000"));
+                        txt_reason.setVisibility(View.VISIBLE);
+                        txt_reason.setText(reason);
+                    }
+                    if (status.equals("0")){    //pending
+                        txt_status.setVisibility(View.VISIBLE);
+                        txt_status.setText("Docs Status: Pending");
+                        txt_status.setTextColor(Color.parseColor("#FFDF00"));
+                    }
+
+                    Glide.with(context).load(Const.IMGAE_PATH + imgpan).into(img_pan);
+                    Glide.with(context).load(Const.IMGAE_PATH + imgaadhar).into(img_aadhar);
+                }
 
                 txt_diaName.setText(name);
                 txt_diaPhone.setText(mobile);
                 txt_bank.setText(bank_detail);
-//                txt_adhar.setText("");
+                txt_adhar.setText(adhar_card);
                 txt_upi.setText(upi);
-                if (txt_wallet_address != null) txt_wallet_address.setText(wallet_address != null ? wallet_address : "");
 
                 Glide.with(context).load(Const.IMGAE_PATH + profile_pic).into(img_diaProfile);
 
-                edtUsername.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field1,"Name"));
-                if (edtUserupi != null) edtUserupi.setHint("Enter Account No.");
-                if (edtUserbank != null) edtUserbank.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field3,"Bank Details"));
-                edtUseradhar.setHint("Enter UPI ID");
-                if (edtWalletAddress != null) edtWalletAddress.setHint("Enter Wallet Address");
 
-                ((TextView) contentView.findViewById(R.id.tv_3)).setText("UPI ID:");
+                edtUsername.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field1,"Name"));
+//                edtUsername.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field2,"Ph.No"));
+                edtUserupi.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field3,"UPI ID"));
+                edtUserbank.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field4,"Bank Details"));
+                edtUseradhar.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field5,"Aadhar card no"));
 
                 ((TextView) contentView.findViewById(R.id.Headingfiled1))
                         .setText(SharePref.getInstance().getString(SharePref.Profile_Field1,"Name:"));
                 ((TextView) contentView.findViewById(R.id.Headingfiled2))
                         .setText(SharePref.getInstance().getString(SharePref.Profile_Field2,"Mobile no:"));
                 ((TextView) contentView.findViewById(R.id.Headingfiled3))
-                        .setText(SharePref.getInstance().getString(SharePref.Profile_Field5,"UPI ID:"));
+                        .setText(SharePref.getInstance().getString(SharePref.Profile_Field3,"UPI ID:"));
                 ((TextView) contentView.findViewById(R.id.Headingfiled4))
-                        .setText(SharePref.getInstance().getString(SharePref.Profile_Field3,"Bank Details:"));
+                        .setText(SharePref.getInstance().getString(SharePref.Profile_Field4,"Bank Details:"));
                 ((TextView) contentView.findViewById(R.id.Headingfiled5))
-                        .setText("Wallet Address:");
+                        .setText(SharePref.getInstance().getString(SharePref.Profile_Field5,"Aadhar card no:"));
 
 
                 Functions.LOGD("UserInformation","profile_pic : "+Const.IMGAE_PATH + profile_pic);
@@ -575,11 +521,11 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
                 editor.putString("profile_pic", profile_pic);
                 editor.putString("bank_detail", bank_detail);
                 editor.putString("upi", upi);
+                editor.putString("adhar_card", adhar_card);
                 editor.putString("mobile", mobile);
                 editor.putString("referal_code", referral_code);
                 editor.putString("img_name", profile_pic);
                 editor.putString("wallet", wallet);
-                editor.putString("wallet_address", wallet_address != null ? wallet_address : "");
                 editor.apply();
 
 
@@ -604,7 +550,8 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
 
     private void selectImage() {
 
-        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Choose Avatar","Cancel" };
+//        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Choose Avaitor","Cancel" };
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogCustom);
 
@@ -617,33 +564,30 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
             public void onClick(DialogInterface dialog, int item) {
 
                 if (options[item].equals("Take Photo"))
+
                 {
-                   /* if(Functions.check_permissions(context))
-                        openCameraIntent();*/
-                    openCameraIntent();
+                    if(Functions.check_permissions(context))
+                        openCameraIntent();
                 }
 
                 else if (options[item].equals("Choose from Gallery"))
                 {
-                   /* if(Functions.check_permissions(context)) {
-                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        intent.setType("image/*");
-                        startActivityForResult(intent, 2);
-                    }*/
 
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
+                    if(Functions.check_permissions(context)) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, 2);
+                    }
                 }
-                else if(options[item].equals("Choose Avatar"))
-                {
-                    DialogSelectAvaitars.getInstance(context).returnCallback(new Callback() {
-                        @Override
-                        public void Responce(String resp, String type, Bundle bundle) {
-                            callback.Responce(resp,type,bundle);
-                            UserUpdateProfile();
-                        }
-                    }).show();
-                }
+//                else if(options[item].equals("Choose Avaitor"))
+//                {
+//                    DialogSelectAvaitars.getInstance(context).returnCallback(new Callback() {
+//                        @Override
+//                        public void Responce(String resp, String type, Bundle bundle) {
+//                            callback.Responce(resp,type,bundle);
+//                            UserUpdateProfile();
+//                        }
+//                    }).show();
+//                }
                 else if (options[item].equals("Cancel")) {
 
                     dialog.dismiss();
@@ -680,6 +624,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         }
     }
 
+    String imageFilePath;
     private File createImageFile() throws IOException {
         String timeStamp =
                 new SimpleDateFormat("yyyyMMdd_HHmmss",
@@ -695,6 +640,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         imageFilePath = image.getAbsolutePath();
         return image;
     }
+
     public  String getPath(Uri uri ) {
         String result = null;
         String[] proj = { MediaStore.Images.Media.DATA };
@@ -711,85 +657,168 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         }
         return result;
     }
+
+    File image_file, image_file_two;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
-
-            if (requestCode == 1) {
-                Matrix matrix = new Matrix();
-                try {
-                    ExifInterface exif = new ExifInterface(imageFilePath);
-                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-                    switch (orientation) {
-                        case ExifInterface.ORIENTATION_ROTATE_90:
-                            matrix.postRotate(90);
-                            break;
-                        case ExifInterface.ORIENTATION_ROTATE_180:
-                            matrix.postRotate(180);
-                            break;
-                        case ExifInterface.ORIENTATION_ROTATE_270:
-                            matrix.postRotate(270);
-                            break;
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+//        if (resultCode == RESULT_OK) {
+//
+//            if (requestCode == 1) {
+//                Matrix matrix = new Matrix();
+//                try {
+//                    ExifInterface exif = new ExifInterface(imageFilePath);
+//                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+//                    switch (orientation) {
+//                        case ExifInterface.ORIENTATION_ROTATE_90:
+//                            matrix.postRotate(90);
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_180:
+//                            matrix.postRotate(180);
+//                            break;
+//                        case ExifInterface.ORIENTATION_ROTATE_270:
+//                            matrix.postRotate(270);
+//                            break;
+//                    }
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                image_file = new File(imageFilePath);
+//                Uri selectedImage = (Uri.fromFile(image_file));
+//
+//                InputStream imageStream = null;
+//                try {
+//                    imageStream = context.getContentResolver().openInputStream(selectedImage);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
+//                Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
+//
+//                Bitmap resized = Bitmap.createScaledBitmap(rotatedBitmap, (int) (rotatedBitmap.getWidth() * 0.7), (int) (rotatedBitmap.getHeight() * 0.7), true);
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                resized.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+//
+//
+//                base_64 = Functions.Bitmap_to_base64(context, resized);
+//
+//                if (image_file != null) ;
+//                Glide.with(this).load(resized).into(img_diaProfile);
+//
+//                UserUpdateProfile();
+//            }
+//
+//            else if (requestCode == 2) {
+//                Uri selectedImage = data.getData();
+//
+//                progressDialog.show();
+//                new ImageSendingAsync().execute(selectedImage);
+//            }
+        if (requestCode == 1 && str_chk.equals("0")) {
+//                Toast.makeText(context, ""+str_chk, Toast.LENGTH_SHORT).show();
+            Matrix matrix = new Matrix();
+            try {
+                ExifInterface exif = new ExifInterface(imageFilePath);
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                switch (orientation) {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        matrix.postRotate(90);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        matrix.postRotate(180);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        matrix.postRotate(270);
+                        break;
                 }
-                image_file=new File(imageFilePath);
-                Uri selectedImage =(Uri.fromFile(image_file));
 
-                InputStream imageStream = null;
-                try {
-                    imageStream =context.getContentResolver().openInputStream(selectedImage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            image_file=new File(imageFilePath);
+            Uri selectedImage =(Uri.fromFile(image_file));
+
+            InputStream imageStream = null;
+            try {
+                imageStream =context.getContentResolver().openInputStream(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
+
+            Bitmap  resized = Bitmap.createScaledBitmap(rotatedBitmap,(int)(rotatedBitmap.getWidth()*0.7), (int)(rotatedBitmap.getHeight()*0.7), true);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+
+            pan_base64= Functions.Bitmap_to_base64(context,resized);
+            Log.d("base_pan_cam", pan_base64);
+            Glide.with(context).load(resized).into(img_pan);
+//                if(image_file!=null);
+//                Glide.with(this).load(resized).into(img_diaProfile);
+
+        }  else if (requestCode == 2 && str_chk.equals("0")) {
+            Uri selectedImage = data.getData();
+//                Toast.makeText(context, ""+selectedImage, Toast.LENGTH_SHORT).show();
+            progressDialog.show();
+            new ImageSendingAsync().execute(selectedImage);
+
+        }
+        if (requestCode == 1 && str_chk.equals("1")) {
+//            Toast.makeText(context, ""+str_chk, Toast.LENGTH_SHORT).show();
+            Matrix matrix = new Matrix();
+            try {
+                ExifInterface exif = new ExifInterface(imageFilePath);
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                switch (orientation) {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        matrix.postRotate(90);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        matrix.postRotate(180);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        matrix.postRotate(270);
+                        break;
                 }
-                final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
-                Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
 
-                Bitmap  resized = Bitmap.createScaledBitmap(rotatedBitmap,(int)(rotatedBitmap.getWidth()*0.7), (int)(rotatedBitmap.getHeight()*0.7), true);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                resized.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-
-
-
-                base_64= Functions.Bitmap_to_base64(context,resized);
-
-                if(image_file!=null);
-                Glide.with(this).load(resized).into(img_diaProfile);
-
-                UserUpdateProfile();
-
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            image_file_two=new File(imageFilePath);
+            Uri selectedImage =(Uri.fromFile(image_file_two));
 
-            else if (requestCode == 2) {
-                Uri selectedImage = data.getData();
-
-                progressDialog.show();
-                new ImageSendingAsync().execute(selectedImage);
-
+            InputStream imageStream = null;
+            try {
+                imageStream =context.getContentResolver().openInputStream(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+            final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
+
+            Bitmap  resized = Bitmap.createScaledBitmap(rotatedBitmap,(int)(rotatedBitmap.getWidth()*0.7), (int)(rotatedBitmap.getHeight()*0.7), true);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+
+
+            aadhar_ase64= Functions.Bitmap_to_base64(context,resized);
+//            Toast.makeText(context, ""+pan_base64, Toast.LENGTH_SHORT).show();
+//            if(image_file!=null);
+            Glide.with(this).load(resized).into(img_aadhar);
+
+        }  else if (requestCode == 2 && str_chk.equals("1")) {
+            Uri selectedImage = data.getData();
+
+            progressDialog.show();
+            new ImageSendingAsync_aadhar().execute(selectedImage);
 
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public class ImageSendingAsync extends AsyncTask<Uri, Void, Bitmap> {
         @Override
@@ -837,7 +866,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
             Bitmap  resized = Bitmap.createScaledBitmap(rotatedBitmap,(int)(rotatedBitmap.getWidth()*0.5), (int)(rotatedBitmap.getHeight()*0.5), true);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            resized.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+            resized.compress(Bitmap.CompressFormat.JPEG, 50, baos);
 
             return resized;
         }
@@ -846,51 +875,87 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         protected void onPostExecute(Bitmap bitmap) {
             progressDialog.dismiss();
 
-            base_64= Functions.Bitmap_to_base64(context,bitmap);
-            Log.d("base_profile_", base_64);
-            if(image_file!=null)
-                Glide.with(context).load(bitmap).into(img_diaProfile);
 
-            UserUpdateProfile();
+            pan_base64= Functions.Bitmap_to_base64(context,bitmap);
+            Log.d("base_pan_", pan_base64);
+//            if(image_file!=null)
+            Glide.with(context).load(bitmap).into(img_pan);
+
+//            UserUpdateProfile();
+
+            super.onPostExecute(bitmap);
+        }
+    }
+    public class ImageSendingAsync_aadhar extends AsyncTask<Uri, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(Uri... params) {
+            Uri selectedImage = params[0];
+
+            try {
+                image_file_two= FileUtils.getFileFromUri(context,selectedImage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            InputStream imageStream = null;
+            try {
+                imageStream =context.getContentResolver().openInputStream(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
+
+            String path=getPath(selectedImage);
+            Matrix matrix = new Matrix();
+            ExifInterface exif = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                try {
+                    exif = new ExifInterface(path);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                    switch (orientation) {
+                        case ExifInterface.ORIENTATION_ROTATE_90:
+                            matrix.postRotate(90);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_180:
+                            matrix.postRotate(180);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_270:
+                            matrix.postRotate(270);
+                            break;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
+
+            Bitmap  resized = Bitmap.createScaledBitmap(rotatedBitmap,(int)(rotatedBitmap.getWidth()*0.5), (int)(rotatedBitmap.getHeight()*0.5), true);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+
+            return resized;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            progressDialog.dismiss();
+
+            aadhar_ase64= Functions.Bitmap_to_base64(context,bitmap);
+
+//            if(image_file!=null)
+            Glide.with(context).load(bitmap).into(img_aadhar);
+
+//            UserUpdateProfile();
 
             super.onPostExecute(bitmap);
         }
     }
 
-    private void UserUpdateProfile() {
-
-//        if(radioBank.isChecked())
-//        {
-//
-//            if (Funtions.getStringFromEdit(etBankName).equals("")) {
-//                Funtions.showToast(context, "Please Add Bank Name.");
-//                return;
-//            } else if (Funtions.getStringFromEdit(etBranch).equals("")) {
-//                Funtions.showToast(context, "Please Add Bank Branch.");
-//                return;
-//            } else if (Funtions.getStringFromEdit(etBranch).equals("")) {
-//                Funtions.showToast(context, "Please Add Bank Account number.");
-//                return;
-//            }
-//
-//        }
-//        else {
-//
-//            if (Funtions.getStringFromEdit(etUpiNumber).equals("")) {
-//                Funtions.showToast(context, "Please Add Mobile Bank number.");
-//                return;
-//            }
-//            else  if (Funtions.getStringFromEdit(etUpiNumber).length() < 10) {
-//                Funtions.showToast(context, "Please Add Valid Mobile Bank number.");
-//                return;
-//            }
-//
-//        }
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_UPDATE,
+    private void UserUpdateProfile() {      //update KYC
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_CHANGE_PASSWORD,
                 new Response.Listener<String>() {
-
 
                     @Override
                     public void onResponse(String response) {
@@ -901,20 +966,46 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
                             String code = jsonObject.getString("code");
                             if (code.equalsIgnoreCase("200")) {
 
+                                android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(context);
+//                builder.setTitle("Location")
+                                builder.setMessage("Updated!")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+//                                                Functions.showToast(context, "success");
+                                                if(callback != null)
+                                                    callback.Responce("update","",null);
+                                                progressDialog.dismiss();
+                                                dismiss();
+                                            }
+                                        });
+//                                        .setNegativeButton("MAPS", new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int id) {
+//                                                dialog.cancel();
+//                                                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+//                                                        Uri.parse("http://maps.google.co.in/maps?q="+liveStrength.getLocation()));
+//                                                context.startActivity(intent);
+//                                            }
+//                                        });
+                                android.app.AlertDialog alert = builder.create();
+                                alert.setTitle("Password");
+                                alert.show();
 
-                                if(callback != null)
-                                    callback.Responce("update","",null);
-
-                                dismiss();
-                                Toast.makeText(context, "Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
+//                                Functions.showToast(context, "success");
+//                                if(callback != null)
+//                                    callback.Responce("update","",null);
+//                                dismiss();
                             } else {
                                 if (jsonObject.has("message")) {
                                     String message = jsonObject.getString("message");
                                     Functions.showToast(context, message);
+                                    progressDialog.dismiss();
                                 }
 
                             }
                         } catch (JSONException e) {
+                            progressDialog.dismiss();
                             e.printStackTrace();
                         }
                     }
@@ -924,6 +1015,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
             public void onErrorResponse(VolleyError error) {
                 //  progressDialog.dismiss();
                 Functions.showToast(context, "Something went wrong");
+                progressDialog.dismiss();
             }
         }) {
             @Override
@@ -931,32 +1023,10 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
                 Map<String, String> params = new HashMap<String, String>();
                 SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 params.put("user_id", prefs.getString("user_id", ""));
-                params.put("name", Functions.getStringFromEdit(edtUsername));
-//                if(radioBank.isChecked())
-//                {
-//                    String bank_details = Funtions.getStringFromEdit(etBankName)
-//                            +","+Funtions.getStringFromEdit(etBranch)
-//                            +","+Funtions.getStringFromEdit(etAccountnumber);
-//
-//                    params.put("bank_detail", bank_details);
-//                    params.put("adhar_card", "");
-//                    params.put("upi", "");
-//                }
-//                else {
-//                    params.put("bank_detail", "");
-//                    params.put("adhar_card", Funtions.getStringFromSpinner(spUserTpye));
-//                    params.put("upi", Funtions.getStringFromEdit(etUpiNumber));
-//                }
-
-                params.put("adhar_card", edtUserbank != null ? Functions.getStringFromEdit(edtUserbank) : "");
-                params.put("bank_detail", edtUserupi != null ? Functions.getStringFromEdit(edtUserupi) : "");
-                params.put("upi", Functions.getStringFromEdit(edtUseradhar));
-                params.put("name", Functions.getStringFromEdit(edtUsername));
-                params.put("wallet_address", edtWalletAddress != null ? Functions.getStringFromEdit(edtWalletAddress) : "");
-
-                params.put("profile_pic",""+base_64);
+                params.put("old_password", Functions.getStringFromEdit(edt_oldpass));
+                params.put("new_password",Functions.getStringFromEdit(edt_newpass));
                 params.put("token", prefs.getString("token", ""));
-                Log.d("paremter_java", "getParams: " + params);
+                Log.d("paremter_java_pass", "getParams: " + params);
                 return params;
             }
 
@@ -986,8 +1056,7 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
     }
 
 
-/*
-    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+   /* private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
         FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
         ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
@@ -999,17 +1068,13 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
         bottomSheet.setLayoutParams(layoutParams);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
-*/
-
-
-/*
     private int getWindowHeight() {
         // Calculate window height for fullscreen use
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
-*/
+    */
 
 
 
@@ -1041,37 +1106,6 @@ public class UserInformation_BT extends BottomSheetDialogFragment {
             ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case MY_PEQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean cameraStateAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean readExternalStorageStateAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    boolean writeExternalStorageStateAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraStateAccepted && readExternalStorageStateAccepted && writeExternalStorageStateAccepted) {
-                        selectImage();
-                    } else {
-                        Snackbar.make(views, "Permission Denied", Snackbar.LENGTH_LONG).show();
-                    }
-                }
-        }
-    }
-
-
-
 
 
 

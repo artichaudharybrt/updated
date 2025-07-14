@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.Adapter;
+package com.gamegards.bigjackpot.Adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -20,11 +20,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gamegards.gaming27.Activity.Homepage;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.Variables;
-import com.gamegards.gaming27.model.WelcomeModel;
+import com.gamegards.bigjackpot.Activity.Homepage;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.Variables;
+import com.gamegards.bigjackpot.model.WelcomeModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;

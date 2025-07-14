@@ -67,6 +67,16 @@ public class VsComputer extends BaseActivity {
         dice = findViewById(R.id.dice);
         arrowView = findViewById(R.id.arrow_view);
 
+        View imgBack = findViewById(R.id.imgback);
+        if(imgBack != null) {
+            imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showExitDialog();
+                }
+            });
+        }
+
         dotview.post(new Runnable() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -200,6 +210,8 @@ public class VsComputer extends BaseActivity {
                 }
             }
         });
+        
+
     }
 
     public boolean[] getAllowedPlayers(int[] players){
@@ -232,9 +244,7 @@ public class VsComputer extends BaseActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
+    private void showExitDialog() {
         RelativeLayout relativeLayout = (RelativeLayout) getLayoutInflater().inflate(R.layout.alert_exit_game,null);
         final AlertDialog alert = new AlertDialog.Builder(VsComputer.this).setView(relativeLayout).create();
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -251,6 +261,11 @@ public class VsComputer extends BaseActivity {
             }
         });
         alert.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
     }
 
 }

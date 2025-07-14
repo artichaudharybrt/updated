@@ -1,4 +1,4 @@
-package com.gamegards.gaming27;
+package com.gamegards.bigjackpot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

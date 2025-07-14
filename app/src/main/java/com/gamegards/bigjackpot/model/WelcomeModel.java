@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.model;
+package com.gamegards.bigjackpot.model;
 
 public class WelcomeModel {
 

@@ -1,9 +1,8 @@
-package com.gamegards.gaming27.Fragments;
+package com.gamegards.bigjackpot.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.FacebookSdk.getApplicationContext;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
-
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,7 +16,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,16 +50,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.FileUtils;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.FileUtils;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -84,15 +79,15 @@ import java.util.Locale;
 import java.util.Map;
 
 
-public class UserInformation_KYC extends BottomSheetDialogFragment {
+public class UserInformation_BankDetails extends BottomSheetDialogFragment {
 
 
-    public UserInformation_KYC() {
+    public UserInformation_BankDetails() {
         // Required empty public constructor
     }
 
     Callback callback;
-    public UserInformation_KYC(Callback callback) {
+    public UserInformation_BankDetails(Callback callback) {
         // Required empty public constructor
         this.callback = callback;
     }
@@ -120,7 +115,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
     Activity context;
     private String user_id, name, mobile, profile_pic, referral_code, wallet, game_played, bank_detail, adhar_card, upi;
     ProgressDialog progressDialog;
-    String base_64 = "", pan_base64="", aadhar_ase64="";
+    String base_64 = "", pass_base64="", aadhar_ase64="";
 
 
     @NonNull
@@ -134,6 +129,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         });
         return  dialog;
     }
+
     CoordinatorLayout.Behavior behavior;
 
 
@@ -142,7 +138,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
         BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
-        contentView = View.inflate(getContext(), R.layout.dialog_user_kyc, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_bank, null);
         dialog.setContentView(contentView);
 
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
@@ -152,7 +148,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
         }
 
-       // dialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
+      //  dialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
 
         dialog.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -174,17 +170,15 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
         Intilization();
 
-    }*/
-
-
-
+    }
+*/
     @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
 
         // Inflate the custom layout for the Bottom Sheet
-        contentView = View.inflate(getContext(), R.layout.dialog_user_kyc, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_bank, null);
         dialog.setContentView(contentView);
 
         // Get the parent layout (CoordinatorLayout)
@@ -247,8 +241,10 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
 
 
-    ImageView img_diaProfile,img_verified, img_pan, img_aadhar;
+
+    ImageView img_diaProfile,img_verified, img_pan, img_aadhar, img_passbook;
     EditText edtUsername,edtUserbank,edtUserupi,edtUseradhar , edt_pan, edt_aadar;
+    EditText edt_bank_name, edt_ifsc, edt_acc_holder, edt_acc_no;
     TextView txt_diaName, txt_status, txt_reason;
     TextView txt_diaPhone;
     TextView txt_bank;
@@ -258,7 +254,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
     RadioButton radioUpi;
     Spinner spUserTpye;
     ArrayList<String> UserTpyeList;
-    Button upload_pan, upload_aadhar;
+    Button upload_pan, upload_aadhar, btn_passbook;
     String str_chk="";
     private void Intilization(){
 
@@ -314,6 +310,15 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         edt_pan = contentView.findViewById(R.id.edt_pan);
         edt_aadar = contentView.findViewById(R.id.edt_aadar);
 
+        edt_bank_name = contentView.findViewById(R.id.edt_bank_name);
+        edt_ifsc = contentView.findViewById(R.id.edt_ifsc);
+        edt_acc_holder = contentView.findViewById(R.id.edt_account_holder);
+        edt_acc_no = contentView.findViewById(R.id.edt_account_no);
+
+        btn_passbook = contentView.findViewById(R.id.btn_passbook);
+        img_passbook = contentView.findViewById(R.id.img_passbook);
+
+
         edtUserbank = contentView.findViewById(R.id.edtUserbank);
 
         edtUserupi = contentView.findViewById(R.id.edtUserupi);
@@ -327,7 +332,13 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         lnrUserinfo.setVisibility(View.GONE);
         lnr_updateuser.setVisibility(View.VISIBLE);
 
-        upload_pan.setOnClickListener(new View.OnClickListener() {
+        // Hide bank details fields
+        edt_bank_name.setVisibility(View.GONE);
+        edt_ifsc.setVisibility(View.GONE);
+        edt_acc_holder.setVisibility(View.GONE);
+        edt_acc_no.setVisibility(View.GONE);
+
+        btn_passbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 str_chk="0";
@@ -335,13 +346,13 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             }
         });
 
-        upload_aadhar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                str_chk="1";
-                selectImage();
-            }
-        });
+//        upload_aadhar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                str_chk="1";
+//                selectImage();
+//            }
+//        });
 
         img_diaProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -350,44 +361,24 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             }
         });
 
-//        ((View) contentView.findViewById(R.id.img_edit)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                if(lnrUserinfo.getVisibility() == View.VISIBLE)
-//                {
-//                    lnrUserinfo.setVisibility(View.GONE);
-//                    lnr_updateuser.setVisibility(View.VISIBLE);
-//                }
-//                else {
-//                    lnrUserinfo.setVisibility(View.VISIBLE);
-//                    lnr_updateuser.setVisibility(View.GONE);
-//                }
-//
-//            }
-//        });
-
         ((ImageView) contentView.findViewById(R.id.imgsub)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//
-//                if (!edtUsername.getText().toString().trim().equals("")) {
-//                    lnrUserinfo.setVisibility(View.VISIBLE);
-//                    lnr_updateuser.setVisibility(View.GONE);
-//
-////                    UserUpdateProfile();
-//
-//                }
-//                 else
-                if(edt_pan.getText().toString().equals("")){
-                    Toast.makeText(context, "Please enter Pan no", Toast.LENGTH_SHORT).show();
-                } else if(edt_aadar.getText().toString().equals("")){
-                    Toast.makeText(context, "Please enter Aadhar no", Toast.LENGTH_SHORT).show();
+                if(edt_bank_name.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your Bank name", Toast.LENGTH_SHORT).show();
+                } else if(edt_ifsc.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter valid IFSC Code", Toast.LENGTH_SHORT).show();
+                } else if(edt_acc_holder.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your Bank Holder Name", Toast.LENGTH_SHORT).show();
+                } else if(edt_acc_holder.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your Bank Holder Name", Toast.LENGTH_SHORT).show();
+                } else if(edt_acc_no.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter your Account No.", Toast.LENGTH_SHORT).show();
                 }
                 else {
 //                    Functions.showToast(context, "Input field in empty!");
-                    UserUpdateProfile();
+                    UserUpdateBank();
                 }
 
             }
@@ -423,7 +414,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
                 if(resp != null)
                 {
-                    ParseResponse(resp);
+                    ParseResponse(resp);      //temp cmt
                 }
 
             }
@@ -468,59 +459,23 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
                 SharePref.getInstance().putString(SharePref.Profile_Field4,adhar_card_field);
                 SharePref.getInstance().putString(SharePref.Profile_Field5,upi_field);
 
-                JSONArray user_kyc = jsonObject.getJSONArray("user_kyc");
-                for (int i = 0; i < user_kyc.length(); i++) {
-                    JSONObject jsonObject1 = user_kyc.getJSONObject(i);
-                    String pan = jsonObject1.getString("pan_no");
-                    String aadhar = jsonObject1.getString("aadhar_no");
-                    String status = jsonObject1.getString("status");
+//                JSONArray user_kyc = jsonObject.getJSONArray("user_kyc");
+                JSONArray user_bank_details = jsonObject.getJSONArray("user_bank_details");
+                for (int i = 0; i < user_bank_details.length(); i++) {
+                    JSONObject jsonObject1 = user_bank_details.getJSONObject(i);
+                    String bank_name = jsonObject1.getString("bank_name");
+                    String ifsc_code = jsonObject1.getString("ifsc_code");
+                    String acc_holder_name = jsonObject1.getString("acc_holder_name");
 //                    Toast.makeText(context, ""+status, Toast.LENGTH_SHORT).show();
-                    String reason = jsonObject1.getString("reason");
-                    String imgpan = jsonObject1.getString("pan_img");
-                    Log.d("PanImageData", imgpan);
-                    String imgaadhar = jsonObject1.getString("aadhar_img");
-                    edt_pan.setText(pan);
-                    edt_aadar.setText(aadhar);
-                    if (status.equals("1")){    //approved
-                        img_verified.setVisibility(View.VISIBLE);
-                        img_verified.setBackgroundResource(R.drawable.green_tick);
-                        txt_status.setVisibility(View.VISIBLE);
-                        txt_status.setText("Docs Status: Approved");
-                        txt_status.setTextColor(Color.parseColor("#00FF00"));
-                        edt_pan.setEnabled(false);
-                        edt_pan.setEnabled(false);
-                        upload_pan.setEnabled(false);
-                        upload_aadhar.setEnabled(false);
-                        ((ImageView) contentView.findViewById(R.id.imgsub)).setEnabled(false);
-                    }
-                    if (status.equals("2")){    //rejected
-                        img_verified.setVisibility(View.VISIBLE);
-                        img_verified.setBackgroundResource(R.drawable.red_reject);
-                        txt_status.setVisibility(View.VISIBLE);
-                        txt_status.setText("Docs Status: Rejected");
-                        txt_status.setTextColor(Color.parseColor("#FF0000"));
-                        txt_reason.setVisibility(View.VISIBLE);
-                        txt_reason.setText(reason);
-                    }
-                    if (status.equals("0")){    //pending
-                        txt_status.setVisibility(View.VISIBLE);
-                        txt_status.setText("Docs Status: Pending");
-                        txt_status.setTextColor(Color.parseColor("#FFDF00"));
-                    }
+                    String acc_no = jsonObject1.getString("acc_no");
+                    String passbook_img = jsonObject1.getString("passbook_img");
 
-                  /*  Glide.with(context).load(Const.IMGAE_PATH + imgpan).into(img_pan);
-                    Glide.with(context).load(Const.IMGAE_PATH + imgaadhar).into(img_aadhar);*/
+                    edt_bank_name.setText(bank_name);
+                    edt_ifsc.setText(ifsc_code);
+                    edt_acc_holder.setText(acc_holder_name);
+                    edt_acc_no.setText(acc_no);
 
-                    if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                        Glide.with(context)
-                                .load(Const.IMGAE_PATH + imgpan)
-                                .into(img_pan);
-                        Glide.with(context)
-                                .load(Const.IMGAE_PATH + imgaadhar)
-                                .into(img_aadhar);
-                    }
-
-
+                    Glide.with(context).load(Const.IMGAE_PATH + passbook_img).into(img_passbook);
                 }
 
                 txt_diaName.setText(name);
@@ -529,14 +484,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
                 txt_adhar.setText(adhar_card);
                 txt_upi.setText(upi);
 
-               // Glide.with(context).load(Const.IMGAE_PATH + profile_pic).into(img_diaProfile);
-
-                if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                    Glide.with(context)
-                            .load(Const.IMGAE_PATH + profile_pic)
-                            .into(img_diaProfile);
-                }
-
+                Glide.with(context).load(Const.IMGAE_PATH + profile_pic).into(img_diaProfile);
 
 
                 edtUsername.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field1,"Name"));
@@ -558,13 +506,9 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
 
                 Functions.LOGD("UserInformation","profile_pic : "+Const.IMGAE_PATH + profile_pic);
-               /* Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
-                        .placeholder(R.drawable.avatar).into(img_diaProfile);*/
+                Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
+                        .placeholder(R.drawable.avatar).into(img_diaProfile);
 
-                if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                    Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
-                            .placeholder(R.drawable.avatar).into(img_diaProfile);
-                }
 
 
                 SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
@@ -676,7 +620,6 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             }
         }
     }
-
     String imageFilePath;
     private File createImageFile() throws IOException {
         String timeStamp =
@@ -717,59 +660,6 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        if (resultCode == RESULT_OK) {
-//
-//            if (requestCode == 1) {
-//                Matrix matrix = new Matrix();
-//                try {
-//                    ExifInterface exif = new ExifInterface(imageFilePath);
-//                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-//                    switch (orientation) {
-//                        case ExifInterface.ORIENTATION_ROTATE_90:
-//                            matrix.postRotate(90);
-//                            break;
-//                        case ExifInterface.ORIENTATION_ROTATE_180:
-//                            matrix.postRotate(180);
-//                            break;
-//                        case ExifInterface.ORIENTATION_ROTATE_270:
-//                            matrix.postRotate(270);
-//                            break;
-//                    }
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                image_file = new File(imageFilePath);
-//                Uri selectedImage = (Uri.fromFile(image_file));
-//
-//                InputStream imageStream = null;
-//                try {
-//                    imageStream = context.getContentResolver().openInputStream(selectedImage);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                final Bitmap imagebitmap = BitmapFactory.decodeStream(imageStream);
-//                Bitmap rotatedBitmap = Bitmap.createBitmap(imagebitmap, 0, 0, imagebitmap.getWidth(), imagebitmap.getHeight(), matrix, true);
-//
-//                Bitmap resized = Bitmap.createScaledBitmap(rotatedBitmap, (int) (rotatedBitmap.getWidth() * 0.7), (int) (rotatedBitmap.getHeight() * 0.7), true);
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                resized.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-//
-//
-//                base_64 = Functions.Bitmap_to_base64(context, resized);
-//
-//                if (image_file != null) ;
-//                Glide.with(this).load(resized).into(img_diaProfile);
-//
-//                UserUpdateProfile();
-//            }
-//
-//            else if (requestCode == 2) {
-//                Uri selectedImage = data.getData();
-//
-//                progressDialog.show();
-//                new ImageSendingAsync().execute(selectedImage);
-//            }
         if (requestCode == 1 && str_chk.equals("0")) {
 //                Toast.makeText(context, ""+str_chk, Toast.LENGTH_SHORT).show();
             Matrix matrix = new Matrix();
@@ -807,15 +697,9 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             resized.compress(Bitmap.CompressFormat.JPEG, 50, baos);
 
-            pan_base64= Functions.Bitmap_to_base64(context,resized);
-            Log.d("base_pan_cam", pan_base64);
-           // Glide.with(context).load(resized).into(img_pan);
-
-            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                Glide.with(context).load(resized).into(img_pan);
-            }
-
-
+            pass_base64= Functions.Bitmap_to_base64(context,resized);
+            Log.d("base_pan_cam", pass_base64);
+            Glide.with(context).load(resized).into(img_passbook);
 //                if(image_file!=null);
 //                Glide.with(this).load(resized).into(img_diaProfile);
 
@@ -865,13 +749,9 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
 
             aadhar_ase64= Functions.Bitmap_to_base64(context,resized);
-//            Toast.makeText(context, ""+pan_base64, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, ""+pass_base64, Toast.LENGTH_SHORT).show();
 //            if(image_file!=null);
-          //  Glide.with(this).load(resized).into(img_aadhar);
-            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                Glide.with(this).load(resized).into(img_aadhar);
-
-            }
+            Glide.with(this).load(resized).into(img_aadhar);
 
         }  else if (requestCode == 2 && str_chk.equals("1")) {
             Uri selectedImage = data.getData();
@@ -938,16 +818,10 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         protected void onPostExecute(Bitmap bitmap) {
             progressDialog.dismiss();
 
-
-            pan_base64= Functions.Bitmap_to_base64(context,bitmap);
-            Log.d("base_pan_", pan_base64);
+            pass_base64= Functions.Bitmap_to_base64(context,bitmap);
+            Log.d("base_pan_", pass_base64);
 //            if(image_file!=null)
-          //  Glide.with(context).load(bitmap).into(img_pan);
-
-            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                Glide.with(context).load(bitmap).into(img_pan);
-            }
-
+            Glide.with(context).load(bitmap).into(img_passbook);
 
 //            UserUpdateProfile();
 
@@ -1012,14 +886,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
             aadhar_ase64= Functions.Bitmap_to_base64(context,bitmap);
 
 //            if(image_file!=null)
-           // Glide.with(context).load(bitmap).into(img_aadhar);
-
-            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
-                Glide.with(context)
-                        .load(bitmap) // Load the Bitmap object directly
-                        .into(img_aadhar);
-            }
-
+            Glide.with(context).load(bitmap).into(img_aadhar);
 
 //            UserUpdateProfile();
 
@@ -1027,9 +894,9 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         }
     }
 
-    private void UserUpdateProfile() {      //update KYC
+    private void UserUpdateBank() {      //update BANK
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_UPDATE_KYC,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_UPDATE_BANK,
                 new Response.Listener<String>() {
 
                     @Override
@@ -1043,7 +910,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
                                 android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(context);
 //                builder.setTitle("Location")
-                                builder.setMessage("Fields Updated!")
+                                builder.setMessage("Updated!")
                                         .setCancelable(false)
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
@@ -1064,7 +931,7 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 //                                            }
 //                                        });
                                 android.app.AlertDialog alert = builder.create();
-                                alert.setTitle("KYC");
+                                alert.setTitle("Bank Details");
                                 alert.show();
 
 //                                Functions.showToast(context, "success");
@@ -1098,19 +965,15 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
                 Map<String, String> params = new HashMap<String, String>();
                 SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 params.put("user_id", prefs.getString("user_id", ""));
-                params.put("pan_no", Functions.getStringFromEdit(edt_pan));
-                params.put("pan_img",""+pan_base64);
-                params.put("aadhar_no", Functions.getStringFromEdit(edt_aadar));
-                params.put("aadhar_img", ""+aadhar_ase64);
-
-//                params.put("bank_detail", Functions.getStringFromEdit(edtUserbank));
-//                params.put("upi", Functions.getStringFromEdit(edtUserupi));
-//                params.put("adhar_card", Functions.getStringFromEdit(edtUseradhar));
-//                params.put("name", Functions.getStringFromEdit(edtUsername));
+                params.put("token", prefs.getString("token", ""));
+                params.put("bank_name", Functions.getStringFromEdit(edt_bank_name));
+                params.put("ifsc_code",Functions.getStringFromEdit(edt_ifsc));
+                params.put("acc_holder_name", Functions.getStringFromEdit(edt_acc_holder));
+                params.put("acc_no", Functions.getStringFromEdit(edt_acc_no));
+                params.put("passbook_img", ""+pass_base64);
 
 //                params.put("profile_pic",""+base_64);
-                params.put("token", prefs.getString("token", ""));
-                Log.d("paremter_java_kyc", "getParams: " + params);
+                Log.d("paremter_java_bank", "getParams: " + params);
                 return params;
             }
 
@@ -1138,6 +1001,26 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
         super.onDestroy();
 
     }
+
+
+  /*  private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+        int windowHeight = getWindowHeight();
+        if (layoutParams != null) {
+            layoutParams.height = windowHeight;
+        }
+        bottomSheet.setLayoutParams(layoutParams);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }*/
 
     public void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
         // Inflate your custom bottom sheet layout
@@ -1170,26 +1053,6 @@ public class UserInformation_KYC extends BottomSheetDialogFragment {
 
 
 
-/*
-    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
-        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
-        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
 
-        int windowHeight = getWindowHeight();
-        if (layoutParams != null) {
-            layoutParams.height = windowHeight;
-        }
-        bottomSheet.setLayoutParams(layoutParams);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-    }
-*/
-
-   /* private int getWindowHeight() {
-        // Calculate window height for fullscreen use
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.heightPixels;
-    }*/
 
 }

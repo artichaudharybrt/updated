@@ -1,8 +1,9 @@
-package com.gamegards.gaming27.Fragments;
+package com.gamegards.bigjackpot.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.FacebookSdk.getApplicationContext;
-import static com.gamegards.gaming27.Activity.Homepage.MY_PREFS_NAME;
+import static com.gamegards.bigjackpot.Activity.Homepage.MY_PREFS_NAME;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -51,15 +52,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gamegards.gaming27.Interface.ApiRequest;
-import com.gamegards.gaming27.Interface.Callback;
-import com.gamegards.gaming27.R;
-import com.gamegards.gaming27.ApiClasses.Const;
-import com.gamegards.gaming27.Utils.FileUtils;
-import com.gamegards.gaming27.Utils.Functions;
-import com.gamegards.gaming27.Utils.SharePref;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
+import com.gamegards.bigjackpot.Interface.ApiRequest;
+import com.gamegards.bigjackpot.Interface.Callback;
+import com.gamegards.bigjackpot.R;
+import com.gamegards.bigjackpot.ApiClasses.Const;
+import com.gamegards.bigjackpot.Utils.FileUtils;
+import com.gamegards.bigjackpot.Utils.Functions;
+import com.gamegards.bigjackpot.Utils.SharePref;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -82,15 +82,15 @@ import java.util.Locale;
 import java.util.Map;
 
 
-public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
+public class UserInformation_KYC extends BottomSheetDialogFragment {
 
 
-    public UserInformation_UpdatePass() {
+    public UserInformation_KYC() {
         // Required empty public constructor
     }
 
     Callback callback;
-    public UserInformation_UpdatePass(Callback callback) {
+    public UserInformation_KYC(Callback callback) {
         // Required empty public constructor
         this.callback = callback;
     }
@@ -140,7 +140,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
         BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
-        contentView = View.inflate(getContext(), R.layout.dialog_user_update_pass, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_kyc, null);
         dialog.setContentView(contentView);
 
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
@@ -182,7 +182,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
         super.setupDialog(dialog, style);
 
         // Inflate the custom layout for the Bottom Sheet
-        contentView = View.inflate(getContext(), R.layout.dialog_user_update_pass, null);
+        contentView = View.inflate(getContext(), R.layout.dialog_user_kyc, null);
         dialog.setContentView(contentView);
 
         // Get the parent layout (CoordinatorLayout)
@@ -244,8 +244,9 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
 
 
+
     ImageView img_diaProfile,img_verified, img_pan, img_aadhar;
-    EditText edtUsername,edtUserbank,edtUserupi,edtUseradhar , edt_pan, edt_aadar, edt_oldpass, edt_newpass;
+    EditText edtUsername,edtUserbank,edtUserupi,edtUseradhar , edt_pan, edt_aadar;
     TextView txt_diaName, txt_status, txt_reason;
     TextView txt_diaPhone;
     TextView txt_bank;
@@ -311,9 +312,6 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
         edt_pan = contentView.findViewById(R.id.edt_pan);
         edt_aadar = contentView.findViewById(R.id.edt_aadar);
 
-        edt_oldpass = contentView.findViewById(R.id.edt_oldpass);
-        edt_newpass = contentView.findViewById(R.id.edt_newpass);
-
         edtUserbank = contentView.findViewById(R.id.edtUserbank);
 
         edtUserupi = contentView.findViewById(R.id.edtUserupi);
@@ -350,14 +348,40 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
             }
         });
 
+//        ((View) contentView.findViewById(R.id.img_edit)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if(lnrUserinfo.getVisibility() == View.VISIBLE)
+//                {
+//                    lnrUserinfo.setVisibility(View.GONE);
+//                    lnr_updateuser.setVisibility(View.VISIBLE);
+//                }
+//                else {
+//                    lnrUserinfo.setVisibility(View.VISIBLE);
+//                    lnr_updateuser.setVisibility(View.GONE);
+//                }
+//
+//            }
+//        });
+
         ((ImageView) contentView.findViewById(R.id.imgsub)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(edt_oldpass.getText().toString().equals("")){
-                    Toast.makeText(context, "Please enter your Old Password", Toast.LENGTH_SHORT).show();
-                } else if(edt_newpass.getText().toString().equals("")){
-                    Toast.makeText(context, "Please enter your New Password", Toast.LENGTH_SHORT).show();
+//
+//                if (!edtUsername.getText().toString().trim().equals("")) {
+//                    lnrUserinfo.setVisibility(View.VISIBLE);
+//                    lnr_updateuser.setVisibility(View.GONE);
+//
+////                    UserUpdateProfile();
+//
+//                }
+//                 else
+                if(edt_pan.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter Pan no", Toast.LENGTH_SHORT).show();
+                } else if(edt_aadar.getText().toString().equals("")){
+                    Toast.makeText(context, "Please enter Aadhar no", Toast.LENGTH_SHORT).show();
                 }
                 else {
 //                    Functions.showToast(context, "Input field in empty!");
@@ -397,7 +421,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
                 if(resp != null)
                 {
-//                    ParseResponse(resp);
+                    ParseResponse(resp);
                 }
 
             }
@@ -451,6 +475,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 //                    Toast.makeText(context, ""+status, Toast.LENGTH_SHORT).show();
                     String reason = jsonObject1.getString("reason");
                     String imgpan = jsonObject1.getString("pan_img");
+                    Log.d("PanImageData", imgpan);
                     String imgaadhar = jsonObject1.getString("aadhar_img");
                     edt_pan.setText(pan);
                     edt_aadar.setText(aadhar);
@@ -481,8 +506,19 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
                         txt_status.setTextColor(Color.parseColor("#FFDF00"));
                     }
 
-                    Glide.with(context).load(Const.IMGAE_PATH + imgpan).into(img_pan);
-                    Glide.with(context).load(Const.IMGAE_PATH + imgaadhar).into(img_aadhar);
+                  /*  Glide.with(context).load(Const.IMGAE_PATH + imgpan).into(img_pan);
+                    Glide.with(context).load(Const.IMGAE_PATH + imgaadhar).into(img_aadhar);*/
+
+                    if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                        Glide.with(context)
+                                .load(Const.IMGAE_PATH + imgpan)
+                                .into(img_pan);
+                        Glide.with(context)
+                                .load(Const.IMGAE_PATH + imgaadhar)
+                                .into(img_aadhar);
+                    }
+
+
                 }
 
                 txt_diaName.setText(name);
@@ -491,7 +527,14 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
                 txt_adhar.setText(adhar_card);
                 txt_upi.setText(upi);
 
-                Glide.with(context).load(Const.IMGAE_PATH + profile_pic).into(img_diaProfile);
+               // Glide.with(context).load(Const.IMGAE_PATH + profile_pic).into(img_diaProfile);
+
+                if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                    Glide.with(context)
+                            .load(Const.IMGAE_PATH + profile_pic)
+                            .into(img_diaProfile);
+                }
+
 
 
                 edtUsername.setHint("Enter "+SharePref.getInstance().getString(SharePref.Profile_Field1,"Name"));
@@ -513,9 +556,13 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
 
                 Functions.LOGD("UserInformation","profile_pic : "+Const.IMGAE_PATH + profile_pic);
-                Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
-                        .placeholder(R.drawable.avatar).into(img_diaProfile);
+               /* Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
+                        .placeholder(R.drawable.avatar).into(img_diaProfile);*/
 
+                if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                    Glide.with(context).load(Const.IMGAE_PATH + profile_pic)
+                            .placeholder(R.drawable.avatar).into(img_diaProfile);
+                }
 
 
                 SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
@@ -568,17 +615,19 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
                 if (options[item].equals("Take Photo"))
 
                 {
-                    if(Functions.check_permissions(context))
-                        openCameraIntent();
+                    /*if(Functions.check_permissions(context))
+                        openCameraIntent();*/
+                    openCameraIntent();
                 }
 
                 else if (options[item].equals("Choose from Gallery"))
                 {
-
-                    if(Functions.check_permissions(context)) {
+                   /* if(Functions.check_permissions(context)) {
                         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(intent, 2);
-                    }
+                    }*/
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 2);
                 }
 //                else if(options[item].equals("Choose Avaitor"))
 //                {
@@ -758,7 +807,13 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
             pan_base64= Functions.Bitmap_to_base64(context,resized);
             Log.d("base_pan_cam", pan_base64);
-            Glide.with(context).load(resized).into(img_pan);
+           // Glide.with(context).load(resized).into(img_pan);
+
+            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                Glide.with(context).load(resized).into(img_pan);
+            }
+
+
 //                if(image_file!=null);
 //                Glide.with(this).load(resized).into(img_diaProfile);
 
@@ -810,7 +865,11 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
             aadhar_ase64= Functions.Bitmap_to_base64(context,resized);
 //            Toast.makeText(context, ""+pan_base64, Toast.LENGTH_SHORT).show();
 //            if(image_file!=null);
-            Glide.with(this).load(resized).into(img_aadhar);
+          //  Glide.with(this).load(resized).into(img_aadhar);
+            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                Glide.with(this).load(resized).into(img_aadhar);
+
+            }
 
         }  else if (requestCode == 2 && str_chk.equals("1")) {
             Uri selectedImage = data.getData();
@@ -881,7 +940,12 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
             pan_base64= Functions.Bitmap_to_base64(context,bitmap);
             Log.d("base_pan_", pan_base64);
 //            if(image_file!=null)
-            Glide.with(context).load(bitmap).into(img_pan);
+          //  Glide.with(context).load(bitmap).into(img_pan);
+
+            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                Glide.with(context).load(bitmap).into(img_pan);
+            }
+
 
 //            UserUpdateProfile();
 
@@ -946,7 +1010,14 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
             aadhar_ase64= Functions.Bitmap_to_base64(context,bitmap);
 
 //            if(image_file!=null)
-            Glide.with(context).load(bitmap).into(img_aadhar);
+           // Glide.with(context).load(bitmap).into(img_aadhar);
+
+            if (context != null && context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                Glide.with(context)
+                        .load(bitmap) // Load the Bitmap object directly
+                        .into(img_aadhar);
+            }
+
 
 //            UserUpdateProfile();
 
@@ -956,7 +1027,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
     private void UserUpdateProfile() {      //update KYC
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_CHANGE_PASSWORD,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.USER_UPDATE_KYC,
                 new Response.Listener<String>() {
 
                     @Override
@@ -970,7 +1041,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
                                 android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(context);
 //                builder.setTitle("Location")
-                                builder.setMessage("Updated!")
+                                builder.setMessage("Fields Updated!")
                                         .setCancelable(false)
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
@@ -991,7 +1062,7 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 //                                            }
 //                                        });
                                 android.app.AlertDialog alert = builder.create();
-                                alert.setTitle("Password");
+                                alert.setTitle("KYC");
                                 alert.show();
 
 //                                Functions.showToast(context, "success");
@@ -1025,10 +1096,19 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
                 Map<String, String> params = new HashMap<String, String>();
                 SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
                 params.put("user_id", prefs.getString("user_id", ""));
-                params.put("old_password", Functions.getStringFromEdit(edt_oldpass));
-                params.put("new_password",Functions.getStringFromEdit(edt_newpass));
+                params.put("pan_no", Functions.getStringFromEdit(edt_pan));
+                params.put("pan_img",""+pan_base64);
+                params.put("aadhar_no", Functions.getStringFromEdit(edt_aadar));
+                params.put("aadhar_img", ""+aadhar_ase64);
+
+//                params.put("bank_detail", Functions.getStringFromEdit(edtUserbank));
+//                params.put("upi", Functions.getStringFromEdit(edtUserupi));
+//                params.put("adhar_card", Functions.getStringFromEdit(edtUseradhar));
+//                params.put("name", Functions.getStringFromEdit(edtUsername));
+
+//                params.put("profile_pic",""+base_64);
                 params.put("token", prefs.getString("token", ""));
-                Log.d("paremter_java_pass", "getParams: " + params);
+                Log.d("paremter_java_kyc", "getParams: " + params);
                 return params;
             }
 
@@ -1056,29 +1136,6 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
         super.onDestroy();
 
     }
-
-
-   /* private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
-        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
-        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
-
-        int windowHeight = getWindowHeight();
-        if (layoutParams != null) {
-            layoutParams.height = windowHeight;
-        }
-        bottomSheet.setLayoutParams(layoutParams);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-    }
-    private int getWindowHeight() {
-        // Calculate window height for fullscreen use
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.heightPixels;
-    }
-    */
-
-
 
     public void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
         // Inflate your custom bottom sheet layout
@@ -1111,5 +1168,26 @@ public class UserInformation_UpdatePass extends BottomSheetDialogFragment {
 
 
 
+/*
+    private void setupFullHeight(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+        int windowHeight = getWindowHeight();
+        if (layoutParams != null) {
+            layoutParams.height = windowHeight;
+        }
+        bottomSheet.setLayoutParams(layoutParams);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+*/
+
+   /* private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }*/
 
 }

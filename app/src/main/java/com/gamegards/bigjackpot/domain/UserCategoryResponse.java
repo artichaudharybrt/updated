@@ -1,4 +1,4 @@
-package com.gamegards.gaming27.domain;
+package com.gamegards.bigjackpot.domain;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
